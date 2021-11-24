@@ -48,6 +48,26 @@ border-radius: 0 !important;
 top: 88%;
 width: 100%;
 }
+#countrylist{width: 100%;}
+
+#countrylist hr{
+    background-color: #cccccc63;
+    width: 50%;
+    text-align: center;
+}
+
+#countrylist ul{
+    padding-left: 0;
+    list-style: none;
+    background-color: #5c6166db;
+    text-align: right;
+    padding-top: 10px;
+}
+#countrylist ul li{margin-bottom: 10px;}
+
+#countrylist ul li a{color:#fff;text-decoration: none;margin-right: -28px;}
+
+#countrylist ul li a:hover{color:var(--residential--color);}
 /*serch*/
 /*start notification*/
 .continar-notification{
