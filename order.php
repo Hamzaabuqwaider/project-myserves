@@ -81,9 +81,11 @@ $stmt = $con->prepare("DELETE FROM orders  WHERE id = '$id' ");
 
 $stmt->execute();
 
-$theMsg = "<div class='alert alert-success'>" . $stmt->rowCount() . ' Record Deleted</div>';
+$theMsg = "<div>" . $stmt->rowCount() . ' Record Deleted</div>';
 
-redirectHome($theMsg);
+$Location = "order.php?do=Manage";
+
+redirectHome($Location);
 
 }
 

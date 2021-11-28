@@ -1,5 +1,6 @@
 <?php
 ob_start();
+$titlePage = "edit-information";
 include ("include/session.php");
 include ("include/connect.php");
 include ("include/header.php");
@@ -7,7 +8,23 @@ include ("include/topnav.php");
 include ("include/function.php");
 include('include/loding.php');
 
-?>
+if (isset($_SESSION['userid'])){
+
+    $do = isset($_GET['do']) ? $_GET['do'] : 'Edit';
+
+    if($do == 'Edit'){
+
+        $userid = isset($_GET['userid']) && is_numeric($_GET['userid']) ? intval($_GET['userid']) :0;
+
+        $stmt = $con->prepare('SELECT * FROM users WHERE id = ? LIMIT 1 ');
+
+        $stmt->execute(array($userid));
+
+        $row = $stmt->fetch();
+        
+        $count =$stmt->rowCount();
+
+        if($count > 0){ ?>
 <div class="edit-profile">
 <div class="container">
 <div class="row gutters">
@@ -17,20 +34,18 @@ include('include/loding.php');
 		<div class="account-settings">
 			<div class="user-profile">
 				<div class="user-avatar">
-					<img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Maxwell Admin">
+					
 				</div>
-				<h5 class="user-name">Yuki Hayashi</h5>
-				<h6 class="user-email">yuki@Maxwell.com</h6>
-			</div>
-			<div class="about">
-				<h5>About</h5>
-				<p>I'm Yuki. Full Stack Designer I enjoy creating user-centric, delightful and human experiences.</p>
+				<h5 class="user-name"><?php echo $row['first_name'] . echo $row['last_name'] ?></h5>
+				<h6 class="user-email"><?php echo $row['Email'] ?></h6>
 			</div>
 		</div>
 	</div>
 </div>
 </div>
 <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+<form action="?do=Update" method="POST">
+        <input type="hidden" name='userid' value="<?php echo $userid ?>"/>
 <div class="card h-100">
 	<div class="card-body">
 		<div class="row gutters">
@@ -40,13 +55,13 @@ include('include/loding.php');
 			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 				<div class="form-group">
 					<label for="fullName">الأسم الاول</label>
-					<input type="text" class="form-control" id="fullName" placeholder="الأسم الاول">
+					<input type="text" class="form-control" id="fullName" name="F_name" value='<?php echo $row['first_name'] ?>' placeholder="الأسم الاول">
 				</div>
 			</div>
 			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 				<div class="form-group">
 					<label for="eMail">الأسم الأخير</label>
-					<input type="text" class="form-control" id="eMail" placeholder="الأسم الاخير">
+					<input type="text" class="form-control" id="eMail" name="L_name" value='<?php echo $row['last_name'] ?>' placeholder="الأسم الاخير">
 				</div>
 			</div>
 			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -71,29 +86,20 @@ include('include/loding.php');
 			</div>
 			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 				<div class="form-group">
-                <label for="ciTy">الدولة</label>
-                    <select id="inputState" class="form-control" name="الدولة">
-                                                <option selected>الاردن</option>
-                                                <option>سوريا</option>
-                                                <option>السعودية</option>
-                                                <option>الأمارات</option>
-                                                <option>العراق</option>
-                                                <option>قطر</option>
-                                                <option>البحرين</option>
-                                            </select>
-				
+                <label for="name">البريد الكتروني</label>
+                    <input type="email" class="form-control " id="inlineFormInput" name='email'  value="<?php echo $row['Email'] ?>" placeholder="البريد الكتروني">
 				</div>
 			</div>
 			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 				<div class="form-group">
 					<label for="name">أسم المستخدم</label>
-                    <input type="text" class="form-control " id="inlineFormInput" name='name'  value="" placeholder="الدولة">
+                    <input type="text" class="form-control " id="inlineFormInput" name='name'  value="<?php echo $row['name'] ?>" placeholder="أسم المستخدم">
 				</div>
 			</div>
 			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 				<div class="form-group">
 					<label for="sTate">كلمة المرور الحاليه</label>
-                    <input type="password" id="inputPassword6" class="form-control" name="oldpassword"  value="" aria-describedby="passwordHelpInline">
+                    <input type="password" id="inputPassword6" class="form-control" name="oldpassword"  value="<?php echo $row['password'] ?>" aria-describedby="passwordHelpInline">
 				</div>
 			</div>
 			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -107,17 +113,118 @@ include('include/loding.php');
 		<div class="row gutters">
 			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 				<div class="text-left">
-					<button type="button" id="submit" name="submit" class="btn btn edit-one ">الغاء</button>
-					<button type="button" id="submit" name="submit" class="btn btn edit-tow ">تحديث</button>
+					<a href="index.php"><button type="button" id="submit" name="submit" class="btn btn edit-one ">الغاء</button></a>
+					<button type="submit" id="submit" name="submit" class="btn btn edit-tow ">تحديث</button>
 				</div>
 			</div>
 		</div>
+        </form>
 	</div>
 </div>
 </div>
 </div>
 </div>
 </div>
+
+<?php
+
+} else {
+
+    echo "<div class='alert alert-danger' role='alert'>There is no such ID </div>";
+}
+
+} elseif($do == 'Update'){
+
+    echo "<h1 class='text-center'>Update Member</h1>";
+    echo "<div class='container'>";
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+        $id = $_POST['userid'];
+        $First_Name = $_POST['F_name'];
+        $Last_Name = $_POST['L_name'];
+        $Gender = $_POST['gender'];
+        $Date_Birth = $_POST['date_birth'];
+        $Email = $_POST['email'];
+        $Name = $_POST['name'];
+        $Pass = empty($_POST['newpassword']) ? $_POST['oldpassword'] : MD5($_POST['newpassword']);
+        $image = $_POST['upload'];
+
+
+        $formErrors = array();
+
+        if(empty($First_Name)){
+            $formErrors[] = 'First Name Cant Be <strong> Empty</strong>';
+        }
+        if(empty($Last_Name)){
+            $formErrors[] = 'Last Name Cant Be <strong> Empty</strong>';
+        }
+        if(empty($Gender)){
+            $formErrors[] = 'Gender Cant Be <strong> Empty</strong>';
+        }
+        if(empty($Date_Birth)){
+            $formErrors[] = 'Date Birth Cant Be <strong> Empty</strong>';
+        }
+        if(empty($Email)){
+            $formErrors[] = 'Email Cant Be <strong> Empty</strong>';
+        }
+
+        if(empty($Name)){
+            $formErrors[] = 'Name Cant Be <strong> Empty</strong>';
+        }
+
+        foreach($formErrors as $error) {
+            echo '<div class="alert alert-danger">' . $error . '</div>' ;
+        }
+
+        if(empty($formErrors)){
+
+            $stm2 = $con->prepare("SELECT * FROM users WHERE name = ? AND id != ?");
+            $stm2->execute(array($Name,$id));
+            $count = $stm2->rowCount();
+
+            if ($count == 1) {
+
+                echo '<div class="alert alert-danger">Sorry This User Is Exist</div>';
+
+            } else {
+
+                $stmt = $con->prepare("UPDATE users SET 
+                                                        first_name = ?, 
+                                                        last_name = ?, 
+                                                        gender = ?, 
+                                                        date_birth = ?, 
+                                                        Email = ?,
+                                                        name = ?,
+                                                        password=?,
+                                                        imgg = ?
+                                                        WHERE id ='".$_SESSION['userid']."'");
+                $stmt->execute(array(
+                                    $First_Name,
+                                    $Last_Name,
+                                    $Gender,
+                                    $Date_Birth,
+                                    $Email,
+                                    $Name,
+                                    $Pass,
+                                    $image,
+                                    ));
+
+                echo '<div class="alert alert-success">Record Updated</div>';
+                                    
+            }
+        }
+
+    } else {
+
+        echo "Sorry You Cant Browse This Page Directly";
+        
+    }
+
+    echo "</div>";
+}
+
+    }
            
                 <?php include ("include/footer.php");?>
         
