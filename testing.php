@@ -1,4 +1,8 @@
-<?php include ("topnav.php");?>
+<?php
+  include ("include/header.php");
+  include ("include/topnav.php");
+  include('include/loding.php');
+?>
 
 
 
@@ -367,6 +371,27 @@
             </div>
         </div>
     </div>
+    <!--upload-->
+<div class="main_full">
+	<div class="container">
+		<div class="panel">
+			<div class="button_outer">
+				<div class="btn_upload">
+					<input name="upload"  type="file" id="uploadss_file">
+					<i class="far fa-images" style="color:#ddd;font-size:16px;"></i> إضافة صورة
+				</div>
+				<div class="processing_bar"></div>
+				<div class="success_box"></div>
+			</div>
+		</div>
+		<div class="error_msg"></div>
+		<div class="uploaded_file_view" id="uploaded_view">
+			<span class="file_remove">X</span>
+		</div>
+	</div>
+</div>
+    <!--upload-->
+
 
 
 
@@ -378,7 +403,7 @@
                 <div class="card sys-description-box">
                     <div class="card-body">
                         <div class="sys-logo">
-                            <a class="navbar-brand logo" href="mainpage.php"><span>خد</span>متك</a>
+                            <a class="navbar-brand logo" href="index.php"><span>خد</span>متك</a>
                         </div>
                         <p class="sys-description">يمكنك خدمتك من البحث وايجاد الخدمات التي تبحث عنها بكل سهولة,كما يمكنك الاستفادة منه عن طريق البحث عن وظيفة في مجال عملك.</p>
                         <div class="sys-links">
@@ -450,7 +475,9 @@
     </footer>
 </footer>
     <!--footer-->
-    <?php include('loding.php');?>
+    <?php include ("include/footer.php");?>
+    <script>
+   
 
-    <?php include ("footer.php");?>
+    </script>
 

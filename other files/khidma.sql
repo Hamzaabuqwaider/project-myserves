@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 13, 2021 at 09:26 PM
+-- Generation Time: Nov 28, 2021 at 08:38 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.8
 
@@ -33,7 +33,7 @@ CREATE TABLE `chat` (
   `to_id` int(11) NOT NULL,
   `message` text NOT NULL,
   `opened` tinyint(1) NOT NULL DEFAULT 0,
-  `created_at` date NOT NULL DEFAULT current_timestamp()
+  `created_at` time NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -41,13 +41,46 @@ CREATE TABLE `chat` (
 --
 
 INSERT INTO `chat` (`chat_id`, `from_id`, `to_id`, `message`, `opened`, `created_at`) VALUES
-(1, 6, 1, 'مرحبا', 1, '2021-11-12'),
-(2, 1, 6, 'أهلين', 1, '2021-11-12'),
-(3, 6, 1, 'شو فرشاكي', 1, '2021-11-12'),
-(4, 6, 1, 'كوع على ذيق', 1, '2021-11-12'),
-(5, 6, 1, 'hg,,,', 1, '2021-11-13'),
-(6, 1, 6, 'بحبك', 1, '2021-11-13'),
-(7, 6, 1, 'بموت فيك', 0, '2021-11-13');
+(23, 1, 6, 'مرحبا انا خالد', 1, '12:23:50'),
+(24, 6, 1, 'انا عثمان', 1, '12:26:24'),
+(25, 1, 6, 'اوك', 1, '12:34:50'),
+(26, 1, 6, 'نننن', 1, '12:36:48'),
+(27, 1, 6, 'ythjgfftg', 1, '12:39:02'),
+(28, 6, 1, 'بحبك', 1, '12:40:53'),
+(29, 6, 1, 'مجمد', 1, '12:44:09'),
+(30, 1, 6, '555555555555555555', 1, '12:46:13'),
+(31, 1, 6, 'jhjhghjgjh', 1, '13:11:01'),
+(32, 6, 1, 'jjjjjj', 1, '13:11:41'),
+(33, 1, 6, 'مرحبا أنا خالد', 1, '13:14:57'),
+(34, 6, 1, 'انا عثمان', 1, '13:15:34'),
+(35, 1, 6, 'انا خالد', 1, '13:22:23'),
+(36, 1, 6, '555555', 1, '13:35:29'),
+(37, 1, 6, '55555', 1, '13:36:00'),
+(38, 6, 1, 'ممممممممممم', 1, '13:36:12'),
+(39, 1, 6, '555555555', 1, '14:13:16'),
+(40, 1, 6, 'انا خالد', 1, '00:21:21'),
+(41, 6, 1, 'انا عثمان', 1, '00:22:49'),
+(42, 1, 6, 'hellow\n', 1, '00:30:13'),
+(43, 6, 1, 'محمد', 1, '00:30:35'),
+(44, 1, 6, 'hiك', 1, '00:30:55'),
+(45, 1, 6, 'lpl]\n', 1, '00:34:56'),
+(46, 1, 6, 'khaled', 1, '00:36:06'),
+(47, 6, 1, 'othman', 1, '00:36:53'),
+(48, 1, 6, 'hi', 1, '00:37:02'),
+(49, 1, 6, 'hi', 1, '00:38:47'),
+(50, 6, 1, 'ayham', 1, '00:39:17'),
+(51, 6, 1, 'othman name', 1, '00:42:33'),
+(52, 1, 6, 'khaaled name', 1, '00:43:01'),
+(53, 1, 6, 'khaled', 1, '00:46:56'),
+(54, 6, 1, 'othman', 1, '00:47:09'),
+(55, 6, 1, 'my name is othman ', 1, '00:47:33'),
+(56, 1, 6, 'my name is khaled', 1, '00:47:49'),
+(57, 1, 6, 'abu ghazal', 1, '00:49:14'),
+(58, 6, 1, 'ayham', 1, '00:49:22'),
+(59, 1, 6, 'هههههههههههههههههههههههههههههههههههههههههههههههههههههه', 1, '00:51:15'),
+(60, 6, 1, 'اووووووووووووووووووووك', 1, '00:51:30'),
+(61, 6, 1, 'انا عثمان', 1, '20:57:56'),
+(62, 1, 6, 'انا خالد', 1, '20:58:10');
 
 -- --------------------------------------------------------
 
@@ -165,18 +198,9 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `to_id`, `post_name`, `post_id`, `from_id`, `price`) VALUES
-(41, 6, 'خرا', 41, 1, 0),
-(42, 6, 'خرا', 41, 1, 0),
-(43, 6, 'خرا', 41, 1, 0),
-(44, 6, 'خرا', 41, 8, 0),
-(45, 6, 'خرا', 41, 8, 0),
 (46, 6, 'خرا', 41, 9, 0),
-(162, 6, 'خرا', 41, 6, 0),
-(163, 6, 'خرا', 41, 6, 0),
-(164, 6, 'خرا', 41, 6, 0),
-(165, 6, 'خرا', 41, 6, 0),
-(166, 6, 'خرا', 41, 6, 0),
-(167, 6, 'خرا', 41, 6, 0);
+(197, 6, 'كهرباء طاقة شمسية', 42, 1, 0),
+(198, 6, 'كهرباء طاقة شمسية', 42, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -200,17 +224,13 @@ CREATE TABLE `post` (
 
 INSERT INTO `post` (`id`, `title`, `body`, `category_id`, `user_id`, `img`, `Keyword`) VALUES
 (2, 'roll games', 'learning the game', 4, 2, '', ''),
-(7, 'كهربائي سيارات ', 'عمل صيانه كامله ', 3, 1, '', ''),
-(22, 'كهرباء فاييبر ', 'تمديد انترنت', 8, 1, '43134_aa771843-0bf0-4339-95b2-ad6048f08aa4.jpg', ''),
-(25, 'استخراج البيانات من صفحة ويب ', 'ادخال بيانات بشكل جيد ', 23, 1, '66542_pexels-christina-morillo-1181673.jpg', ''),
-(32, 'java programming anroid', 'good programming', 11, 1, '86181_deal-master-fundamentals-android-programming.jpg', 'fgsdg'),
+(25, 'استخراج البيانات 11111', 'edfefdwef', 23, 1, '89857_23437_61da7186-0154-4f59-a2b9-6b4cefd58f48.jpg', ''),
+(32, 'java programming ', 'deffgrferge', 11, 1, '78732_48344_hamzahQQQ.jpg', 'fgsdg'),
 (34, 'electronic', 'elecronic city', 7, 1, '13753_deal-master-fundamentals-android-programming.jpg', 'Elc'),
-(36, 'programming android', 'sagasgas', 11, 1, '11106_deal-master-fundamentals-android-programming.jpg', 'gassaga'),
-(37, 'OS', 'safasfas', 30, 1, '3258_deal-master-fundamentals-android-programming.jpg', 'dgsagas'),
-(38, 'تنظيف فلاتر', 'صيانة فلاتر', 11, 1, '43747_aa771843-0bf0-4339-95b2-ad6048f08aa4.jpg', 'صقضصقض'),
 (39, 'كهربائيات', 'بسشبشسب', 22, 6, '71981_pexels-timea-kadar-2659515.jpg', 'سبشسل'),
 (40, 'سبش', 'تمديد كهرباء', 8, 6, '39993_0eb94d1a-104f-4457-b702-c9d13f0c3609.jpg', 'سبشبشسب'),
-(41, 'خرا', 'بيبيسبيس', 7, 6, '30042_4cfabeee-41b0-4c43-ad32-d44e1c65f5b8.jpg', 'يؤيسؤ');
+(41, 'خرا', 'بيبيسبيس', 7, 6, '30042_4cfabeee-41b0-4c43-ad32-d44e1c65f5b8.jpg', 'يؤيسؤ'),
+(42, 'كهرباء طاقة شمسية', 'ببببببببببببببببب', 8, 6, '79506_71981_pexels-timea-kadar-2659515.jpg', 'قبرثقثقب');
 
 -- --------------------------------------------------------
 
@@ -269,14 +289,12 @@ CREATE TABLE `users` (
   `name` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `Email` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
-  `Num_Phone` int(11) DEFAULT NULL,
   `Response` datetime DEFAULT NULL,
-  `Location` varchar(255) DEFAULT NULL,
   `first_name` varchar(255) NOT NULL,
   `last_name` varchar(255) NOT NULL,
   `gender` varchar(255) NOT NULL,
   `date_birth` date DEFAULT NULL,
-  `imgg` varchar(255) NOT NULL,
+  `imgg` varchar(255) NOT NULL DEFAULT 'img.png',
   `Response_speed` time NOT NULL DEFAULT current_timestamp(),
   `date` date DEFAULT NULL,
   `last_seen` datetime DEFAULT NULL
@@ -286,14 +304,14 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `type`, `name`, `password`, `Email`, `Num_Phone`, `Response`, `Location`, `first_name`, `last_name`, `gender`, `date_birth`, `imgg`, `Response_speed`, `date`, `last_seen`) VALUES
-(1, 1, 'khaled', '202cb962ac59075b964b07152d234b70', 'khaled99@mail.com', 781392568, '2021-08-04 04:20:03', 'الاردن', 'خالد', 'التعمري', 'ذكر', '2000-10-07', '', '18:29:03', NULL, '2021-11-13 19:10:18'),
-(2, 1, 'ayham', '81dc9bdb52d04dc20036dbd8313ed055', 'ayham@mail.com', 0, '2021-08-19 00:00:00', '', '', '', '', NULL, '', '18:29:03', NULL, NULL),
-(6, 1, 'hamza', '8cb94369a402be55f57ddee0aca89506', 'hamza@mail.com', 781329670, '2021-08-19 00:00:00', 'الاردن', 'حمزه ', 'ابو قويدر ', 'ذكر', '1999-08-21', 'saleem.jpg', '18:29:03', NULL, '2021-11-12 22:31:00'),
-(8, 1, 'loai', '25f9e794323b453885f5181f1b624d0b', 'loai@gmail.com', NULL, NULL, NULL, '', '', '', NULL, '', '22:49:41', '2021-10-13', NULL),
-(9, 2, 'moath', '827ccb0eea8a706c4c34a16891f84e7b', 'moath@mail.com', NULL, NULL, NULL, '', '', '', NULL, '', '22:55:50', '2021-10-13', NULL),
-(10, 2, 'osama', 'c853f22f272423b6696cac4d46e20335', 'osama@mail.com', NULL, NULL, NULL, '', '', '', NULL, '', '17:05:08', '2021-10-14', NULL),
-(11, 2, 'alii', '81dc9bdb52d04dc20036dbd8313ed055', 'ali@gmail.com', 2147483647, NULL, 'الاردن', 'alii', 'ahamd', 'ذكر', '2021-12-02', '71981_pexels-timea-kadar-2659515.jpg', '20:49:32', '2021-11-12', NULL);
+INSERT INTO `users` (`id`, `type`, `name`, `password`, `Email`, `Response`, `first_name`, `last_name`, `gender`, `date_birth`, `imgg`, `Response_speed`, `date`, `last_seen`) VALUES
+(1, 1, 'khaled', '202cb962ac59075b964b07152d234b70', 'khaled99@mail.com', '2021-08-04 04:20:03', 'خالد', 'التعمري', 'ذكر', '2000-10-07', '61da7186-0154-4f59-a2b9-6b4cefd58f48.jpg', '18:29:03', NULL, '2021-11-13 19:10:18'),
+(2, 1, 'ayham', '81dc9bdb52d04dc20036dbd8313ed055', 'ayham@mail.com', '2021-08-19 00:00:00', 'أيهم', 'الخلايلة', '', NULL, '', '18:29:03', NULL, NULL),
+(6, 1, 'Othman', '827ccb0eea8a706c4c34a16891f84e7b', 'Othman@mail.com', '2021-08-19 00:00:00', 'عثمان', 'ابو قويدر ', 'ذكر', '1999-08-21', '48344_hamzahQQQ.jpg', '18:29:03', NULL, '2021-11-12 22:31:00'),
+(8, 1, 'loai', '25f9e794323b453885f5181f1b624d0b', 'loai@gmail.com', NULL, '', '', '', NULL, '', '22:49:41', '2021-10-13', NULL),
+(9, 2, 'moath', '827ccb0eea8a706c4c34a16891f84e7b', 'moath@mail.com', NULL, '', '', '', NULL, '', '22:55:50', '2021-10-13', NULL),
+(10, 2, 'osama', 'c853f22f272423b6696cac4d46e20335', 'osama@mail.com', NULL, '', '', '', NULL, '', '17:05:08', '2021-10-14', NULL),
+(11, 2, 'alii', '81dc9bdb52d04dc20036dbd8313ed055', 'ali@gmail.com', NULL, 'alii', 'ahamd', 'ذكر', '2021-12-02', '71981_pexels-timea-kadar-2659515.jpg', '20:49:32', '2021-11-12', NULL);
 
 --
 -- Indexes for dumped tables
@@ -327,7 +345,9 @@ ALTER TABLE `comment_replies`
 -- Indexes for table `conversation`
 --
 ALTER TABLE `conversation`
-  ADD PRIMARY KEY (`conversation_id`);
+  ADD PRIMARY KEY (`conversation_id`),
+  ADD KEY `user_1` (`user_1`),
+  ADD KEY `user_2` (`user_2`);
 
 --
 -- Indexes for table `main_categories`
@@ -373,7 +393,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `chat`
 --
 ALTER TABLE `chat`
-  MODIFY `chat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `chat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT for table `comment`
@@ -403,13 +423,13 @@ ALTER TABLE `main_categories`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=170;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=199;
 
 --
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `sub_category`

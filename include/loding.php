@@ -1,7 +1,9 @@
 
    <!---loding-->
-   <section class="loading-overlay">
-        <div class="spinner"></div>
-    </section>
+   <div class="loading-overlay">
+   <div class="load">
+  <hr/><hr/><hr/><hr/>
+</div>
+</div>
    <!---loding-->
 

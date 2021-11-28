@@ -6,7 +6,7 @@ include ("include/connect.php");
 include ("include/header.php");
 include ("include/topnav.php");
 include ("include/function.php");
-// include('include/loding.php');
+include('include/loding.php');
 
 if (isset($_SESSION['userid'])){
 
@@ -26,8 +26,6 @@ if (isset($_SESSION['userid'])){
 
         if($count > 0){ ?>
 <div class="edit-profile">
-<form action="?do=Update" method="POST">
-        <input type="hidden" name='userid' value="<?php echo $userid ?>"/>
 <div class="container">
 <div class="row gutters">
 <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
@@ -36,13 +34,9 @@ if (isset($_SESSION['userid'])){
 		<div class="account-settings">
 			<div class="user-profile">
 				<div class="user-avatar">
-					<img id="uplodeimgedit"  src="../project-myserves/layot/img/<?php echo $row['imgg'] ?>" alt="Maxwell Admin">
-                    <div class="p-image">
-                       <abbr title="تعديل الصوره الشخصيه"><i onclick="uptateimge()" class="fa fa-camera upload-button icon-edit"></i></abbr>
-                    </div>
-                    <input type="file" id="uplode-img-edit" name="upload" onchange ="readUrledit(this)" hidden>
+					
 				</div>
-				<h5 class="user-name"><?php echo $row['first_name'] ." ". $row['last_name'] ?></h5>
+				<h5 class="user-name"><?php echo $row['first_name'] . echo $row['last_name'] ?></h5>
 				<h6 class="user-email"><?php echo $row['Email'] ?></h6>
 			</div>
 		</div>
@@ -50,6 +44,8 @@ if (isset($_SESSION['userid'])){
 </div>
 </div>
 <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+<form action="?do=Update" method="POST">
+        <input type="hidden" name='userid' value="<?php echo $userid ?>"/>
 <div class="card h-100">
 	<div class="card-body">
 		<div class="row gutters">
@@ -122,12 +118,12 @@ if (isset($_SESSION['userid'])){
 				</div>
 			</div>
 		</div>
+        </form>
 	</div>
 </div>
 </div>
 </div>
 </div>
-</form>
 </div>
 
 <?php
@@ -152,8 +148,7 @@ if (isset($_SESSION['userid'])){
         $Email = $_POST['email'];
         $Name = $_POST['name'];
         $Pass = empty($_POST['newpassword']) ? $_POST['oldpassword'] : MD5($_POST['newpassword']);
-        $img = $_POST['upload'];
-        // $image = $_POST['upload'];
+        $image = $_POST['upload'];
 
 
         $formErrors = array();
@@ -202,7 +197,7 @@ if (isset($_SESSION['userid'])){
                                                         Email = ?,
                                                         name = ?,
                                                         password=?,
-                                                        imgg=?
+                                                        imgg = ?
                                                         WHERE id ='".$_SESSION['userid']."'");
                 $stmt->execute(array(
                                     $First_Name,
@@ -212,7 +207,7 @@ if (isset($_SESSION['userid'])){
                                     $Email,
                                     $Name,
                                     $Pass,
-                                    $img,
+                                    $image,
                                     ));
 
                 echo '<div class="alert alert-success">Record Updated</div>';
@@ -229,9 +224,7 @@ if (isset($_SESSION['userid'])){
     echo "</div>";
 }
 
-
-}
-    ob_end_flush();
-
- include ("include/footer.php");?>
+    }
+           
+                <?php include ("include/footer.php");?>
         

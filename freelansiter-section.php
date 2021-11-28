@@ -1,4 +1,5 @@
 <?php 
+  $titlePage = "freelance";
   include ("include/session.php");
   include ("include/connect.php");
   include ("include/header.php");

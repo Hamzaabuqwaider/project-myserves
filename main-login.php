@@ -1,4 +1,5 @@
 <?php
+$titlePage = "login";
 include ("include/session.php");
 include ("include/connect.php");
 include ("include/header.php");
@@ -7,7 +8,7 @@ include('include/loding.php');
 
 if(isset($_SESSION['userid']))
 {
-    header('location: mainpage.php');
+    header('location: index.php');
 }
  ?>
     <?php 
@@ -111,18 +112,6 @@ if(isset($_SESSION['userid']))
      ?>
             <form action="<?php echo $_SERVER['PHP_SELF']; ?>" class="sign-up-form" method="POST">
                 <h2 class="title-login">حساب جديد</h2>
-                <div class="input-field">
-                    <i class="fas fa-user"></i>
-                    <input
-                    type="text" 
-                    name="name"
-                    autocomplete="off"
-                    placeholder="اسم المستخدم"
-                    pattern=".{4,}"
-                    title="Username Must Be 4 Chars"
-                    required
-                    />
-                </div>
                 <div class="input-field">
                     <i class="fas fa-user"></i>
                     <input

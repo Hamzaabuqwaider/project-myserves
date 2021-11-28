@@ -1,7 +1,7 @@
 
    <!--footer-->
     <footer class="section-footer">
-    <div class="main-containers" style="margin-bottom: -50px;">
+    <div class="main-containers" >
         <div class="row">
             <div class="col-lg-4">
                 <div class="card sys-description-box">
@@ -92,5 +92,6 @@
           AOS.init();
         </script>
         <script>new WOW().init();</script>
+        
 </body>
 </html>

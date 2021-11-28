@@ -1,4 +1,5 @@
 <?php
+$titlePage = "required-service";
 include ("include/session.php");
 include ("include/connect.php");
 include ("include/header.php");
@@ -19,25 +20,40 @@ $row = $stmt->fetchAll();
     $row1 = $stmt1->fetchAll();
 
         ?>
-<div class="p"style=" margin-top:50px;">
-<div class="container">
-<div class="row">
-<?php foreach($row1 as $tst){ ?>
-    <div class="col-lg-4"  >
-<div class="card" style="width:18rem;   ">
-  <img src="../project-myserves/layot/img/<?php echo $tst['IMG'] ?>" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title"><?php echo $tst["TITLE"] ?></h5>
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">الأسم : <?php echo $tst['namm']; ?> </li>
-    <li class="list-group-item">السعر: <?php echo $tst['price']; ?></li>
-  </ul>
-</div>
-</div>
-<?php } ?>
-</div>
-</div>
+<div class="cart-page">
+    <table class="table-cart" >
+        
+        <tr class="th-cart">
+            <th style="text-align: right;">الخدمه</th>
+            <th >السعر</th>
+           
+        </tr>
+        <?php foreach($row1 as $row){ ?>
+        <tr>
+            <td style="padding:5px"></td>
+            <td style="padding:5px"></td>
+            
+          </tr>
+        <tr class="td-cart">
+            <td >
+                <div class="cart-info">
+                    <img class="imge-cart"   src="../project-myserves/layot/img/<?php echo $row['IMG'] ?>" alt="">
+                    <div>
+                        <p style="font-weight:800;font-size:20px"><?php echo $row["TITLE"] ?></p>
+                        <small style="font-weight:800 ;font-size:15px"><?php echo $row['namm']; ?></small>
+                        <br>
+                    </div>
+                </div>
+            </td>
+            <td style="font-weight:800"><?php echo $row['price'] ?></td>
+          </tr>
+          <tr>
+            <td style="padding:5px"></td>
+            <td style="padding:5px"></td>
+            
+          </tr>
+          <?php } ?>
+    </table>
 </div>
 
         <?php

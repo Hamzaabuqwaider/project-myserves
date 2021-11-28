@@ -15,7 +15,7 @@ if(isset($_GET["query"]))
     {
         foreach($row as $rows)
         {
-            $output .= '<li><a href="section.php?Cat_id='.$rows["category_id"].'">' . $rows["title"] . '</a></li>';
+            $output .= '<li><a href="section.php?Cat_id='.$rows["category_id"].'">' . $rows["title"] . '</a></li><hr>';
         }
     } else{
 
