@@ -9,23 +9,14 @@ function checkCat($type){
     return $main_cat;
 }
 
-function redirectHome($theMsg,$url = null, $Seconds =4){
-    if($url === null){
-        $url = 'login.php';
-        $link = 'mainpage';
-    }else{
-        if(isset($_SERVER['HTTP_REFERER']) && $_SERVER['HTTP_REFERER'] !== ''){
-            $url = $_SERVER['HTTP_REFERER'];   
-            $link = 'Previous Page'; 
-        }else {
-            $url = 'login.php';
-            $link = 'mainpage';
-        }
-       
-    }
-    echo $theMsg;
-    echo "<div class = 'alert alert-info'>You will Be Redirected to $link After $Seconds.</div>";
-    header("refresh:$Seconds;url=$url");
+function redirectHome($theMsg, $Seconds = 0){
+    
+    // echo "<div class = 'alert alert-danger'>$theMsg</div>";
+
+    // echo "<div class = 'alert alert-info'>You will Be Redirected  After $Seconds seconds.</div>";
+
+    header("refresh:$Seconds;$theMsg");
+
     exit();
 }
 
@@ -50,7 +41,7 @@ function checkItem($select, $from, $value){
 function login($username,$password)
     {
         global $con;
-        $get_user="select * from `users` WHERE name ='$username' and password='$password'";
+        $get_user="select * from users WHERE name ='$username' and password='$password'";
         $run_user = $con->query($get_user);
         $state_user = $run_user->rowCount();
         if($state_user >0){
@@ -58,7 +49,7 @@ function login($username,$password)
             $_SESSION['usertype']=$row_data['type'];
             $_SESSION['userid']=$row_data['id'];
             $_SESSION['username']=$row_data['name'];
-            header('location: mainpage.php');
+            header('location: index.php');
 
         }else
         {
@@ -94,7 +85,8 @@ function login($username,$password)
 
     function getChats($id_1, $id_2, $con){
     
-    $sql = "SELECT * FROM chat
+    $sql = "SELECT *,users.imgg as IMG FROM chat
+            INNER JOIN users ON users.id  = chat.from_id
             WHERE from_id=? AND to_id=?
             OR to_id=? AND from_id=?
             ORDER BY chat_id ASC";
@@ -174,8 +166,6 @@ function login($username,$password)
             
     }
     }
-  
-
 
 
 

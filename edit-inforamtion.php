@@ -175,6 +175,7 @@ if (isset($_SESSION['userid'])){
                 $stm2 = $con->prepare("SELECT * FROM users WHERE name = ? AND id != ?");
                 $stm2->execute(array($Name,$id));
                 $count = $stm2->rowCount();
+                
 
                 if ($count == 1) {
 
