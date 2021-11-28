@@ -15,7 +15,7 @@ function redirectHome($theMsg, $Seconds = 0){
 
     // echo "<div class = 'alert alert-info'>You will Be Redirected  After $Seconds seconds.</div>";
 
-    header("refresh:$Seconds;order.php?do=Manage");
+    header("refresh:$Seconds;$theMsg");
 
     exit();
 }
@@ -85,7 +85,8 @@ function login($username,$password)
 
     function getChats($id_1, $id_2, $con){
     
-    $sql = "SELECT * FROM chat
+    $sql = "SELECT *,users.imgg as IMG FROM chat
+            INNER JOIN users ON users.id  = chat.from_id
             WHERE from_id=? AND to_id=?
             OR to_id=? AND from_id=?
             ORDER BY chat_id ASC";
