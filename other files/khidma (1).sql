@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 28, 2021 at 08:38 PM
+-- Generation Time: Nov 28, 2021 at 09:03 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.8
 
@@ -80,7 +80,8 @@ INSERT INTO `chat` (`chat_id`, `from_id`, `to_id`, `message`, `opened`, `created
 (59, 1, 6, 'هههههههههههههههههههههههههههههههههههههههههههههههههههههه', 1, '00:51:15'),
 (60, 6, 1, 'اووووووووووووووووووووك', 1, '00:51:30'),
 (61, 6, 1, 'انا عثمان', 1, '20:57:56'),
-(62, 1, 6, 'انا خالد', 1, '20:58:10');
+(62, 1, 6, 'انا خالد', 1, '20:58:10'),
+(63, 1, 6, 'l;;l;l', 1, '22:01:46');
 
 -- --------------------------------------------------------
 
@@ -393,7 +394,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `chat`
 --
 ALTER TABLE `chat`
-  MODIFY `chat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `chat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT for table `comment`
