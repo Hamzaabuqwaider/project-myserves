@@ -41,7 +41,7 @@ function checkItem($select, $from, $value){
 function login($username,$password)
     {
         global $con;
-        $get_user="select * from `users` WHERE name ='$username' and password='$password'";
+        $get_user="select * from users WHERE name ='$username' and password='$password'";
         $run_user = $con->query($get_user);
         $state_user = $run_user->rowCount();
         if($state_user >0){
@@ -166,8 +166,6 @@ function login($username,$password)
             
     }
     }
-  
-
 
 
 
