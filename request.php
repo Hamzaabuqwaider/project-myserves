@@ -36,11 +36,9 @@ if(isset($_SESSION["userid"]))
  ]);
 
 
-}
-
-   
+}   
 ?>
-   <form method="POST"   class= "text-center">
+   <form method="POST"  class= "text-center">
     <table border="0" cellpadding="0" cellspacing="0" width="100%" >
                     <tr>
                         <td align="center" style="padding: 35px 35px 20px 35px; background-color: #ffffff;" bgcolor="#ffffff">
