@@ -7,11 +7,22 @@
     --White--color: #f2f2f2;
     --residential--color:#ccc;
 }
+html::-webkit-scrollbar{
+    width: 10px;
+}
+html::-webkit-scrollbar-thumb{
+    background-color: var(--orang--color);
+    border-radius: 20px;
+}
+html::-webkit-scrollbar-track{
+    background-color:var(--residential--color);
+
+}
 body{
     direction: rtl;
     text-align: right;
     overflow-x: hidden; 
-
+    
     
 }
 /*start navbar*/
@@ -79,9 +90,10 @@ width: 100%;
     width: 380px;
     left: 12%!important;
     text-align: right;
-    background-color: var(--White--color);
+    background-color:#5c61663b;
     border-top: 0;
-    border: 0;
+    border: 3px solid var(--Navy--color);
+    border-radius: 5px;
     font-size: 16px;
 }
 .continar-notification ul{
@@ -100,18 +112,18 @@ width: 100%;
     white-space: normal;
     word-break: break-word;
 }
-.img-profile{
-    width: 30px;
-    height: 30px;
-    object-fit: cover;
-    margin: 3px !important;
+.img-profile {
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
+    border: 3px solid var(--White--color);
 }
 .continar-notification .time-notification{
-    display: block;
     margin-top: 10px;
     font-size: 12px;
     color: #8e8c8c;
+    float: left;
+    font-weight: bold;
 }
 .continar-notification .footer-notification{background-color: var(--Navy--color);color: var(--White--color);text-align: center;}
 
@@ -122,11 +134,32 @@ width: 100%;
 .continar-notification .footer-notification a:hover{color: var(--orang--color)!important;text-decoration: none;}
 /*end notification*/
 /*start maseges*/
+.bgchat .tow-bg:hover{
+    background-color:var(--White--color);
+}
+.tow-bg:hover .img-profile{
+    border: 3px solid var(--Navy--color);
+}
+.continar-notification .tow-bg{
+    background-color: #cccccceb;
+    transition: 0.9s;
+}
+.maasage-chat-ul{
+    color: var(--Navy--color);
+    font-weight: 900;
+    padding-top: 20px;
+}
 .continar-maseges{left: 7%!important;}
 
-.continar-maseges .text-maseges{color:var(--Navy--color);}
+.continar-maseges .text-maseges{color:var(--Navy--color);font-weight:700;}
 
 .continar-maseges a{text-decoration: none;}
+
+.continar-maseges ::-webkit-scrollbar{width: 12px;}
+
+.continar-maseges ::-webkit-scrollbar-thumb{background-color: var(--orang--color);border-radius: 20px;}
+
+.continar-maseges ::-webkit-scrollbar-track{background-color: var(--White--color);}
 
 /*end maseges*/
 /*start profile*/
@@ -389,97 +422,7 @@ font-size: 15px;
     box-shadow:none;
 }
 /* end eidted section*/
-/* start-information-pr*/
-.inframtion-pr{background-color: var(--Navy--color);height:25%;}
-
-.inframtion-p2{ background-color: var(--Navy--color); height: 30vh;}
-
-.imge-p2{ border:
-5px solid var(--White--color);
-border-radius: 300px !important;}
-.imge-pr{border: 5px solid var(--White--color);
-    border-radius: 300px;
-    height: 280px;
-    object-fit: cover;
-    width: 280px;
-}
-.name h1{
-margin-top: 180px;
-font-size: 20px;
-color: #35434ead;
-font-family: 'Markazi Text', serif;
-font-weight: bold;
-}
-.icon-pr{
-font-size:30px;
-float: right;
-color:orange;
-cursor: pointer;
-margin-top: 30px;
-font-weight: 600;
-margin-right: 20px;
-}
-.hr-pr{width: 50%;}
-
-body:hover .hr-pr{background-color:orange;}
-
-    .infroamtion-you{
-    font-size: 20px;
-    margin-top: 100px;
-    font-weight: bold;
-    color: #353b3fad;
-    font-family: 'Markazi Text', serif;
-    }
-    .icon-profile{
-    background-color:white;
-    height: 100px;
-    border: 2px var(--residential--color) solid;
-    border-radius: 20px;
-    box-shadow: 1px 1px var(--residential--color);
-    transition: 2s;
-    margin: 10px;
-        
-    }
-    .namecountry{
-    font-size: 17px;
-    font-weight: 600;
-    font-family: serif;
-    margin-top: 30px;
-    }
-    .icon-profile:hover{transform: scale(1.1,1.1);cursor: pointer;}
-
-    .icon-profile-paet2{
-    background-color:white;
-    height: 100px;
-    border: 2px var(--residential--color) solid;
-    border-radius: 20px;
-    box-shadow: 1px 1px var(--residential--color);
-    margin-top: 20px;
-    transition: 2s;
-    margin: 10px;
-    }
-    .icon-profile-paet2:hover{transform: scale(1.1 ,1.1);cursor: pointer;}
-
-    .icon-pa{
-    font-size:30px;
-    float: right;
-    color:orange;
-    cursor: pointer;
-    margin-top: 30px;
-    font-weight: 600;
-    margin-right: 20px;
-    }
-    .ul-styly{list-style: none;margin-left: 635px; }
-
-    .i-color{float: left;color: #ffff00cc;}
-
-    .num-bu{ display: none ;}
-
-    .icon-profile-paet2:hover .num-bu{display: block;font-weight: bold;color: orange;}  
-    
-/* end-information-pr*/
 /* start-edit-ifroramtion*/
-
 .information-edit{background-color: var(--Navy--color);height: 25vh;}
 
 .information-img{position: relative;}
@@ -1744,10 +1687,12 @@ transform: scale(1.1 ,1.1);
     cursor: pointer;
   }
   /*end-edit-inforamtion*/
+  /*start-maasage*/
 .main-caht{
     background: #5c616647;
     background: -webkit-linear-gradient(to right, var(--residential--color), var(--residential--color), var(--residential--color));
     background: linear-gradient(to right, var(--residential--color), var(--residential--color), var(--Navy--color));
+    padding: 20px;
 }
 .main-caht abbr[title] {
     text-decoration: none;
@@ -1786,6 +1731,8 @@ transform: scale(1.1 ,1.1);
 }
 .msg_card_body{
     overflow-y: auto;
+    overflow-x: hidden;
+
 }
 .main-caht .card-header{
     border-radius: 15px 15px 0 0 !important;
@@ -1857,16 +1804,32 @@ background-color: rgba(0,0,0,0.3) !important;
     height: 40px;
     width: 40px;
 }
-.main-caht.online_icon{
+.main-caht .online_icon{
 position: absolute;
 height: 15px;
 width:15px;
 background-color: #4cd137;
-border-radius: 50%;
+border-radius: 100%;
 bottom: 0.2em;
 right: 0.4em;
 border:1.5px solid white;
 }
+.tiem-zone{
+    padding-top: 50px;
+    margin-left: 50;
+    margin-right: -100px;
+    color: #ffffff87;
+}
+.main-caht .online_icon_tow{
+    position: absolute;
+    height: 15px;
+    width:15px;
+    background-color: red;
+    border-radius: 100%;
+    bottom: 0.2em;
+    right: 0.4em;
+    border:1.5px solid white;
+    }
 .main-caht .offline{
 background-color: #c23616 !important;
 }
@@ -1947,6 +1910,18 @@ position: relative;
 margin-bottom: 15px !important;
 }
 }
+.msg_card_body::-webkit-scrollbar{
+    width: 12px;
+}
+.msg_card_body::-webkit-scrollbar-thumb{
+    background-color: var(--orang--color);
+    border-radius: 20px;
+}
+.msg_card_body::-webkit-scrollbar-track{
+    background-color: var(--residential--color);
+}
+/*end-maasage*/
+
 /*cart test*/
 /* form starting stylings ------------------------------- */
 #checkout .group 			  { 

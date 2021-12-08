@@ -181,3 +181,4 @@ document.getElementById("requst").onkeyup=function(){
     document.getElementById("moyna").value = totalValue.toFixed(2);
 };
 //new upload 
+

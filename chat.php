@@ -8,6 +8,7 @@ include ("include/topnav.php");
 include ("include/function.php");
 include('include/loding.php');
 
+
 if (isset($_SESSION['userid']))
 {
     $name = isset($_GET['user_id']) && is_numeric($_GET['user_id']) ? intval($_GET['user_id']) :0;
@@ -32,22 +33,40 @@ if (isset($_SESSION['userid']))
   	opened($row['id'], $con, $chats);
 ?>
 <div class="main-caht">
-    <div class=" h-100">
-			<div class="row justify-content-center h-100">
+    <div>
+			<div class="row justify-content-center ">
 				<div class="col-md-9 col-xl-9 chat">
 					<div class="card">
 						<div class="card-header msg_head">
 							<div class="d-flex bd-highlight">
-								<div class="img_cont">
-									<img src="layot/img/<?=$row['imgg']?>" class="rounded-circle user_img">
+								
+								<?php
+                        if (last_seen($row['last_seen']) == "Active") {
+							?>
+							<div class="img_cont">
+								<img src="layot/img/<?=$row['imgg']?>" class="rounded-circle user_img">
 									<span class="online_icon"></span>
+							</div>
+								<div class="user_info">
+                                    &nbsp;&nbsp;&nbsp;<span> <?=$row['name']?></span>
+								</div>
+							<?php  }else{ ?>
+								<div class="img_cont">
+								<img src="layot/img/<?=$row['imgg']?>" class="rounded-circle user_img">
+									<span class="online_icon_tow"></span>
 								</div>
 								<div class="user_info">
                                     &nbsp;&nbsp;&nbsp;<span> <?=$row['name']?></span>
 								</div>
+								<small class="d-block  tiem-zone">
+									Last seen:
+									<?=last_seen($row['last_seen'])?>
+								</small>
+							<?php  } ?>
+								
 							</div>
                             <div class="exit_info">
-                                   <abbr title="رجوع الى الصفحه الرئسيه"><a href="index.php"><i class="fas fa-sign-out-alt"></i></a> </abbr> 
+                                   <abbr title="رجوع الى الصفحه"><a href="index.php"><i class="fas fa-sign-out-alt"></i></a> </abbr> 
 							</div>
 						</div>
 						<div class="card-body msg_card_body" id="chatBox">
@@ -165,6 +184,14 @@ if (isset($_SESSION['userid']))
       setInterval(fechData, 500);
     
     });
+	$(document).ready(function(){ 
+    if (location.pathname == '/project-myserves/chat.php' ){
+            $('html , body').css("overflow-y","hidden");
+
+            
+    }
+    })
+
 </script>
 <?php
   }else{

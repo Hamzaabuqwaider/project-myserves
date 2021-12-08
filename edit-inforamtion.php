@@ -36,9 +36,9 @@ if (isset($_SESSION['userid'])){
 		<div class="account-settings">
 			<div class="user-profile">
 				<div class="user-avatar">
-					<img id="uplodeimgedit"  src="../project-myserves/layot/img/<?php echo $row['imgg'] ?>" alt="Maxwell Admin">
+					<img id="uplodeimgedit"  src="../project-myserves/layot/img/<?php echo $row['imgg'] ?>" alt="">
                     <div class="p-image">
-                       <abbr title="تعديل الصوره الشخصيه"><i onclick="uptateimge()" class="fa fa-camera upload-button icon-edit"></i></abbr>
+                     <abbr title="تعديل الصوره الشخصيه"><i onclick="uptateimge()" class="fa fa-camera upload-button icon-edit"></i></abbr>
                     </div>
                     <input type="file" id="uplode-img-edit" name="upload" onchange ="readUrledit(this)" hidden>
 				</div>
