@@ -1,16 +1,15 @@
 <?php 
-   $titlePage = "Contact";
-   include ("include/header-admin.php");
-   include ("include/navadmin.php");
+$titlePage = "Contact";
+include ("include/header-admin.php");
+include ("include/navadmin.php");
 ?>
 
 <!--start section-->
 <div class="wrapper">
-  <div class="container">
+<div class="container">
     <div class="tables-admin">
-      
-       <!--start taple-->
-       <div class="row">
+<!--start taple-->
+<div class="row">
       <div class="col-12">
           <div class="cardsd-taple-page overlay-scrollbar">
               <div class="cardsd-header">

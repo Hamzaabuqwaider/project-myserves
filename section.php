@@ -4,12 +4,11 @@
     include ("include/connect.php");
     include ("include/header.php");
     include ("include/topnav.php");
-    include ("include/function.php");
+    // include ("include/function.php");
     include('include/loding.php');
 ?>
 <!-- start name and drodawn create ghazal-->
 <?php 
-
 // $sort = 'DESC';
 // $sort_array = array('DESC');
 // if(isset($_GET['sort']) && in_array($_GET['sort'] && isset($_POST['desc']) , $sort_array)){

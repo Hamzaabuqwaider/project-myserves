@@ -4,9 +4,12 @@
     include ("include/connect.php");
     include ("include/header.php");
     include ("include/topnav.php");
-    include ("include/function.php");
+    // include ("include/function.php");
     include('include/loding.php');
+    
 ?>
+
+ <!-- ;$pageTitle = 'Sections' -->
    <!---start background-->
         <header class="background-section">
         

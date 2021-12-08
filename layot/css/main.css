@@ -1720,7 +1720,7 @@ transform: scale(1.1 ,1.1);
     margin-bottom: auto;
 }
 .main-caht .card{
-    height: 630px;
+    height: 600px;
     border-radius: 15px !important;
     background-color: rgba(0,0,0,0.4) !important;
 }
@@ -1921,3 +1921,322 @@ margin-bottom: 15px !important;
     background-color: var(--residential--color);
 }
 /*end-maasage*/
+
+/*cart test*/
+/* form starting stylings ------------------------------- */
+#checkout .group 			  { 
+    position:relative; 
+    margin-bottom:45px; 
+    left: 30px;
+  }
+  #checkout #icon-card{margin-bottom: 50px;text-align: center;}
+
+  #checkout #icon-card i{font-size: 40px;color: #6f7274ad;}
+
+  #checkout input 				{
+    font-size:18px;
+    padding:10px 10px 10px 5px;
+    display:block;
+    width:300px;
+    border:none;
+    border-bottom:1px solid #757575;
+    background-color: transparent;
+  }
+  #checkout  input:focus 		{ outline:none; }
+  
+  /* LABEL ======================================= */
+  #checkout label 				 {
+    color:#999; 
+    font-size:18px;
+    font-weight:normal;
+    position:absolute;
+    pointer-events:none;
+    right:5px;
+    top:10px;
+    transition:0.2s ease all; 
+  }
+  
+  /* active state */
+  #checkout input:focus ~ label, #checkout input:valid ~ label 		{
+    top:-20px;
+    font-size:14px;
+    color:var(--orang--color);
+  }
+  
+  /* BOTTOM BARS ================================= */
+  #checkout .bar 	{ position:relative; display:block; width:300px; }
+  #checkout .bar:before, #checkout .bar:after 	{
+    content:'';
+    height:2px; 
+    width:0;
+    bottom:1px; 
+    position:absolute;
+    background:var(--orang--color); 
+    transition:0.2s ease all; 
+    -moz-transition:0.2s ease all; 
+    -webkit-transition:0.2s ease all;
+  }
+  #checkout .bar:before {
+    left:50%;
+  }
+  #checkout .bar:after {
+    right:50%; 
+  }
+  
+  /* active state */
+  #checkout input:focus ~ .bar:before, #checkout input:focus ~ .bar:after {
+    width:50%;
+  }
+  
+  /* HIGHLIGHTER ================================== */
+  #checkout .highlight {
+    position:absolute;
+    height:60%; 
+    width:100px; 
+    top:25%; 
+    right:0;
+    pointer-events:none;
+    opacity:0.5;
+  }
+  
+  /* active state */
+  #checkout input:focus ~ .highlight {
+    -webkit-animation:inputHighlighter 0.3s ease;
+    -moz-animation:inputHighlighter 0.3s ease;
+    animation:inputHighlighter 0.3s ease;
+  }
+  
+  /* ANIMATIONS ================ */
+  @-webkit-keyframes inputHighlighter {
+      from { background:var(--orang--color); }
+    to 	{ width:0; background:transparent; }
+  }
+  @-moz-keyframes inputHighlighter {
+      from { background:var(--orang--color); }
+    to 	{ width:0; background:transparent; }
+  }
+  @keyframes inputHighlighter {
+      from { background:var(--orang--color); }
+    to 	{ width:0; background:transparent; }
+  }
+.color-overlay-add-cart{
+    position: absolute;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    background-color:#5c616696;
+    width: 100%;
+    height: 100%;
+}
+.go-back-card{
+    position: absolute;
+    z-index: 3;
+    color: #ffffffd4;
+    font-size: 40px;
+    top: 10px;
+    right: 10px;
+}
+.go-back-card:hover{color: #fff;}
+ 
+ 
+  
+  #wrapper {
+    top: 50%;
+    margin:20px 0;
+    left: 0;
+    width: 100%;
+  }
+  
+  #container {
+    width: 720px;
+    height: 500px;
+    margin: 0 auto;
+    box-shadow: 1px 1px 10px 2px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    overflow: hidden;
+    background: #b3bead;
+    background: -moz-linear-gradient(45deg, #b3bead 0%, #dfe5d7 60%, #fcfff4 100%);
+    background: -webkit-linear-gradient(45deg, #b3bead 0%, #dfe5d7 60%, #fcfff4 100%);
+    background: linear-gradient(45deg, #b3bead 0%, #dfe5d7 60%, #fcfff4 100%);
+  }
+  
+  #info {
+    width: 52%;
+    height: 500px;
+    float: right;
+    position: relative;
+    background: -moz-linear-gradient(45deg, #95a5a6 0%, rgba(208, 215, 216, 0) 56%, rgba(255, 255, 255, 0) 100%);
+    background: -webkit-linear-gradient(45deg, #95a5a6 0%, rgba(208, 215, 216, 0) 56%, rgba(255, 255, 255, 0) 100%);
+    background: linear-gradient(45deg, #95a5a6 0%, rgba(208, 215, 216, 0) 56%, rgba(255, 255, 255, 0) 100%);
+  }
+  #info #product {
+    width: 100%;
+    z-index: 2;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+  }
+  #info p {
+    width: 100%;
+    text-align: center;
+    line-height: 1.5em;
+    letter-spacing: 1px;
+    position: absolute;
+    z-index: 3;
+    top: 40%;
+    font-family: none;
+    color: #fff;
+    font-weight: bold;
+    font-size: 30px;
+  }
+  #info #price {
+    width: 50%;
+    margin: 0 auto;
+    letter-spacing: 1px;
+  }
+  #info #price h2 {
+    width: 100%;
+    text-align: center;
+    font-weight: 700;
+    color: #000;
+  }
+  
+  #payment {
+    width: 40%;
+    float: right;
+    padding: 35px 50px 25px 0;
+  }
+  
+  #checkout {
+    width: 100%;
+  }
+ 
+
+ 
+  #checkout .card {
+    width: 29%;
+    margin: 0 10% 25px 10%;
+    border: none;
+    background: none;
+    height: 50px;
+    cursor: pointer;
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+  }
+  #checkout .card:focus {
+    -webkit-filter: none;
+    filter: none;
+  }
+  #checkout #visa {
+    background-image: url("http://enwaara.se/codepen/visa.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    display: inline-block;
+  }
+  #checkout #mastercard {
+    background-image: url("http://enwaara.se/codepen/mastercard.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 118%;
+    display: inline-block;
+  }
+ 
+  #checkout .btn {
+    background: var(--Navy--color);
+    border: none;
+    width: 100%;
+    padding: 12px 10px 10px 10px;
+    border-radius: 50px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #ECECEC;
+    cursor: pointer;
+  }
+  #checkout .btn:hover {
+    background:#5c6166b8;
+  }
+/*cart test*/
+/*details-test*/
+
+    /*panel*/
+.panel {border: none;box-shadow: none;margin: 70px auto;}
+
+.panel h1{color:var(--Navy--color);font-weight: bold;font-family: 'Cairo';}
+
+.panel h5{color: #9b9b9b;margin-bottom: 15px;}
+
+.panel p{
+font-family: fangsong;
+line-height: 2;
+color: #424242;
+font-weight: 800;
+margin-bottom: -20px;
+}
+.pro-img-details {width: 100%;}
+    
+.pro-img-details img {width: 100%;object-fit:fill;height: 400px;}
+    
+.pro-d-title {font-size: 16px;margin-top: 0;}
+/*buttom*/
+#buttons-details {padding-top: 50px;text-align: center;} 
+  /* start da css for da buttons */
+  .btn-details-new {
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 17px;
+    margin: 20px;
+    position: relative;
+    display: inline-block;
+    color: #fff;
+    text-decoration: none!important;
+    font-weight: bold;
+  }
+.btn-details-new:active {transform: translate(0px, 5px);box-shadow: 0px 1px 0px 0px;}
+
+.blue-details {background-color: #55acee;box-shadow: 0px 5px 0px 0px #3C93D5;}
+  
+.blue-details:hover {background-color: #6FC6FF;color: #fff;}
+
+.orange-details {background-color: #e67e22;box-shadow: 0px 5px 0px 0px #CD6509;}
+  
+.orange-details:hover {background-color: #FF983C;color: #fff;}  
+/*details-test*/
+/*comment-test*/
+.card-comment-details {background-color: #fff;border: none;}
+
+.card-comment-details img{margin-left: 5px;width: 50px;height: 50px;object-fit: fill;}
+
+.card-comment-details .form-color {background-color: #fafafa}
+
+.card-comment-details .form-color button{position: absolute;left: 23px;border: 0;background-color: transparent;}
+
+.card-comment-details .form-color button i{color: var(--orang--color);}
+
+.card-comment-details .replay-color{color: var(--orang--color);}
+
+.card-comment-details .replay-color i{margin-left: 5px;}
+
+.card-comment-details .form-control {height: 48px;border-radius: 25px;position: relative;}
+
+.card-comment-details .form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #35b69f;
+    outline: 0;
+    box-shadow: none;
+    text-indent: 10px
+}
+
+.card-comment-details .comment-text {font-size: 13px}
+
+.card-comment-details .user-feed {font-size: 14px;margin-top: 12px}
+
+.card-comment-details h6{
+    text-align: center;
+    font-size: 30px;
+    margin-top: 50px;
+    color: var(--Navy--color);
+    font-weight: bold;
+}
+/*comment-test*/
