@@ -2227,3 +2227,41 @@ margin-bottom: -20px;
   
 .orange-details:hover {background-color: #FF983C;color: #fff;}  
 /*details-test*/
+/*comment-test*/
+.card-comment-details {background-color: #fff;border: none;}
+
+.card-comment-details img{margin-left: 5px;width: 50px;height: 50px;object-fit: fill;}
+
+.card-comment-details .form-color {background-color: #fafafa}
+
+.card-comment-details .form-color button{position: absolute;left: 23px;border: 0;background-color: transparent;}
+
+.card-comment-details .form-color button i{color: var(--orang--color);}
+
+.card-comment-details .replay-color{color: var(--orang--color);}
+
+.card-comment-details .replay-color i{margin-left: 5px;}
+
+.card-comment-details .form-control {height: 48px;border-radius: 25px;position: relative;}
+
+.card-comment-details .form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #35b69f;
+    outline: 0;
+    box-shadow: none;
+    text-indent: 10px
+}
+
+.card-comment-details .comment-text {font-size: 13px}
+
+.card-comment-details .user-feed {font-size: 14px;margin-top: 12px}
+
+.card-comment-details h6{
+    text-align: center;
+    font-size: 30px;
+    margin-top: 50px;
+    color: var(--Navy--color);
+    font-weight: bold;
+}
+/*comment-test*/
