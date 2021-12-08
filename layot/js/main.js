@@ -177,7 +177,8 @@ $(window).load(function () {
 document.getElementById("requst").onkeyup=function(){
     var input1= Number(document.getElementById("requst").value);
     var numVal2 = Number(document.getElementById("discount").value=5) / 100;
-    var totalValue = input1 - (input1 * numVal2)
+    var totalValue = input1 - (input1 * numVal2);
+    var input5=document.getElementById("discount-tow").value=input1-totalValue;
     document.getElementById("moyna").value = totalValue.toFixed(2);
 };
 //new upload 

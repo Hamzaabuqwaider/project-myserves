@@ -184,14 +184,6 @@ if (isset($_SESSION['userid']))
       setInterval(fechData, 500);
     
     });
-	$(document).ready(function(){ 
-    if (location.pathname == '/project-myserves/chat.php' ){
-            $('html , body').css("overflow-y","hidden");
-
-            
-    }
-    })
-
 </script>
 <?php
   }else{

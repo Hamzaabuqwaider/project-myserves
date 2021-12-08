@@ -33,7 +33,7 @@ if (isset($_SESSION['userid'])) {
         </div>
         <div class="col-xl-4  col-lg col-md col-xs">
           <div class="mar-btn-detals">
-          <a href="chat.php?user_id=<?php echo $_SESSION['username'];?>&post=<?php echo $row['user_id'] ?> "><button type="button" class="btn  btn-details">تواصل مع البائع</button></a><span><a href="request.php?post_name=<?php echo $row['title'];?>&user_id=<?php echo $row['user']?>&post_id=<?php echo $row['post_id'];?>"><button type="button" class="btn btn-secondary btn-details-tow"><i class="fas fa-shopping-cart icon-cart"></i><span>طلب الخدمة</span></button></a></span>
+          <a href="chat.php?user_id=<?php echo $_SESSION['username'];?>&post=<?php echo $row['user_id'] ?> "><button type="button" class="btn  btn-details">تواصل مع البائع</button></a><span><a href="testing.php?post_name=<?php echo $row['title'];?>&user_id=<?php echo $row['user']?>&post_id=<?php echo $row['post_id'];?>"><button type="button" class="btn btn-secondary btn-details-tow"><i class="fas fa-shopping-cart icon-cart"></i><span>طلب الخدمة</span></button></a></span>
           </div>
           <div class="padding d-none d-xl-block">
           </div>
