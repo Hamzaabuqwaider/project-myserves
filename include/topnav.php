@@ -137,16 +137,18 @@
                                         
                                         foreach($stmt as $row){
                                     ?>
-                                    <li class="list-group-item">
-                                        <a href="chat.php?user_id=<?php echo $_SESSION['username'];?>&post=<?php echo $row['from_id'] ?>">
+                                    <div class="bgchat">
+                                    <a href="chat.php?user_id=<?php echo $_SESSION['username'];?>&post=<?php echo $row['from_id'] ?>">
+                                    <li class="list-group-item tow-bg ">
                                             <img class="img-profile" src="layot/img/<?php echo $row["img"];?>">
+                                            <span class="time-notification"><i class="far fa-clock"></i><?php echo $row["created_at"];?></span>
                                             <span class="text-notification text-maseges">
                                                 <?php echo $row["name"];?>
                                             </span>
-                                            <p><?php echo $row["message"];?></p>
-                                            <span class="time-notification"><i class="far fa-clock"></i><?php echo $row["created_at"];?></span>
-                                        </a>
+                                            <p class="maasage-chat-ul"><?php echo $row["message"];?></p>
                                     </li>
+                                    </a>
+                                    </div>
                                 <?php } } ?>
                                 </ul>
                                     <div class="card-header footer-notification">
