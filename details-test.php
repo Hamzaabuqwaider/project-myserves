@@ -22,7 +22,7 @@ if (isset($_SESSION['userid'])) {
 
 ?>
 <div class="container">
-<section class="panel">
+<section class="panel-details">
       <div class="row">
           <div class="col-md-6">
               <div class="pro-img-details">
