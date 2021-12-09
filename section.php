@@ -52,7 +52,7 @@ $stmt = $stmt->fetchAll();
                 <div id="description-box" class="description-front-box ">
                 <h2><?php echo $sectionId['title']?></h2>
                     <p><i class="far fa-eye" style="margin-left:5px;color: #f8f9fa;"></i>50 من طلبوا هذه الخدمة</p>
-                    <a href="detailsservice.php?id=<?= $sectionId['id']?>"><button type="button" class="btn btn-outline-light" style="font-weight: bold;">تفاصيل الخدمة</button></a>
+                    <a href="details-test.php?id=<?= $sectionId['id']?>"><button type="button" class="btn btn-outline-light" style="font-weight: bold;">تفاصيل الخدمة</button></a>
                 </div>
               
                 <div class="mc-content">
