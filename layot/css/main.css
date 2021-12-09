@@ -2160,13 +2160,13 @@ margin-bottom: 15px !important;
 /*details-test*/
 
     /*panel*/
-.panel {border: none;box-shadow: none;margin: 70px auto;}
+.panel-details {border: none;box-shadow: none;margin: 70px auto;}
 
-.panel h1{color:var(--Navy--color);font-weight: bold;font-family: 'Cairo';}
+.panel-details h1{color:var(--Navy--color);font-weight: bold;font-family: 'Cairo';}
 
-.panel h5{color: #9b9b9b;margin-bottom: 15px;}
+.panel-details h5{color: #9b9b9b;margin-bottom: 15px;}
 
-.panel p{
+.panel-details p{
 font-family: fangsong;
 line-height: 2;
 color: #424242;
