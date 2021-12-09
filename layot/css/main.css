@@ -801,7 +801,8 @@ font-weight: 600;
     height: 48px;
     border-radius: 25px;
     position: relative;
-    position: relative;
+    resize: none;
+    overflow: hidden;
 }
 
 
