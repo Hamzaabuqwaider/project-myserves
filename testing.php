@@ -1,26 +1,27 @@
 <?php
+$titlePage = "request";
 include ("include/session.php");
 include ("include/connect.php");
 include ("include/header.php");
 include ("include/topnav.php");
 include ("include/function.php");
 include("include/loding.php");
-// $post_id = isset($_GET['post_id']) && is_numeric($_GET['post_id']) ? intval($_GET['post_id']) :0;
-
-// $stmt = $con->prepare("SELECT *,users.name as Name FROM post 
-//                       INNER JOIN users ON users.id = post.user_id WHERE post.id = $post_id ");
-// $stmt->execute(array($post_id));
-// $row = $stmt->fetchAll();
-// var_dump($row);die();
-
 
 if(isset($_SESSION["userid"]))
 {
+  $From = $_SESSION["userid"];
+  $to = (int)$_GET["user_id"];
+  $post_name = $_GET["post_name"];
+  $post_id = (int)$_GET["post_id"];
+
+  $post = $con->prepare("SELECT *,post.id as post_id, users.first_name,users.id as user , users.last_name , users.Response_speed FROM post INNER JOIN users ON users.id  = post.user_id WHERE post.id='$post_id'");
+  $post->execute();
+  $row = $post->fetch();
+
+
+
     if(isset($_POST['save'])){
-        $From = $_SESSION["userid"];
-        $to = (int)$_GET["user_id"];
-        $post_name = $_GET["post_name"];
-        $post_id = (int)$_GET["post_id"];
+  
         $price = $_POST["price"];
 
 
@@ -37,13 +38,14 @@ if(isset($_SESSION["userid"]))
 
 <div id="wrapper">
   <div id="container">
+    
 
     <div id="info">
        <div class="color-overlay-add-cart"></div>
-      <img id="product" src="layot/img/pexels-artem-podrez-8986145.jpg"/>
-      <a href="detailsservice.php class="go-back-card"><i class="fas fa-arrow-circle-right"></i></a>
+      <img id="product" src="../project-myserves/layot/img/<?php echo $row['img'] ?>"/>
+      <a href="details-test.php?id=<?= $row['post_id']?>" class="go-back-card"><i class="fas fa-arrow-circle-right"></i></a>
       <p><?php echo $row['title'];?> </p>
-      <p style="top:50%;font-size:20px;"><?php echo $row['Name'];?></p>
+      <p style="top:50%;font-size:20px;"><?php echo $row['first_name'] ."  ". $row['last_name']; ?></p>
     </div>
 
     <div id="payment">
@@ -78,7 +80,7 @@ if(isset($_SESSION["userid"]))
                 <span class="bar"></span>
                 <label> ألناتج النهائي (بدينار)</label>
             </div>
-        <input class="btn" type="button" name="" value="طلب ألخدمة" name="save">
+            <a href="order.php"> <input class="btn btn-primary " type="submit" value="طلب الخدمة" name="save"></a>
       </form>
     </div>
 
