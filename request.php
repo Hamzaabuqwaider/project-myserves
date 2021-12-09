@@ -1,5 +1,5 @@
 <?php
-
+$titlePage = "request";
 include ("include/session.php");
 include ("include/connect.php");
 include ("include/header.php");
@@ -9,23 +9,22 @@ include("include/loding.php");
 
 if(isset($_SESSION["userid"]))
 {
-    
+  $From = $_SESSION["userid"];
+  $to = (int)$_GET["user_id"];
+  $post_name = $_GET["post_name"];
+  $post_id = (int)$_GET["post_id"];
+
+  $post = $con->prepare("SELECT *,post.id as post_id, users.first_name,users.id as user , users.last_name , users.Response_speed FROM post INNER JOIN users ON users.id  = post.user_id WHERE post.id='$post_id'");
+  $post->execute();
+  $row = $post->fetch();
+
+
+
     if(isset($_POST['save'])){
-        $From = $_SESSION["userid"];
-        $to = (int)$_GET["user_id"];
-        $post_name = $_GET["post_name"];
-        $post_id = (int)$_GET["post_id"];
+  
         $price = $_POST["price"];
-        
-         //var_dump($post_name);
-         //var_dump((int)$post_id);
-         //ar_dump($to);
-      
-    
 
-    
 
-    // var_dump("INSERT INTO order SET to_id = ? , from_id = ?, post_name = ?, post_id = ?");
        $Stmt = $con->prepare("INSERT INTO orders SET to_id = ? , from_id = ?, post_name = ?, post_id =?,price=?");
         $Stmt->execute([
             $to,
@@ -34,75 +33,64 @@ if(isset($_SESSION["userid"]))
             $post_id,
             $price
  ]);
-
-
-}   
+}
 ?>
-   <form method="POST"  class= "text-center">
-    <table border="0" cellpadding="0" cellspacing="0" width="100%" >
-                    <tr>
-                        <td align="center" style="padding: 35px 35px 20px 35px; background-color: #ffffff;" bgcolor="#ffffff">
-                            <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:600px;">
-                                <tr>
-                                    <td align="center" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding-top: 25px;"> <img src="https://img.icons8.com/carbon-copy/100/000000/checked-checkbox.png" width="125" height="120" style="display: block; border: 0px; margin-top:150px" /><br>
-                                        <h2 style="font-size: 30px; font-weight: 800; line-height: 36px; color: #333333; margin: 0;"> Thank You For Your Order! </h2>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td align="left" style="padding-top: 20px;">
-                                        <table cellspacing="0" cellpadding="0" border="0" width="100%">
-            
-                                            <tr>
-                                                <td width="75%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 15px 10px 5px 10px;">
-                                                  <input id="requst" type="text" class="form-control" > </td>
-                                                <td width="25%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 15px 10px 5px 10px;"> دفع </td>
-                                            </tr>
-                                            <tr>
-                                                <td id="discount" width="75%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 5px 10px;"> 5% </td>
-                                                <td width="25%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 5px 10px;"> عمولة الموقع </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td align="left" style="padding-top: 20px;">
-                                        <table cellspacing="0" cellpadding="0" border="0" width="100%">
-                                            <tr>
-                                                <td width="25%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; border-top: 3px solid #eeeeee; border-bottom: 3px solid #eeeeee;"><span> <input class="form-control" id="moyna" type="text" name="price" value="$" ></span>المجموع</td>
-                                            </tr>
-                                        </table>
-                                        <a href="order.php"> <input class="btn btn-primary " type="submit" value="طلب الخدمة" name="save"></a>
 
-                                    </td>
-                                </tr>
+<div id="wrapper">
+  <div id="container">
 
-                            </table>
-                           
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-    </table>
-    </form>
-    <?php
-    }else{
-        echo "not Found ";
-    }
-    
-    ?>
-    <script src="layot/js/jquery-3.5.1.min.js"></script>
-        <script src="layot/js/popper.min.js"></script>
-        <script src="layot/js/bootstrap.min.js"></script>
-        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-        <script src="https://pagead2.googlesyndication.com/pagead/managed/js/adsense/m202110050101/show_ads_impl_fy2019.js" id="google_shimpl"></script><script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
-        <script src="layot/js/ajax.js"></script>
-        <script src="layot/js/main.js"></script>
-        <script src="layot/js/wow.min.js"></script>
-        <script>
-          AOS.init();
-        </script>
-        <script>new WOW().init();</script>
-</body>
-</html>
+    <div id="info">
+       <div class="color-overlay-add-cart"></div>
+      <img id="product" src="../project-myserves/layot/img/<?php echo $row['img'] ?>"/>
+      <a href="details-test.php?id=<?= $row['post_id']?>" class="go-back-card"><i class="fas fa-arrow-circle-right"></i></a>
+      <p><?php echo $row['title'];?> </p>
+      <p style="top:50%;font-size:20px;"><?php echo $row['first_name'] ."  ". $row['last_name']; ?></p>
+    </div>
+
+    <div id="payment">
+
+      <form id="checkout" method="POST">
+          <div id="icon-card">
+               <i class="fab fa-cc-visa" style="color:darkslateblue;"></i>
+               <i class="fab fa-cc-paypal" style="color:#284f78d9;"></i>   
+               <i class="fab fa-cc-mastercard" style="color:#0000ff82;"></i>  
+           </div>           
+               <div class="group">      
+                <input type="text" id="requst"  >
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>أدخل المبلغ</label>
+            </div>
+            <div class="group d-none">      
+                <input type="text" id="discount" value="5%">
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>ضريبة ألموقع (5%)</label>
+            </div>
+            <div class="group">      
+                <input type="text" id="discount-tow" >
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>قيمة الخصم للموقع </label>
+            </div>
+            <div class="group">      
+                <input type="text" id="moyna" value="$" name="price">
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label> ألناتج النهائي (بدينار)</label>
+            </div>
+            <a href="order.php"> <input class="btn btn-primary " type="submit" value="طلب الخدمة" name="save"></a>
+      </form>
+    </div>
+
+  </div>
+</div>
+
+
+    <?php include ("include/footer.php");?>
+<?php 
+  }else {
+  "not found";
+}
+?>
+
