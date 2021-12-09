@@ -59,7 +59,6 @@ if (isset($_SESSION['userid'])) {
             <div class="back-ground-comment-part-tow">
               <form method="POST">
                 <div class="form-group">
-            
                   <label class="lable-details" for="exampleFormControlTextarea1"><span><i style="color:#e59560" class="fas fa-comment-alt "></i>&nbsp;</span>آراء المشترين</label>
                   <textarea class="form-control comment-texrarea" id="exampleFormControlTextarea1" rows="2"></textarea><span><button data-postid="<?= $_GET['id'] ?>" type="submit" class="btn btn-textarea btn-comment"> <span style="margin-left:5px"><i class="fas fa-comments"></i></span>تعليق</button>
                 </div>

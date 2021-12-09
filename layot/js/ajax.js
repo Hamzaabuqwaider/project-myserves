@@ -76,7 +76,7 @@ function load_comment(postId){
             append('<div class="back-ground-comment-part-one">\
             <img class="imge-comment" src="../project-myserves/layot/img/'+value.user['imgg']+'" alt=""><span class="commnt-span"> '+ value.user['name'] +' </span><i class="far fa-clock icon-commint-details"></i><span class="span-commnt-data">'+value.cmt['commented_on']+'</span>\
             <div class="commnt-text"> '+value.cmt['comment']+' </div>\
-            <i class="fas fa-reply icon-commint-details-tow"></i><button class="replay-commnt" value="'+value.cmt['comment_id']+'">0ردود</button><button class="replay-feedback" value="'+value.cmt['comment_id']+'" style="margin-right:20px">رد على تعليق</button>\
+            <i class="fas fa-reply icon-commint-details-tow"></i><button class="replay-commnt" value="'+value.cmt['comment_id']+'"> ردود</button><button class="replay-feedback" value="'+value.cmt['comment_id']+'" style="margin-right:20px">رد على تعليق</button>\
             <div class="ml-4 replay_section"></div>\
           </div>');
         });

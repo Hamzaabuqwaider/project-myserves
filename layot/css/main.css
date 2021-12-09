@@ -11,7 +11,7 @@ html::-webkit-scrollbar{
     width: 10px;
 }
 html::-webkit-scrollbar-thumb{
-    background-color: var(--orang--color);
+    background-color: #aaa;
     border-radius: 20px;
 }
 html::-webkit-scrollbar-track{
@@ -791,20 +791,28 @@ font-weight: 600;
 .icon-commint-details-tow{color: var(--orang--color);}
 
 .back-ground-comment-part-tow{
-    box-shadow: 5px 6px 6px 2px var(--residential--color);
     border: none;
     border-radius: 16px;
     padding: 10px;
     margin-top: 2px;
 }
+.back-ground-comment-part-tow .form-group{ display: flex;}
+.back-ground-comment-part-tow .form-control{
+    height: 48px;
+    border-radius: 25px;
+    position: relative;
+    position: relative;
+}
+
+
 .comment-name{color: var(--Navy--color);font-size: 20px;}
 
 .btn-textarea{
-    background-color: var(--orang--color);
-    font-size: 16px;
-    margin-top: 10px;
-    font-weight: 600;
-    color: var(--White--color);
+    font-size: 20px;
+    color: var(--orang--color);
+    position: absolute;
+    left: 30px;
+    top: 18px;
 }
 .hr-details{width: 60%;background-color: var(--orang--color);}
 
