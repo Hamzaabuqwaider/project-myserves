@@ -742,10 +742,9 @@ padding-top: 30px;
     padding: 10px;
 }
 .back-ground-comment-part-one{
-    margin-top: 70px;
-    box-shadow: 3000px 6px 7px 200px inset #6c757d5c;;
+    margin-top: 10px;
+    box-shadow: 3000px 6px 7px 200px inset #6c757d08;
     border: none;
-    border-radius: 16px;
     padding: 10px;
 }
 .imge-comment {
@@ -754,15 +753,17 @@ padding-top: 30px;
     border-radius: 50%;
     height: 40px;
 }
-.commnt-span{font-size: 15px;margin-right: 20px;font-weight: 600;}
+.commnt-span{font-size: 15px;margin-right: 10px;font-weight: 600;}
 
 .span-commnt-data{float: left;}
 
 .commnt-text{
     margin-top: 20px;
     padding-bottom: 20px;
-    font-weight: 600;
+    font-weight: 400;
     font-family: sans-serif;
+    margin-right: 50px;
+    color: #1d2124;
 }
 
 .icon-commint-details{float: left;margin-top: 5px;color:var(--orang--color);}
@@ -792,9 +793,10 @@ font-weight: 600;
 
 .back-ground-comment-part-tow{
     border: none;
-    border-radius: 16px;
     padding: 10px;
+    padding-top: 20px;
     margin-top: 2px;
+    background-color: #cccccc1a;
 }
 .back-ground-comment-part-tow .form-group{ display: flex;}
 .back-ground-comment-part-tow .form-control{
@@ -803,7 +805,9 @@ font-weight: 600;
     position: relative;
     resize: none;
     overflow: hidden;
+    padding-top: 10px;
 }
+.back-ground-comment-part-tow img{margin-left: 5px;}
 
 
 .comment-name{color: var(--Navy--color);font-size: 20px;}
@@ -812,8 +816,10 @@ font-weight: 600;
     font-size: 20px;
     color: var(--orang--color);
     position: absolute;
-    left: 30px;
-    top: 18px;
+    left: 35px;
+    top: 34px;
+    border: none;
+    background-color: transparent;
 }
 .hr-details{width: 60%;background-color: var(--orang--color);}
 
@@ -850,8 +856,6 @@ font-weight: 600;
 .imge-details-tow img:hover{transform: scale(1.1,1.1);cursor: pointer;}
 
 .back-ground-comment-part-one .form-control:focus{box-shadow:none;border: none;}
-
-.back-ground-comment-part-one .btn:hover{color: var(--White--color);background-color: var(--Navy--color);}
 
 .back-ground-comment-part-one .btn:focus{box-shadow:none;}
 

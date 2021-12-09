@@ -46,19 +46,19 @@ if (isset($_SESSION['userid'])) {
   </div>
   <!--comment-->
   <div class="p-3 text-center">
-    <h6 style="font-size:20px;">ألتعليقات</h6>
+    <h6 style="font-size:30px;">ألتعليقات</h6>
 </div>
 <div class="col-lg-12">
 <div class="back-ground-comment-part-tow">
     <form method="POST">
     <div class="form-group">
     <img src="../project-myserves/layot/img/<?php echo $img['imgg'] ?>" width="50" height="50" class="rounded-circle ">
-        <textarea class="form-control comment-texrarea" id="exampleFormControlTextarea1" rows="2" placeholder="اكتب تعليقك..."></textarea><button data-postid="<?= $_GET['id'] ?>" type="submit" class="btn btn-textarea btn-comment"><i class="fas fa-location-arrow"></i></button>
+        <textarea class="form-control comment-texrarea" id="exampleFormControlTextarea1" rows="2" placeholder="اكتب تعليقك..."></textarea><button data-postid="<?= $_GET['id'] ?>" type="submit" class=" btn-textarea btn-comment"><i class="fas fa-location-arrow"></i></button>
     </div>
     </form>
 </div>
 </div>
-    <div class="col-lg-12 comment_line" >
+    <div class="col-lg-12 comment_line"style="margin-bottom: 35px;" >
 
     </div>
   
