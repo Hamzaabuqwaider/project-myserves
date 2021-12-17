@@ -713,3 +713,98 @@ box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
 /*section sub*/
 .section-sub-admin{height: auto!important;}
 /*section sub*/
+/* start-edit-ifroramtion*/
+
+.information-edit{background-color: var(--Navy--color);height: 25vh;}
+
+.information-img{position: relative;}
+
+.information-imge-{
+    background-color: var(--residential--color);
+    border:4px solid var(--White--color); 
+    border-radius: 300px !important;
+    height: 280px;
+    width: 280px;
+    object-fit: cover;
+}
+.img-info {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 130px;
+    border: 1px solid #cccccca6;
+    border-radius: 440;
+    border-radius: 440px;
+    color: var(--White--color);
+    cursor: pointer;
+
+}
+.information-img:hover .img-info{
+    display: block;
+    cursor: pointer;
+background-color: #cccccca6;
+
+}
+.form-edit{margin-top:30px;}
+
+.text-form{
+    color: #35434eb0;
+    float: right;
+    font-size: 13px;
+    font-weight: 600;
+}
+.form-informayion .form-control{ font-size: 14px;}
+.form-informayion .form-control{
+    position: relative;
+    border: 1px solid #dae0e58f;
+    border-radius: 25px;
+    background-color: #dee2e6a8;
+}
+.mr-form{margin-top: 10px;}
+
+.text-form-l{float: right;}
+
+.form-informayion .btn{
+    background-color: var(--Navy--color);
+    color: var(--White--color);
+    border-color: none;
+    box-shadow: none;
+    font-weight: 400;
+    margin-top: 30px;
+    font-size: 13px;
+    padding: 10px;
+    font-family: system-ui;
+}
+.form-informayion .btn:hover{background-color:var(--Navy--color);}
+
+.form-informayion .form-control:focus{ border: 1px solid var(--Navy--color);box-shadow:2px 2px var(--Navy--color);}
+
+.i-form {
+display: block;
+position: absolute;
+top: 76%;
+right: 2%;
+transform: translate(-50% ,-50%);
+font-size: 21;
+color:var(--Navy--color);
+z-index: 3;
+}
+.mr-form:hover .i-form{display: none;}
+.i-href{
+    text-decoration: none;
+    color: var(--Navy--color);
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+.user-pass{
+    color: var(--Navy--color);
+    text-decoration: none;
+    background-color: transparent;
+    font-size: 15px;
+    font-weight: 600;
+}
+.user-pass:hover{color: var(--orang--color);text-decoration: none;}
+/* end-edit-ifroramtion*/

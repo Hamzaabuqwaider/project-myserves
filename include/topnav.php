@@ -1,6 +1,4 @@
-
-
- <!--start navbar-->
+<!--start navbar-->
  <nav class="navbar navbar-edit navbar-expand-lg navbar-light back-color-nav ">
                     <a class="navbar-brand logo" href="mainpage.php"><span>خد</span>متك</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -155,29 +153,26 @@
                             </div>   
                         </li>
                          <!--end maseges-->
-                         <?php
+                        <?php
                          if(isset($_SESSION['userid']))
-                         {
-                            $User = $con->prepare('SELECT imgg FROM users WHERE id ="'.$_SESSION['userid'].'"');
-                            $User->execute();
-                            $info = $User->fetch();
-                         }
-                         ?>
+                            {
+                                $User = $con->prepare('SELECT imgg FROM users WHERE id ="'.$_SESSION['userid'].'"');
+                                $User->execute();
+                                $info = $User->fetch();
+                            
+                        ?>
                          <!--start profile-->
                          <li class="nav-item dropdown">
                             <a class="nav-link " href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <img class="main-img-profile" src="layot/img/<?php echo $info['imgg'] ?>">
                             </a>
                             <div class="dropdown-menu drop-nav-profile" aria-labelledby="navbarDropdownMenuLink">
-
-
                                 <a class="dropdown-item" href="informationpr.php?userid=<?php echo $_SESSION['userid']?>"><i class="fas fa-user"></i>الملف الشخصي </a>
                                 <a class="dropdown-item" href="Account-balance.php"><i class="fas fa-wallet"></i>الرصيد</a>
                                 <a class="dropdown-item" href="edit-inforamtion.php?action=Edit&userid=<?php echo $_SESSION['userid']?>"><i class="fas fa-user-edit"></i>تعديل الحساب</a>
                                 <a class="dropdown-item" href="logout.php"><i class="fas fa-door-open"></i> خروج</a>
-
                             </div>
-                        </li>
+                        </li> <?php } ?>
                          <!--end profile-->
                     </ul>
                 </div>

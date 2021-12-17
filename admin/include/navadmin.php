@@ -1,4 +1,8 @@
 <!--start navbar-->
+<?php   
+include ("../include/connect.php");
+
+?>
 <div class="navbar">
    <ul class="navbar-nav">
       <li class="nav-item">
@@ -7,7 +11,7 @@
          </a>
       </li>
        <li class="nav-item">
-          <a class="navbar-brand logos logo" href="#"><span>خد</span>متك</a>
+          <a class="navbar-brand logos logo" href="index-admin.php"><span>خد</span>متك</a>
       </li>
    </ul>
    <!--start serch-->
@@ -287,24 +291,24 @@
       </li>
         <!--end notification-->
         <!-- start profile-->
+        <?php
+            if(isset($_SESSION['admin']))
+            {
+                $User = $con->prepare('SELECT img FROM admin WHERE id ="'.$_SESSION['id_admin'].'"');
+                $User->execute();
+                $info = $User->fetch();
+            }
+            ?>
        <li class="nav-item">
          <div class="avt dropdown">
-             <img src="layot/img/hamzahQQQ.jpg" alt="user photo"id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             <img src="layot/img/<?php echo $info['img'] ?>" alt="user photo"id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
              <ul id="user-menu" class="dropdown-menu imgs-drop">
              <li class="dropdown-menu-item">
-                    <a href="#" class="dropdown-menu-link drop-img">
+                    <a href="edit-inforamtion-admin.php?action=Edit&admin_id=<?php echo $_SESSION['id_admin']?>" class="dropdown-menu-link drop-img">
                         <div>
                            <i class="fas fa-user-tie"></i> 
                         </div>
                         <span>ألصفحة الشخصية</span>
-                    </a>
-                </li>
-                <li class="dropdown-menu-item">
-                    <a href="#" class="dropdown-menu-link drop-img">
-                        <div>
-                           <i class="fas fa-cog"></i> 
-                        </div>
-                        <span>ألاعدادات</span>
                     </a>
                 </li>
                 <li class="dropdown-menu-item">
@@ -316,11 +320,11 @@
                     </a>
                 </li>
                 <li class="dropdown-menu-item ">
-                    <a href="#" class="dropdown-menu-link drop-img">
+                    <a href="loginadmin.php" class="dropdown-menu-link drop-img">
                         <div>
                            <i class="fas fa-sign-out-alt"></i> 
                         </div>
-                        <span>تسجيل ألخروج</span>
+                        <span>تسجيل الخروج</span>
                     </a>
                 </li>
              </ul>
@@ -334,7 +338,7 @@
 <div class="sidebar-main-page">
   <ul class="sidebar-nav">
      <li class="sidebar-nav-item">
-         <a href="#"class="sidebar-nav-link">
+         <a href="index-admin.php"class="sidebar-nav-link">
            <div>
               <i class="fas fa-th-large"></i>
            </div>
@@ -344,17 +348,17 @@
          </a>
      </li>
      <li class="sidebar-nav-item">
-         <a href="#"class="sidebar-nav-link active">
+         <a href="users.php?do=Manage"class="sidebar-nav-link active">
            <div>
               <i class="far fa-user"></i>
            </div>
            <span>
-              الاقسام
+              المستخدمين
            </span>
          </a>
      </li>
      <li class="sidebar-nav-item">
-         <a href="#"class="sidebar-nav-link">
+         <a href="servesadmin.php?do=Manage"class="sidebar-nav-link">
            <div>
            <i class="fas fa-chart-pie"></i>
            </div>
@@ -364,7 +368,7 @@
          </a>
      </li>
      <li class="sidebar-nav-item">
-         <a href="#"class="sidebar-nav-link">
+         <a href="order-admin.php?do=Manage"class="sidebar-nav-link">
            <div>
            <i class="fas fa-shopping-cart"></i>
            </div>
@@ -374,12 +378,22 @@
          </a>
      </li>
      <li class="sidebar-nav-item">
-         <a href="#"class="sidebar-nav-link">
+         <a href="contact.php?do=Manage"class="sidebar-nav-link">
            <div>
               <i class="fas fa-phone"></i>
            </div>
            <span>
                تواصل معنا
+           </span>
+         </a>
+     </li>
+     <li class="sidebar-nav-item">
+         <a href="section-admin.php?do=Manage"class="sidebar-nav-link">
+           <div>
+           <i class="fas fa-chart-pie"></i>
+           </div>
+           <span>
+               الأقسام
            </span>
          </a>
      </li>

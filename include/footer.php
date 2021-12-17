@@ -1,7 +1,9 @@
-
+<?php 
+include ("include/connect.php");
+?>
    <!--footer-->
     <footer class="section-footer">
-    <div class="main-containers" style="margin-bottom: -50px;">
+    <div class="main-containers" >
         <div class="row">
             <div class="col-lg-4">
                 <div class="card sys-description-box">
@@ -53,17 +55,35 @@
                         <h5 class="card-title headers-footer">خدمة العملاء</h5>
                             <div class="info">
                                 <div class="customer-service">
-                                         <form>
+                                        <form action="<?php echo $_SERVER['PHP_SELF']?>" method="POST">
+                                <?php 
+                                    if($_SERVER['REQUEST_METHOD'] == 'POST'){ 
+                                        $email = $_POST['email'];
+                                        $message = $_POST['Message'];
+                                        $id = $_SESSION['userid'];
+                                        if(isset($_POST['send'])) {
+                                            $stmt = $con->prepare("INSERT INTO 
+                                            notes (Email , Message, note_user)
+                                            VALUES(:zemail,:zmessage,:unote)");
+                                                $stmt->execute(array(
+                                                'zemail'     =>$email,
+                                                'zmessage'     =>$message,
+                                                'unote'      =>$id
+                                            ));
+                                            echo "<script>alert('تم إرسال ملاحظتك');</script>";
+                                        }
+                                    }
+                                            ?>
                                             <fieldset class="form-group">
-                                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="ألبريد الألكتروني">
+                                                <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="ألبريد الألكتروني">
                                             </fieldset>
                                             <fieldset class="form-group">
-                                                <textarea class="form-control" id="exampleMessage" placeholder="ألرسالة"></textarea>
+                                                <textarea class="form-control" name="Message" id="exampleMessage" placeholder="ألرسالة"></textarea>
                                             </fieldset>
                                             <fieldset class="form-group text-xs-right">
-                                                    <button type="button" class="btn btn-outline-light">أرسال</button>
+                                                    <button type="submit" name="send" class="btn btn-outline-light">أرسال</button>
                                             </fieldset>
-                                         </form>
+                                        </form>
                                 </div>
                             </div>
                     </div>
@@ -92,5 +112,6 @@
           AOS.init();
         </script>
         <script>new WOW().init();</script>
+        
 </body>
 </html>

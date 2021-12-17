@@ -1,5 +1,10 @@
 <?php
-
+include ("include/session.php");
+include ("include/connect.php");
+include ("include/header.php");
+include ("include/topnav.php");
+include ("include/function.php");
+include('include/loding.php');
 
 
 if(isset($_SESSION["userid"]))
