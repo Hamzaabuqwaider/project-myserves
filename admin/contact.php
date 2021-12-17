@@ -1,9 +1,24 @@
 <?php 
 $titlePage = "Contact";
 include ("include/header-admin.php");
-include ("include/navadmin.php");
-?>
+// include ("include/navadmin.php");
+include("../include/session.php");
+include("../include/connect.php");
+include ("../include/function.php");
 
+if(isset($_SESSION['admin'])){
+
+    $do = isset($_GET['do']) ? $_GET['do'] : "Manage";
+
+if($do == 'Manage'){
+
+    include ("include/navadmin.php");
+
+    $stmt = $con->prepare('SELECT * FROM notes');
+    $stmt->execute();
+    $row = $stmt->fetchAll();
+
+?>
 <!--start section-->
 <div class="wrapper">
 <div class="container">
@@ -27,72 +42,23 @@ include ("include/navadmin.php");
                               <th>حذف الرسالة</th>
                           </tr>
                       </thead>
+                      
                       <tbody>
+                      <?php foreach($row as $contact) { ?>
                           <tr>
-                              <td>1</td>
-                              <td>exape@gmail.com</td>
-                              <td>مرحبا هذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمة</td>
-                              <td>11/11/2021</td>
+                              <td><?php echo $contact['id']?></td>
+                              <td><?php echo $contact['Email']?></td>
+                              <td><?php echo $contact['Message']?> </td>
+                              <td><?php echo $contact['data']?></td>
                               <td>
-                                 <button type="button" class="btn btn-danger">حذف الالرسالة</button>
+                             <a href="contact.php?do=Delete&Messag_ID=<?php echo $contact['id'] ?>"><button type="button" class="btn btn-danger">حذف الالرسالة</button></a>
                               </td>
                           </tr>
                           <!--test-->
                           <tr>
-                              <td>2</td>
-                              <td>exape@gmail.com</td>
-                              <td>مرحبا هذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمة</td>
-                              <td>11/11/2021</td>
-                              <td>
-                                 <button type="button" class="btn btn-danger">حذف الالرسالة</button>
-                              </td>
-                          </tr>
-                          <tr>
-                              <td>3</td>
-                              <td>exape@gmail.com</td>
-                              <td>مرحبا هذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمة</td>
-                              <td>11/11/2021</td>
-                              <td>
-                                 <button type="button" class="btn btn-danger">حذف الالرسالة</button>
-                              </td>
-                          </tr>
-                          <tr>
-                              <td>4</td>
-                              <td>exape@gmail.com</td>
-                              <td>مرحبا هذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمة</td>
-                              <td>11/11/2021</td>
-                              <td>
-                                 <button type="button" class="btn btn-danger">حذف الالرسالة</button>
-                              </td>
-                          </tr>
-                          <tr>
-                              <td>5</td>
-                              <td>exape@gmail.com</td>
-                              <td>مرحبا هذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمة</td>
-                              <td>11/11/2021</td>
-                              <td>
-                                 <button type="button" class="btn btn-danger">حذف الالرسالة</button>
-                              </td>
-                          </tr>
-                          <tr>
-                              <td>6</td>
-                              <td>exape@gmail.com</td>
-                              <td>مرحبا هذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمة</td>
-                              <td>11/11/2021</td>
-                              <td>
-                                 <button type="button" class="btn btn-danger">حذف الالرسالة</button>
-                              </td>
-                          </tr>
-                          <tr>
-                              <td>7</td>
-                              <td>exape@gmail.com</td>
-                              <td>مرحبا هذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمة</td>
-                              <td>11/11/2021</td>
-                              <td>
-                                 <button type="button" class="btn btn-danger">حذف الالرسالة</button>
-                              </td>
-                          </tr>
                           <!--test-->
+                          <?php } ?> 
+
                       </tbody>
                   </table>
               </div>
@@ -105,4 +71,20 @@ include ("include/navadmin.php");
 </div> <!--end wraper-->
 <!--end section-->
 
-<?php include ("include/footer-admin.php");?>
+<?php }elseif($do == 'Delete'){ 
+
+    $Messag_ID = isset($_GET['Messag_ID']) && is_numeric($_GET['Messag_ID']) ? intval($_GET['Messag_ID']) : 0 ;
+
+        $stmt = $con->prepare("DELETE FROM notes  WHERE id = :zuser");
+
+        $stmt->bindParam(":zuser",$Messag_ID);
+
+        $stmt->execute();
+
+        $Location = "contact.php?do=Manage";
+
+        redirectHome($Location);
+
+  } 
+}
+include ("include/footer-admin.php");  ?>

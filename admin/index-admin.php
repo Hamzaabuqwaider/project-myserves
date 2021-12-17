@@ -1,22 +1,26 @@
 <?php 
    $titlePage = "admin-home";
+   include("../include/session.php");
    include ("include/header-admin.php");
    include ("include/navadmin.php");
-?>
+   include ("../include/connect.php");
+   include ("../include/function.php");
 
+if(isset($_SESSION['admin'])){
+?>
 <!--start main-content-->
  <div class="wrapper">
  <div class="panel post">
-    <a href="#"><span>8 </span>Posts</a>
+    <a href="order-admin.php?do=Manage"><span><?php echo countItems('id','post') ?></span> الإعلانات</a>
   </div>
   <div class="panel comment">
-    <a href="#"><span>39 </span>Comments</a>
+    <a href="commentAll.php?do=Manage"><span><?php echo countItems('comment_id','comment') ?> </span>التعليقات</a>
   </div>
   <div class="panel page">
-    <a href="#"><span>5 </span>Pages</a>
+    <a href="section-admin.php?do=Manage"><span><?php echo countItems('id','main_categories') ?> </span>الأقسام</a>
   </div>
   <div class="panel user">
-    <a href="#"><span>4 </span>Users</a>
+    <a href="users.php?do=Manage"><span><?php echo countItems('id','users') ?></span>المستخدمين</a>
   </div>
   <div class="row">
       <div class="col-8">
@@ -176,7 +180,7 @@
 
 
 
-<?php include ("include/footer-admin.php");?>
+<?php include ("include/footer-admin.php"); ?>
 
     <script>
             var ctx = document.getElementById('myChart').getContext('2d');
@@ -199,3 +203,7 @@
             options: {}
         });
     </script>
+
+    <?php }else{
+        header("Location:loginadmin.php");
+    } ?>

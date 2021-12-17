@@ -1,7 +1,7 @@
 
 
  <!--start navbar-->
- <nav class="navbar navbar-edit navbar-expand-lg navbar-light back-color-nav ">
+ <nav class="navbar navbar-edit navbar-expand-lg navbar-light back-color-nav">
                     <a class="navbar-brand logo" href="index.php"><span>خد</span>متك</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -10,7 +10,6 @@
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item active">
                     <?php 
- 
                     if(isset($_SESSION['userid']))
                     {
                         switch ($_SESSION['usertype']) {
@@ -22,9 +21,7 @@
                                 break;
                             default:
                             echo  '';
-                    
                         }
-                    
                     }     
                    ?>
                         </li>
@@ -37,9 +34,11 @@
                                 <a class="dropdown-item" href="serves-section.php"><i class="far fa-building"></i>قسم الخدمات</a>
                             </div>
                         </li>
+                        <?php  if(isset($_SESSION['userid'])) { ?>
                         <li class="nav-item">
                           <a class="nav-link main-text-nav" href="order.php?do=Manage"><i class="fas fa-briefcase"></i>الخدمات المطلوبة</a>
                         </li>
+                        <?php }    ?>
                         <li class="nav-item">
                           <?php 
  
@@ -53,9 +52,7 @@
                                         break;
                                     default:
                                     echo  '';
-                            
                                 }
-                            
                             }     
                             ?>
                         </li>
@@ -73,6 +70,9 @@
                         </li>
                          <!--end serch-->
                          <!--start notification-->
+                         <?php
+                                    if(isset($_SESSION["userid"]))
+                                    {   ?>
                         <li class="nav-item ">
                             <a class="nav-link" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="far fa-bell icon-nav"></i>
@@ -117,6 +117,7 @@
                                     </div>
                             </div>   
                         </li>
+
                          <!--end notification-->
                          <!--start maseges-->
                          <li class="nav-item">
@@ -125,9 +126,8 @@
                             </a> 
                             <div class="dropdown-menu continar-notification continar-maseges" aria-labelledby="navbarDropdownMenuLink">
                                 <ul class="list-group ">
-                                    <?php
-                                    if(isset($_SESSION["userid"]))
-                                    {
+
+                                        <?php
                                         $roo = $_SESSION["userid"];
                                         $chat = $con->prepare("SELECT  *,users.id as id,users.imgg as img , users.name as name FROM chat
                                         INNER JOIN users ON users.id  = chat.from_id
@@ -149,13 +149,14 @@
                                     </li>
                                     </a>
                                     </div>
-                                <?php } } ?>
+                                <?php } ?>
                                 </ul>
                                     <div class="card-header footer-notification">
                                          <i class="far fa-envelope"></i><a href="#">عرض جميع الرسائل</a>
                                     </div>
                             </div>   
                         </li>
+                        <?php } ?>
                          <!--end maseges-->
                          <?php
                          if(isset($_SESSION['userid']))
@@ -163,7 +164,7 @@
                             $User = $con->prepare('SELECT imgg FROM users WHERE id ="'.$_SESSION['userid'].'"');
                             $User->execute();
                             $info = $User->fetch();
-                         }
+                         
                          ?>
                          <!--start profile-->
                          <li class="nav-item dropdown">
@@ -180,6 +181,9 @@
 
                             </div>
                         </li>
+                        <?php }else {
+                           echo "<a href='main-login.php'>Login</a>";
+                        } ?>
                          <!--end profile-->
                     </ul>
                 </div>

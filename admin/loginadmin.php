@@ -1,3 +1,41 @@
+<?php
+session_start();
+include ("../include/connect.php");
+
+    if($_SERVER['REQUEST_METHOD'] == 'POST')
+    {
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+        $hashedPass = MD5($password);
+
+    // Check If the user Exist In DataBase
+
+    $stmt=$con->prepare('SELECT
+                                id,email,Password 
+                            FROM 
+                                admin
+                            WHERE 
+                                email = ? 
+                            AND 
+                                Password = ? 
+                            LIMIT 1');
+    $stmt->execute(array($email,$hashedPass));
+    $row = $stmt->fetch();
+    $count =$stmt->rowCount();
+
+        //If Count > 0 This Mean the database contain Record About This User_Name
+
+        if($count > 0){
+
+            $_SESSION['admin'] = $email; // Register Session Name
+            $_SESSION['id_admin'] = $row['id']; // Register Session ID
+            header('Location: index-admin.php');//Redirect To Dashoard Page 
+            exit();
+        }
+        
+    }
+
+?>
 <html>
 <head>
     <meta charset="UTF-8" />
@@ -17,20 +55,20 @@
 </head>
 <body style="background: #212529b0;">
 
-
+     <form action="<?php echo $_SERVER['PHP_SELF']?>" method="POST">
         <div class="cont">
         <div class="form sign-in">
         <h2 class="navbar-brand logo"><span>خد</span>متك</h2>
             <label>
             <span>البريد ألالكتروني </span>
-            <input type="email" />
+            <input type="email" name="email" />
             </label>
             <label>
             <span>كلمة ألسر</span>
-            <input type="password" />
+            <input type="password" name="password" />
             </label>
             <a href="#" class="forgot-pass">هل نسيت كلمة السر؟</a>
-            <button type="button" class="submit">تسجيل ألدخول</button>
+            <button type="submit" class="submit">تسجيل ألدخول</button>
         </div>
         <div class="sub-cont">
             <div class="img">
@@ -39,6 +77,7 @@
                 <p>تسجيل الدخول ألى لوحة التحكم والسيطرة</p>
             </div>
             </div>
+      </form>
         
 
 <a href="https://dribbble.com/shots/3306190-Login-Registration-form" target="_blank" class="icon-link">
