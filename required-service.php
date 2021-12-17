@@ -20,6 +20,7 @@ $row = $stmt->fetchAll();
     $row1 = $stmt1->fetchAll();
 
         ?>
+<h1 class="name-section">الطلبات الواردة</h1>
 <div class="cart-page">
     <table class="table-cart" >
         
