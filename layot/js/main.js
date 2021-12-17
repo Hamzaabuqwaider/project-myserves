@@ -49,25 +49,7 @@ $("#uploaded_view").find("img").remove();
 btnOuter.removeClass("file_uploading");
 btnOuter.removeClass("file_uploaded");
 });
-
-    //serch
-  
-  
-   //login
-  function addclassnewaccount() {
-      "use strict"
-      var login_container = document.getElementById("login-container");
-
-      login_container.classList.add("sign-up-mode");
-  }
-
-  function removeclassnewaccount() {
-    "use strict"
-    var login_container = document.getElementById("login-container");
-
-    login_container.classList.remove("sign-up-mode");
-}
-/*new-box-section*/
+//serch
 $(function() {
     $('.mc-btn-action').click(function () {
          
@@ -181,5 +163,82 @@ document.getElementById("requst").onkeyup=function(){
     var input5=document.getElementById("discount-tow").value=input1-totalValue;
     document.getElementById("moyna").value = totalValue.toFixed(2);
 };
-//new upload 
-
+function createAlert(title, summary, details, severity, dismissible, autoDismiss, appendToId) {
+    var iconMap = {
+     
+      success: "fa fa-thumbs-up",
+     
+    
+    };
+  
+    var iconAdded = false;
+  
+    var alertClasses = ["alert", "animated", "flipInX"];
+    alertClasses.push("alert-" + severity.toLowerCase());
+  
+    if (dismissible) {
+      alertClasses.push("alert-dismissible");
+    }
+  
+    var msgIcon = $("<i />", {
+      "class": iconMap[severity] // you need to quote "class" since it's a reserved keyword
+    });
+  
+    var msg = $("<div />", {
+      "class": alertClasses.join(" ") // you need to quote "class" since it's a reserved keyword
+    });
+  
+    if (title) {
+      var msgTitle = $("<h4 />", {
+        html: title
+      }).appendTo(msg);
+      
+      if(!iconAdded){
+        msgTitle.prepend(msgIcon);
+        iconAdded = true;
+      }
+    }
+  
+    if (summary) {
+      var msgSummary = $("<strong />", {
+        html: summary
+      }).appendTo(msg);
+      
+      if(!iconAdded){
+        msgSummary.prepend(msgIcon);
+        iconAdded = true;
+      }
+    }
+  
+    if (details) {
+      var msgDetails = $("<p />", {
+        html: details
+      }).appendTo(msg);
+      
+      if(!iconAdded){
+        msgDetails.prepend(msgIcon);
+        iconAdded = true;
+      }
+    }
+    
+  
+    if (dismissible) {
+      var msgClose = $("<span />", {
+        "class": "close", // you need to quote "class" since it's a reserved keyword
+        "data-dismiss": "alert",
+        html: "<i class='fa fa-times-circle'></i>"
+      }).appendTo(msg);
+    }
+    
+    $('#' + appendToId).prepend(msg);
+    
+    if(autoDismiss){
+      setTimeout(function(){
+        msg.addClass("flipOutX");
+        setTimeout(function(){
+          msg.remove();
+        },1000);
+      }, 5000);
+    }
+  }
+  

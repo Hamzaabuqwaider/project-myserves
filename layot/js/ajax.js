@@ -74,7 +74,7 @@ function load_comment(postId){
             // console.log(value.cmt['comment']);
             $(".comment_line").
             append('<div class="back-ground-comment-part-one">\
-            <img class="imge-comment" src="../project-myserves/layot/img/'+value.user['imgg']+'" alt=""><span class="commnt-span"> '+ value.user['name'] +' </span><i class="far fa-clock icon-commint-details"style="margin-right:5px;"></i><span class="span-commnt-data">'+value.cmt['commented_on']+'</span>\
+            <img class="imge-comment" src="../project-myserves/layot/img/'+value.user['imgg']+'" alt=""><span class="commnt-span"> '+ value.user['first_name'] + " " + value.user['last_name'] +' </span><i class="far fa-clock icon-commint-details"style="margin-right:5px;"></i><span class="span-commnt-data">'+value.cmt['commented_on']+'</span>\
             <div class="commnt-text"> '+value.cmt['comment']+' </div>\
             <i class="fas fa-reply icon-commint-details-tow"></i><button class="replay-commnt" value="'+value.cmt['comment_id']+'"style="color:var(--Navy--color);"> ردود</button><button class="replay-feedback" value="'+value.cmt['comment_id']+'" style="margin-right:20px; color:var(--Navy--color);"><i class="fas fa-comments"style="margin-left:5px;color:var(--orang--color);"></i>رد على تعليق</button>\
             <div class=" replay_section"></div>\
@@ -127,7 +127,6 @@ function load_comment(postId){
             data: data,
             success :function (response){
 
-                alert(response);
                 $('.replay_section').html("");
 
             }
@@ -157,8 +156,8 @@ function load_comment(postId){
 
                     thisClicked.closest('.back-ground-comment-part-one ').find('.replay_section').
                     append('<div class="back-ground-comment-part-one border-buttom"style="box-shadow:none;">\
-                    <input type="hidden" class="get_username" value="'+ value.user['name'] +'" />\
-                    <img class="imge-comment" src="../project-myserves/layot/img/'+value.user['imgg']+'" alt=""><span class="commnt-span"> '+ value.user['name'] +' </span><i class="far fa-clock icon-commint-details"style="margin-right:5px;margin-left:-9px;"></i><span class="span-commnt-data">'+ value.cmt['commented_on'] +'</span>\
+                    <input type="hidden" class="get_username" value="'+ value.user['first_name'] + " " + value.user['last_name'] +'" />\
+                    <img class="imge-comment" src="../project-myserves/layot/img/'+value.user['imgg']+'" alt=""><span class="commnt-span"> '+ value.user['first_name'] + " " + value.user['last_name'] +' </span><i class="far fa-clock icon-commint-details"style="margin-right:5px;margin-left:-9px;"></i><span class="span-commnt-data">'+ value.cmt['commented_on'] +'</span>\
                     <div class="commnt-text"> '+ value.cmt['reply_msg'] +' </div>\
                     <i class="fas fa-reply icon-commint-details-tow"></i><button class="sub_replay-feedback" value="'+ value.cmt['comt_id'] +'" style="margin-right:20px">رد على تعليق</button>\
                     <div class="sub_replay_section"></div>\
@@ -212,7 +211,6 @@ function load_comment(postId){
             success: function (response) {
 
                 $('.replay_section').html("");
-                alert(response);
             }
 
         });
@@ -241,7 +239,6 @@ function load_comment(postId){
     if($.trim(msg).length==0){
 
         error_msg="please type comment";
-        alert(error_msg);
      
     
     }else{

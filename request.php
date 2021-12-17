@@ -38,6 +38,7 @@ if(isset($_SESSION["userid"]))
 
 <div id="wrapper">
   <div id="container">
+    
 
     <div id="info">
        <div class="color-overlay-add-cart"></div>
@@ -56,22 +57,22 @@ if(isset($_SESSION["userid"]))
                <i class="fab fa-cc-mastercard" style="color:#0000ff82;"></i>  
            </div>           
                <div class="group">      
-                <input type="text" id="requst"  >
+                <input type="text" id="requst" value="$"  >
                 <span class="highlight"></span>
                 <span class="bar"></span>
                 <label>أدخل المبلغ</label>
             </div>
             <div class="group d-none">      
-                <input type="text" id="discount" value="5%">
+                <input type="text" id="discount" value="$">
                 <span class="highlight"></span>
                 <span class="bar"></span>
                 <label>ضريبة ألموقع (5%)</label>
             </div>
             <div class="group">      
-                <input type="text" id="discount-tow" >
+                <input type="text" id="discount-tow" value="$" >
                 <span class="highlight"></span>
                 <span class="bar"></span>
-                <label>قيمة الخصم للموقع </label>
+                <label>قيمة الخصم للموقع (%5) </label>
             </div>
             <div class="group">      
                 <input type="text" id="moyna" value="$" name="price">

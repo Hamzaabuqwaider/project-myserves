@@ -20,6 +20,13 @@ function redirectHome($theMsg, $Seconds = 0){
     exit();
 }
 
+function redirect( $Location, $Seconds=0){
+    
+    header("refresh:$Seconds;$Location");
+
+    exit();
+}
+
 function getCat() {
     global $con;
     $getCat= $con->prepare("SELECT * FROM post");
@@ -41,7 +48,7 @@ function checkItem($select, $from, $value){
 function login($username,$password)
     {
         global $con;
-        $get_user="select * from users WHERE name ='$username' and password='$password'";
+        $get_user="select * from users WHERE Email ='$username' and password='$password'";
         $run_user = $con->query($get_user);
         $state_user = $run_user->rowCount();
         if($state_user >0){
@@ -140,7 +147,7 @@ function login($username,$password)
      
      }
 
-     define('TIMEZONE', 'Africa/Addis_Ababa');
+     define('TIMEZONE', 'Asia/Amman');
     date_default_timezone_set(TIMEZONE);
 
     function last_seen($date_time){
