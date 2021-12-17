@@ -313,7 +313,7 @@ if(isset($_SESSION["userid"])){
                 <div class="mc-footer">
                     <button type="button" class="btn btn-outline-light">طلب الخدمة</button>
                 </div>
-            </article>
+            </article> 
            <!---test 2--->
 
 
