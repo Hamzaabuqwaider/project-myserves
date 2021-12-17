@@ -8,22 +8,31 @@
     include('include/loding.php');
 
     if(isset($_SESSION["userid"]))
-{
+     {
+        $SESSION = $_SESSION['userid'];
+        $price = $con->prepare("SELECT * FROM orders WHERE to_id ='$SESSION'");
+        $price->execute();
+        $row = $price->fetchAll();
+        $arr = array();
+        $sum = 0;
+        foreach($row as $P){
+            $arr[] = $P['price'];
+        }
+        for ($i=0 ; $i < count($arr) ; $i++) { 
+            $sum = $sum + $arr[$i];
+}
 
-  $SESSION = $_SESSION['userid'];
-  $price = $con->prepare("SELECT *,Count(price) as CCount FROM orders WHERE to_id ='$SESSION'");
-  $price->execute();
-  $row = $price->fetch();
 
 ?>
 
 <div class="accountitel-ds text-center">
     <div class="container">
         <div class="row">
+            
             <div class="col-lg-4 col-md-4 -col-xs-12">
                 <div class="box-account">
                     <h2 class="account-h2">الرصيد الكلي</h2>
-                    <h3 class="account-h3"> <?php echo $row['CCount'] ?> </h2>
+                    <h3 class="account-h3">$<?php echo $sum;?></h2>
                     <p class=" account-p">كامل الرصيد الموجود في حسابك  يتضمن الأرباح والرصيد المعلّق أيضاً.</p>
                 </div>
             </div>

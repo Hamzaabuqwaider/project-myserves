@@ -9,10 +9,13 @@
    if(isset($_SESSION['admin'])){
 ?>
 
+if(isset($_SESSION['admin'])){
+?>
 <!--start main-content-->
  <div class="wrapper">
  <div class="panel post">
-    <a href="order-admin.php?do=Manage"><span><?php echo countItems('id','post') ?></span> الإعلانات</a></div>
+    <a href="order-admin.php?do=Manage"><span><?php echo countItems('id','post') ?></span> الإعلانات</a>
+  </div>
   <div class="panel comment">
     <a href="commentAll.php?do=Manage"><span><?php echo countItems('comment_id','comment') ?> </span>التعليقات</a>
   </div>
@@ -180,7 +183,7 @@
 
 
 
-<?php include ("include/footer-admin.php");?>
+<?php include ("include/footer-admin.php"); ?>
 
     <script>
             var ctx = document.getElementById('myChart').getContext('2d');
@@ -203,6 +206,7 @@
             options: {}
         });
     </script>
+
     <?php }else{
         header("Location:loginadmin.php");
     } ?>

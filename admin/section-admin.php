@@ -132,13 +132,15 @@
 
           $stmt->execute();
 
-          $Location = "section-admin.php?do=Manage";
+          echo "<script>alert('تم حذف القسم');</script>";
+          $Location = "section-admin.php";
 
-          redirectHome($Location);
+          redirectHome($Location,0);
   
       } else {
 
-          $Location = "section-admin.php?do=Manage";
+          $Location = "section-admin.php";
+
 
           redirectHome($Location);
 

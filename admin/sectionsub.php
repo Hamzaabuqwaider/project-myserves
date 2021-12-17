@@ -126,9 +126,11 @@
 
           $stmt->execute();
 
-          $Location = "section-admin.php?do=Manage";
+          echo "<script>alert('تم حذف القسم الفرعي');</script>";
+          $Location = "section-admin.php";
 
-          redirectHome($Location);
+          redirectHome($Location,0);
+
   
       } else {
 

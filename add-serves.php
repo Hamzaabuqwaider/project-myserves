@@ -169,13 +169,13 @@ if (isset($_SESSION['userid'])) {
                                     'zbody'     =>$Body,
                                     'zsub'      =>$sub_c,
                                     'userid'    =>$_SESSION['userid'],
-                                    'zimg'      =>$image,
+                                    'zimg'      =>$image
+                             
                             ));
-                                    echo "succes massegae";
-                                    echo "<div class=''>";
-                            //     $theMsg = "<div class='alert alert-success'>" . $stmt->rowcount() . ' Record Inserted </div>';
-                            //     redirectHome($theMsg,'back',4);
-                            //         echo "</div>";
+                            echo "<script>alert('تم إضافة خدمتك. بإنتظار الموافقه عليها ');</script>";
+                            $Location = "index.php";
+                            redirectHome($Location);
+                                 
                                 }else {
                                    echo "No Record Added";
                                 } 

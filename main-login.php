@@ -4,7 +4,7 @@ include ("include/session.php");
 include ("include/connect.php");
 include ("include/header.php");
 include ("include/function.php");
-include('include/loding.php');
+// include('include/loding.php');
 
 if(isset($_SESSION['userid']))
 {
@@ -33,6 +33,7 @@ if(isset($_SESSION['userid']))
                                name="username"
                                id ="username"
                                placeholder="اسم المستخدم">
+                          
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
@@ -53,13 +54,13 @@ if(isset($_SESSION['userid']))
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
             if (isset($_POST['signup'])) {
                     $formErrors = array();
-                    $user = $_POST['name'];
                     $user1 = $_POST['name1'];
                     $user2 = $_POST['name2'];
                     $pass = $_POST['pass'];
                     $password2 = $_POST['pass2'];
                     $email = $_POST['Email'];
                     $type = $_POST['type'];
+                    
 
                     if(isset($user)){
                         $filterdUuser = filter_var($user,FILTER_SANITIZE_STRING);
@@ -92,17 +93,20 @@ if(isset($_SESSION['userid']))
                                     $hashPassword = md5($pass);
 
                                     $insert = $con->prepare("INSERT INTO 
-                                                users(name,first_name,last_name,password,Email,type,date)
-                                                VALUES(:zuser,:zuser1,:zuser2, :zpass, :zmail, :postType , now() )");
+                                                users(first_name,last_name,password,Email,type,date)
+                                                VALUES(:zuser1,:zuser2, :zpass, :zmail, :postType , now() )");
                                     $insert->execute(array(
-                                        'zuser' =>$user,
+                                        
                                         'zuser1' =>$user1,
                                         'zuser2' =>$user2,
                                         'zpass' =>$hashPassword,
                                         'zmail' =>$email,
                                         'postType'=>$_POST['type']
                                      ));
-                                 $successMsg = ' You Are Now Registerd User';
+                                     echo "<script>alert('تم اضافتك بنجاح بإنتظار الموافقه');</script>";
+
+                                 
+
                      }
                  } 
             }

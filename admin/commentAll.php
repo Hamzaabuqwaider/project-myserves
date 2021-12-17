@@ -84,10 +84,11 @@ session_start();
             $stmt->bindParam(":zcomment",$comment);
 
             $stmt->execute();
+            echo "<script>alert('تم حذف التعليق');</script>";
+            $Location = "servesadmin.php";
 
-            $Location = "commentAll.php?do=Manage";
+            redirectHome($Location,2);
 
-            redirectHome($Location);
 
             } else {
 
