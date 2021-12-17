@@ -2253,3 +2253,33 @@ margin-bottom: -20px;
     font-weight: bold;
 }
 /*comment-test*/
+.input-field{
+    position: relative;
+}
+.span-form-pas2{
+    position: absolute;
+    right: 30px;
+    top: 119%;
+    transform: translate(5%,-50%);
+    color: red;
+    font-weight: 900;
+    width: 100%;
+    
+}
+.span-form-pas2 i{
+    font-size: 15px;
+}
+.alert {
+    position: relative;
+  }
+  
+  .alert .close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 1em;
+  }
+  
+  .alert .fa {
+    margin-right:.3em;
+  }

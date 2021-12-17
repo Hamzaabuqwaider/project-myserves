@@ -48,7 +48,7 @@ if (isset($_SESSION['userid']))
 									<span class="online_icon"></span>
 							</div>
 								<div class="user_info">
-                                    &nbsp;&nbsp;&nbsp;<span> <?=$row['name']?></span>
+                                    &nbsp;&nbsp;&nbsp;<span> <?=$row['first_name']." ".$row['last_name']?></span>
 								</div>
 							<?php  }else{ ?>
 								<div class="img_cont">
@@ -56,7 +56,7 @@ if (isset($_SESSION['userid']))
 									<span class="online_icon_tow"></span>
 								</div>
 								<div class="user_info">
-                                    &nbsp;&nbsp;&nbsp;<span> <?=$row['name']?></span>
+                                    &nbsp;&nbsp;&nbsp;<span> <?=$row['first_name']." ".$row['last_name']?></span>
 								</div>
 								<small class="d-block  tiem-zone">
 									Last seen:
@@ -187,7 +187,7 @@ if (isset($_SESSION['userid']))
 </script>
 <?php
   }else{
-	header('Location: main-login.php');
+	header('Location: login.php');
 	exit;
   }
   ob_end_flush();

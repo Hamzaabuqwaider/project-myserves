@@ -77,7 +77,7 @@ if (isset($_SESSION['userid'])) {
 <?php 
         } else {
 
-            header('Location: main-login.php');
+            header('Location: login.php');
             exit();
         }
 ?>

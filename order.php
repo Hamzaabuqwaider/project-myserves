@@ -60,7 +60,7 @@ $r =$_SESSION['userid'];
                 </div>
             </td>
             <td class="th-deef" style="font-weight:800"><?php echo $row['price'] ?></td>
-            <td ><a href="detailsservice.php?id=<?= $row['post_id']?>"><i class="fas fa-eye color-icon-cart-tow"></i></a></td>
+            <td ><a href="details-test.php?id=<?= $row['post_id']?>"><i class="fas fa-eye color-icon-cart-tow"></i></a></td>
             <td ><a href="order.php?do=Delete&id=<?php echo $row['order_id'] ?>"><i class="fa fa-trash  color-icon-cart"></i></a></td>
           </tr>
           <tr>

@@ -40,7 +40,7 @@ if (isset($_SESSION['userid'])) {
                 <form action="add-serves.php?action=Insert&userid" method="POST" enctype = "multipart/form-data">
                     <div class="form-group">
                             <label for="formGroupExampleInput">اسم الخدمة:</label>
-                            <input type="text" name="name" class="form-control" id="formGroupExampleInput" placeholder="اسم الخدمة">
+                            <input type="text" name="name" class="form-control" id="formGroupExampleInput" placeholder="اسم الخدمة" maxlength="20">
                         <label for="formGroupExampleInput">نوع الخدمة:</label>
                         <div class="btn-group btn-group-toggle" data-toggle="buttons">
                                 <label class="btn btn-secondary btn-add-serves-select active">
@@ -119,10 +119,11 @@ if (isset($_SESSION['userid'])) {
             </script>
          <?php } 
                 elseif($action == 'Insert') {
+                
+
                 // $userid = isset($_GET['userid']) && is_numeric($_GET['userid']) ? intval($_GET['userid']) :0;
                 if($_SERVER['REQUEST_METHOD'] == 'POST'){
-                echo  "<h1 class='text-center'>تمت إضافة خدمة</h1>";
-                echo  "<div class = 'container'>";
+               
                    
                     $name        = $_POST['name'];
                     $sub_c       = $_POST['sub-cat'];
@@ -158,6 +159,7 @@ if (isset($_SESSION['userid'])) {
                     
                     // Check If There's No Error Proceed The Update Operation
                     if(empty($formErrors)){
+
                                 $image = rand(0 , 100000) . '_' . $imageName;
                                 move_uploaded_file($imageTemp,'layot/img/' .$image);
                             // Insert Userinformation In The Database
@@ -172,10 +174,11 @@ if (isset($_SESSION['userid'])) {
                                     'zimg'      =>$image
                              
                             ));
-                            echo "<script>alert('تم إضافة خدمتك. بإنتظار الموافقه عليها ');</script>";
-                            $Location = "index.php";
-                            redirectHome($Location);
-                                 
+                            echo '<script>alert("بإنتظار موافقة الادمن")</script>';
+                            $location ="index.php";
+                            
+                            redirect($location,1);
+
                                 }else {
                                    echo "No Record Added";
                                 } 

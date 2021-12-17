@@ -5,23 +5,14 @@
     include ("include/header.php");
     include ("include/topnav.php");
     // include ("include/function.php");
-    include('include/loding.php');
-?>
-<!-- start name and drodawn create ghazal-->
-<?php 
-// $sort = 'DESC';
-// $sort_array = array('DESC');
-// if(isset($_GET['sort']) && in_array($_GET['sort'] && isset($_POST['desc']) , $sort_array)){
-//     $sort = $_GET['sort'];
-//     $stmt = $con-> prepare("SELECT * FROM post WHERE category_id = ? AND ORDER BY id $sort");
-//     $stmt->execute();
-//     $stmt = $stmt->fetchAll();
-// }
+   // include('include/loding.php');
 
 $Cat_id = isset($_GET['Cat_id']) && is_numeric($_GET['Cat_id']) ? intval($_GET['Cat_id']) :0;
 $stmt = $con-> prepare("SELECT * FROM post WHERE category_id = ? ");
 $stmt->execute(array($Cat_id));
 $stmt = $stmt->fetchAll();
+
+
 ?>
 
 <div class="namesaction">
@@ -46,6 +37,7 @@ $stmt = $stmt->fetchAll();
         <div class="container">
             <div class="card-group">
                 <?php foreach($stmt as $sectionId) { ?>
+                     
                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs">
 
                     <article class="material-card Red">
@@ -91,6 +83,7 @@ $stmt = $stmt->fetchAll();
             </article>
                 </div>
                 <?php } ?> 
+
 
             </div>
         </div>

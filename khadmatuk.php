@@ -50,7 +50,7 @@ if(isset($_SESSION["userid"])) {
                     </div>
                 </div>
             </td>
-            <td ><a href="detailsservice.php?id=<?= $row1['id']?>"><i class="fas fa-eye color-icon-cart-tow"></i></a></td>
+            <td ><a href="details-test.php?id=<?= $row1['id']?>"><i class="fas fa-eye color-icon-cart-tow"></i></a></td>
             <td ><a href="khadmatuk.php?do=Edit&Edit_id=<?php echo $row1['id'] ?>"><i class="fas fa-tools color-icon-cart"></i></a></td>
             <td ><a href="khadmatuk.php?do=Delete&post_id=<?php echo $row1['id'] ?>"><i class="fa fa-trash  color-icon-cart"></i></a></td>
           </tr>

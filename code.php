@@ -75,17 +75,6 @@ if(isset($_POST['reply_add_btn']))
 
     $query_run = mysqli_query($con,$query);
 
-    if($query_run)
-    {
-
-        echo "زبطت يا كبييييييير";
-
-    }else {
-
-        echo " وعرض امي ماهي زابطة والله مش زابطة ";
-
-    }
-    
 }
 
 

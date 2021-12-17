@@ -143,7 +143,7 @@
                                             <img class="img-profile" src="layot/img/<?php echo $row["img"];?>">
                                             <span class="time-notification"><i class="far fa-clock"></i><?php echo $row["created_at"];?></span>
                                             <span class="text-notification text-maseges">
-                                                <?php echo $row["name"];?>
+                                                <?php echo $row["first_name"]." ".$row["last_name"];?>
                                             </span>
                                             <p class="maasage-chat-ul"><?php echo $row["message"];?></p>
                                     </li>
