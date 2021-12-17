@@ -1,9 +1,34 @@
-
-   
 <?php 
-   $titlePage = "order-admin";
+session_start();
+   $titlePage = "servesadmin";
+   session_start();
    include ("include/header-admin.php");
-   include ("include/navadmin.php");
+   include ("../include/connect.php");
+   include ("../include/function.php");
+
+   if(isset($_SESSION['admin'])){
+
+    $do = isset($_GET['do']) ? $_GET['do'] : "Manage";
+
+    if($do == 'Manage'){
+
+        include ("include/navadmin.php");
+
+   $stmt1 = $con->prepare("SELECT * ,post.RegStatus as Reg
+                                    ,post.date as add_data,
+                                     post.id as ID,
+                                     sub_category.Name as Name,
+                                     main_categories.title_cat as NAME_MAIN,
+                                     main_categories.type as TYPE_MAIN
+                                     FROM post
+   INNER JOIN sub_category ON sub_category.id = post.category_id
+   INNER JOIN users ON users.id  = post.user_id
+   INNER JOIN main_categories ON main_categories.id = sub_category.parent_id
+    ");
+   $stmt1 ->execute();
+   $row1 = $stmt1->fetchAll();
+   
+
 ?>
 
 <!--start section-->
@@ -16,7 +41,7 @@
       <div class="col-12">
           <div class="cardsd-taple-page overlay-scrollbar">
               <div class="cardsd-header">
-                 <h3>الطلبات</h3> 
+                 <h3>الخدمات في الموقع</h3> 
                   <i class="fas fa-ellipsis-h"></i>
               </div>
               <div class="cardsd-content">
@@ -35,345 +60,49 @@
                           </tr>
                       </thead>
                       <tbody>
+                      <?php foreach($row1 as $post){ ?>
                           <tr>
-                              <td>1</td>
-                              <td>رائد للتمديدات</td>
-                              <td>شركة الصقر للتمديدات</td>
-                              <td>صرف صحي</td>
-                              <td>مضخات مياه</td>
-                              <td>11/11/2021</td>
+                              <td><?php echo $post["ID"] ?></td>
+                              <td><?php echo $post["title"] ?></td>
+                              <td><?php echo $post["TYPE_MAIN"] ?></td>
+                              <td><?php echo $post["NAME_MAIN"] ?></td>
+                              <td><?php echo $post["Name"] ?></td>
+                              <td><?php echo $post["add_data"] ?></td>
                               <td>
                                   <!-- وصف الخدمة -->
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
-                                    <i class="fas fa-eye" style="margin-left:5px;"></i> وصف الطلب
-                                    </button>
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="staticBackdropLabel">وصف الخدمة</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true" style="margin-right:310px">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                        هذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمةهذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمة
-                                        هذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمة
-                                        هذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمة
-                                        هذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمة
-                                        هذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمة
-                                        هذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمة
-                                        </div>
-                                        </div>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal<?= $post["ID"] ?>">
+                                    وصف الخدمة
+                                </button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal<?= $post["ID"] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">وصــف الخـدمـة</h5>
+                                    </div>
+                                    <div class="modal-body">
+                                        <?= $post["body"] ?>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">إلــغاء</button>
                                     </div>
                                     </div>
+                                </div>
+                                </div>
                                    <!-- وصف الخدمة -->
                               </td>
                               <td>
-                                <button type="button" class="btn btn-success">قبول الخدمة</button>
+                              <?php if ($post['Reg'] == 0) {
+                                    echo "<a href='order-admin.php?do=Activate&post_ID=" . $post["ID"] . "' class='btn btn-info activate'><i class='fa fa-check'></i> قبول الخدمة</a>";
+                                   } ?>
                               </td>
                               <td>
-                                 <button type="button" class="btn btn-danger">رفض الخدمة</button>
+                              <a href="order-admin.php?do=Delete&post_ID=<?php echo $post["ID"] ?>"><button type="button" class="btn btn-danger">رفض الخدمة</button></a>
                               </td>
                           </tr>
                           <!--test-->
-                          <tr>
-                              <td>2</td>
-                              <td>رائد للتمديدات</td>
-                              <td>شركة الصقر للتمديدات</td>
-                              <td>صرف صحي</td>
-                              <td>مضخات مياه</td>
-                              <td>11/11/2021</td>
-                              <td>
-                                  <!-- وصف الخدمة -->
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
-                                    <i class="fas fa-eye" style="margin-left:5px;"></i> وصف الطلب
-                                    </button>
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="staticBackdropLabel">وصف الخدمة</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true" style="margin-right:310px">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                        هذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمةهذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمة
-                                        هذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمة
-                                        هذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمة
-                                        هذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمة
-                                        هذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمة
-                                        هذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمة
-                                        </div>
-                                        </div>
-                                    </div>
-                                    </div>
-                                   <!-- وصف الخدمة -->
-                              </td>
-                              <td>
-                                <button type="button" class="btn btn-success">قبول الخدمة</button>
-                              </td>
-                              <td>
-                                 <button type="button" class="btn btn-danger">رفض الخدمة</button>
-                              </td>
-                          </tr>
-                          <tr>
-                              <td>2</td>
-                              <td>رائد للتمديدات</td>
-                              <td>شركة الصقر للتمديدات</td>
-                              <td>صرف صحي</td>
-                              <td>مضخات مياه</td>
-                              <td>11/11/2021</td>
-                              <td>
-                                  <!-- وصف الخدمة -->
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
-                                    <i class="fas fa-eye" style="margin-left:5px;"></i> وصف الطلب
-                                    </button>
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="staticBackdropLabel">وصف الخدمة</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true" style="margin-right:310px">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                        هذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمةهذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمة
-                                        هذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمة
-                                        هذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمة
-                                        هذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمة
-                                        هذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمة
-                                        هذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمة
-                                        </div>
-                                        </div>
-                                    </div>
-                                    </div>
-                                   <!-- وصف الخدمة -->
-                              </td>
-                              <td>
-                                <button type="button" class="btn btn-success">قبول الخدمة</button>
-                              </td>
-                              <td>
-                                 <button type="button" class="btn btn-danger">رفض الخدمة</button>
-                              </td>
-                          </tr>
-                          <tr>
-                              <td>3</td>
-                              <td>رائد للتمديدات</td>
-                              <td>شركة الصقر للتمديدات</td>
-                              <td>صرف صحي</td>
-                              <td>مضخات مياه</td>
-                              <td>11/11/2021</td>
-                              <td>
-                                  <!-- وصف الخدمة -->
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
-                                    <i class="fas fa-eye" style="margin-left:5px;"></i> وصف الطلب
-                                    </button>
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="staticBackdropLabel">وصف الخدمة</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true" style="margin-right:310px">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                        هذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمةهذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمة
-                                        هذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمة
-                                        هذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمة
-                                        هذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمة
-                                        هذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمة
-                                        هذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمة
-                                        </div>
-                                        </div>
-                                    </div>
-                                    </div>
-                                   <!-- وصف الخدمة -->
-                              </td>
-                              <td>
-                                <button type="button" class="btn btn-success">قبول الخدمة</button>
-                              </td>
-                              <td>
-                                 <button type="button" class="btn btn-danger">رفض الخدمة</button>
-                              </td>
-                          </tr>
-                          <tr>
-                              <td>4</td>
-                              <td>رائد للتمديدات</td>
-                              <td>شركة الصقر للتمديدات</td>
-                              <td>صرف صحي</td>
-                              <td>مضخات مياه</td>
-                              <td>11/11/2021</td>
-                              <td>
-                                  <!-- وصف الخدمة -->
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
-                                    <i class="fas fa-eye" style="margin-left:5px;"></i> وصف الطلب
-                                    </button>
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="staticBackdropLabel">وصف الخدمة</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true" style="margin-right:310px">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                        هذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمةهذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمة
-                                        هذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمة
-                                        هذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمة
-                                        هذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمة
-                                        هذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمة
-                                        هذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمة
-                                        </div>
-                                        </div>
-                                    </div>
-                                    </div>
-                                   <!-- وصف الخدمة -->
-                              </td>
-                              <td>
-                                <button type="button" class="btn btn-success">قبول الخدمة</button>
-                              </td>
-                              <td>
-                                 <button type="button" class="btn btn-danger">رفض الخدمة</button>
-                              </td>
-                          </tr>
-                          <tr>
-                              <td>5</td>
-                              <td>رائد للتمديدات</td>
-                              <td>شركة الصقر للتمديدات</td>
-                              <td>صرف صحي</td>
-                              <td>مضخات مياه</td>
-                              <td>11/11/2021</td>
-                              <td>
-                                  <!-- وصف الخدمة -->
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
-                                    <i class="fas fa-eye" style="margin-left:5px;"></i> وصف الطلب
-                                    </button>
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="staticBackdropLabel">وصف الخدمة</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true" style="margin-right:310px">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                        هذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمةهذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمة
-                                        هذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمة
-                                        هذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمة
-                                        هذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمة
-                                        هذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمة
-                                        هذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمة
-                                        </div>
-                                        </div>
-                                    </div>
-                                    </div>
-                                   <!-- وصف الخدمة -->
-                              </td>
-                              <td>
-                                <button type="button" class="btn btn-success">قبول الخدمة</button>
-                              </td>
-                              <td>
-                                 <button type="button" class="btn btn-danger">رفض الخدمة</button>
-                              </td>
-                          </tr>
-                          <tr>
-                              <td>6</td>
-                              <td>رائد للتمديدات</td>
-                              <td>شركة الصقر للتمديدات</td>
-                              <td>صرف صحي</td>
-                              <td>مضخات مياه</td>
-                              <td>11/11/2021</td>
-                              <td>
-                                  <!-- وصف الخدمة -->
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
-                                    <i class="fas fa-eye" style="margin-left:5px;"></i> وصف الطلب
-                                    </button>
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="staticBackdropLabel">وصف الخدمة</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true" style="margin-right:310px">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                        هذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمةهذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمة
-                                        هذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمة
-                                        هذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمة
-                                        هذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمة
-                                        هذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمة
-                                        هذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمة
-                                        </div>
-                                        </div>
-                                    </div>
-                                    </div>
-                                   <!-- وصف الخدمة -->
-                              </td>
-                              <td>
-                                <button type="button" class="btn btn-success">قبول الخدمة</button>
-                              </td>
-                              <td>
-                                 <button type="button" class="btn btn-danger">رفض الخدمة</button>
-                              </td>
-                          </tr>
-                          <tr>
-                              <td>7</td>
-                              <td>رائد للتمديدات</td>
-                              <td>شركة الصقر للتمديدات</td>
-                              <td>صرف صحي</td>
-                              <td>مضخات مياه</td>
-                              <td>11/11/2021</td>
-                              <td>
-                                  <!-- وصف الخدمة -->
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
-                                    <i class="fas fa-eye" style="margin-left:5px;"></i> وصف الطلب
-                                    </button>
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="staticBackdropLabel">وصف الخدمة</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true" style="margin-right:310px">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                        هذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمةهذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمة
-                                        هذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمة
-                                        هذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمة
-                                        هذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمة
-                                        هذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمة
-                                        هذه الخدمة مميزة وانصح الجميع بطلب هذه الخدمة
-                                        </div>
-                                        </div>
-                                    </div>
-                                    </div>
-                                   <!-- وصف الخدمة -->
-                              </td>
-                              <td>
-                                <button type="button" class="btn btn-success">قبول الخدمة</button>
-                              </td>
-                              <td>
-                                 <button type="button" class="btn btn-danger">رفض الخدمة</button>
-                              </td>
-                          </tr>
-                        
-                          <!--test-->
+                          <?php } ?>
                       </tbody>
                   </table>
               </div>
@@ -386,4 +115,28 @@
 </div> <!--end wraper-->
 <!--end section-->
 
-<?php include ("include/footer-admin.php");?>
+<?php 
+
+ }elseif ($do == "Activate") {
+
+// Check if Get Request userID is Numeric & Get The Integer Value of It
+
+$post_ID = isset($_GET['post_ID']) && is_numeric($_GET['post_ID']) ? intval($_GET['post_ID']) : 0 ;
+    
+
+    $stmt = $con->prepare("UPDATE post SET RegStatus = 1 WHERE id = ?");
+
+    $stmt->execute(array($post_ID));
+
+    $Location = "order-admin.php?do=Manage";
+
+    redirectHome($Location);
+}
+
+} else {
+
+header('Location: index-admin.php');
+
+exit();
+}
+include ("include/footer-admin.php");?>

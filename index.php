@@ -1,15 +1,32 @@
 <?php
-    $titlePage = "home-page";
+
     include ("include/session.php");
     include ("include/connect.php");
-    include ("include/header.php");
-    include ("include/topnav.php");
-    // include ("include/function.php");
-    include('include/loding.php');
+
+    // include('include/loding.php');
+
+if(isset($_SESSION["userid"])){
     
+    $id = $_SESSION["userid"];
+
+    $stmt = $con->prepare("SELECT * FROM users WHERE id = '$id' ");
+
+    $stmt->execute();
+
+    $row = $stmt->fetch();
+
+    $reg = intval($row["RegStatus"]);
+
+    if($reg === 1){
+
+        include ("include/header.php");
+        include ("include/topnav.php");
+        include ("include/function.php");
+        
 ?>
 
- <!-- ;$pageTitle = 'Sections' -->
+
+
    <!---start background-->
         <header class="background-section">
         
@@ -296,7 +313,7 @@
                 <div class="mc-footer">
                     <button type="button" class="btn btn-outline-light">طلب الخدمة</button>
                 </div>
-            </article>
+            </article> 
            <!---test 2--->
 
 
@@ -392,6 +409,12 @@
             </div>
         </div>
     </div>
-    <!--slider mainpage -->
+<?php
 
-    <?php include ("include/footer.php");?>
+    include ("include/footer.php");
+
+        }
+    }
+    echo 'لا يمكنك الدخول إلا عند موافقة الادمن'; 
+?>
+    <!--slider mainpage -->

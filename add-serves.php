@@ -6,7 +6,7 @@ include ("include/connect.php");
 include ("include/header.php");
 include ("include/topnav.php");
 include ("include/function.php");
-include('include/loding.php');
+// include('include/loding.php');
 
 if (isset($_SESSION['userid'])) {
     
@@ -184,6 +184,7 @@ if (isset($_SESSION['userid'])) {
                     }else{
                         echo "No Action Insert";
                     }  
+
             } else {
 
                 header('location: main-login.php');
@@ -192,4 +193,4 @@ if (isset($_SESSION['userid'])) {
         ob_end_flush();
    ?>
 
-   <?php include ("include/footer.php");?>
+<?php include ("include/footer.php");?>
