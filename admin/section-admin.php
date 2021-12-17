@@ -141,6 +141,7 @@
 
           $Location = "section-admin.php";
 
+
           redirectHome($Location);
 
       }

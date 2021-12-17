@@ -89,6 +89,7 @@ session_start();
 
             redirectHome($Location,2);
 
+
             } else {
 
                 $Location = "commentAll.php?do=Manage";

@@ -49,7 +49,7 @@ if($do == 'Manage'){
                               <td><?php echo $contact['id']?></td>
                               <td><?php echo $contact['Email']?></td>
                               <td><?php echo $contact['Message']?> </td>
-                              <td><?php echo $contact['data']?></td>
+                              <td><?php echo $contact['Date']?></td>
                               <td>
                              <a href="contact.php?do=Delete&Messag_ID=<?php echo $contact['id'] ?>"><button type="button" class="btn btn-danger">حذف الالرسالة</button></a>
                               </td>

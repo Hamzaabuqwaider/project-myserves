@@ -4,7 +4,10 @@
    include ("include/header-admin.php");
    include ("include/navadmin.php");
    include ("../include/connect.php");
-   include ("../include/function.php");
+   include ("include/function.php");
+
+   if(isset($_SESSION['admin'])){
+?>
 
 if(isset($_SESSION['admin'])){
 ?>
