@@ -1,4 +1,5 @@
 <?php
+$titlePage = "add-serves";
 ob_start();
 include ("include/session.php");
 include ("include/connect.php");
@@ -63,20 +64,32 @@ if (isset($_SESSION['userid'])) {
                         <label for="validationTextarea">وصف الخدمة:</label>
                         <textarea name="body" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                         <label for="exampleFormControlFile1">صورة الخدمة:</label>
-                        <div style="width:100%;margin:auto;">
-                            <div class="upload-add-serves" id="upload-add-serves">
-                                <img src="https://placehold.co/300x300" alt="img-upload" name="img" class="rounded imguploadserves" id="imguploadserves">
+                          <!--upload-->
+                        <div class="main_full">
+                            <div class="container">
+                                <div class="panelss">
+                                    <div class="button_outer">
+                                        <div class="btn_upload">
+                                            <input name="upload"  type="file" id="uploadss_file">
+                                            <i class="far fa-images" style="color:#ddd;font-size:16px;"></i> إضافة صورة
+                                        </div>
+                                        <div class="processing_bar"></div>
+                                        <div class="success_box"></div>
+                                    </div>
+                                </div>
+                                <div class="error_msg"></div>
+                                <div class="uploaded_file_view" id="uploaded_view">
+                                    <span class="file_remove">X</span>
+                                </div>
                             </div>
-                            <input name="upload" type="file" onchange="readUrl(this)"class="inpfile" id="inpfile">
-                            <label for="inpfile"class="input-file-add-serves"><i class="fas fa-upload"></i>&nbsp;اضافة صورة</label>
                         </div>
-                        <label for="formGroupExampleInput">كلمات مفتاحية للخدمة:</label>
-                        <input type="text" name="search" class="form-control" id="formGroupExampleInput search" placeholder="كلمات مفتاحية">
+                            <!--upload-->
                     </div>
-                    <button type="submit" class="btn btn-add-serves"><i class="fas fa-plus-circle"></i>&nbsp;اضافة الخدمة</button>
+                    <button type="submit" class="btn btn-add-serves" style="border-radius:30px"><i class="fas fa-plus-circle"></i>&nbsp;اضافة الخدمة</button>
                 </form>
                 </div>
             </div>
+            
             <script>
                 //freelance select
                 function myFunctionfreelance() {
@@ -120,7 +133,6 @@ if (isset($_SESSION['userid'])) {
                     $imageType   = $_FILES['upload']['type'];
                     $imageAllowedExtentions = array("jpeg" , "jpg", "png" , "gif");
                     $imageExtension = strtolower(end(explode('.' , $imageName)));
-                    $keyword     = filter_var($_POST['search'],FILTER_SANITIZE_STRING);
                     $formErrors = array();
                     if(empty($name)) {
                         $formErrors[] = 'name cant be <strong>Empty</strong>';
@@ -138,9 +150,7 @@ if (isset($_SESSION['userid'])) {
                     if(empty($imageName)) {
                         $formErrors[] = 'Image IS <strong>Required</strong>';
                     }
-                    if(empty($keyword)) {
-                        $formErrors[] = 'Keyword Cant be <strong>Empty</strong>';
-                        }
+              
                     foreach($formErrors as $erros){
                         echo '<div class="alert alert-danger">' . $erros . '</div>';
             
@@ -152,15 +162,14 @@ if (isset($_SESSION['userid'])) {
                                 move_uploaded_file($imageTemp,'layot/img/' .$image);
                             // Insert Userinformation In The Database
                                 $stmt = $con->prepare("INSERT INTO 
-                                            post (title , body , category_id , user_id , img , Keyword)
-                                            VALUES(:zname, :zbody, :zsub , :userid , :zimg, :zkeyword)");
+                                            post (title , body , category_id , user_id , img )
+                                            VALUES(:zname, :zbody, :zsub , :userid , :zimg )");
                                 $stmt->execute(array(
                                     'zname'     =>$name,
                                     'zbody'     =>$Body,
                                     'zsub'      =>$sub_c,
                                     'userid'    =>$_SESSION['userid'],
                                     'zimg'      =>$image,
-                                    'zkeyword'  =>$keyword
                             ));
                                     echo "succes massegae";
                                     echo "<div class=''>";

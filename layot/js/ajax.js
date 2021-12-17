@@ -74,10 +74,10 @@ function load_comment(postId){
             // console.log(value.cmt['comment']);
             $(".comment_line").
             append('<div class="back-ground-comment-part-one">\
-            <img class="imge-comment" src="../project-myserves/layot/img/'+value.user['imgg']+'" alt=""><span class="commnt-span"> '+ value.user['name'] +' </span><i class="far fa-clock icon-commint-details"></i><span class="span-commnt-data">'+value.cmt['commented_on']+'</span>\
+            <img class="imge-comment" src="../project-myserves/layot/img/'+value.user['imgg']+'" alt=""><span class="commnt-span"> '+ value.user['name'] +' </span><i class="far fa-clock icon-commint-details"style="margin-right:5px;"></i><span class="span-commnt-data">'+value.cmt['commented_on']+'</span>\
             <div class="commnt-text"> '+value.cmt['comment']+' </div>\
-            <i class="fas fa-reply icon-commint-details-tow"></i><button class="replay-commnt" value="'+value.cmt['comment_id']+'">0ردود</button><button class="replay-feedback" value="'+value.cmt['comment_id']+'" style="margin-right:20px">رد على تعليق</button>\
-            <div class="ml-4 replay_section"></div>\
+            <i class="fas fa-reply icon-commint-details-tow"></i><button class="replay-commnt" value="'+value.cmt['comment_id']+'"style="color:var(--Navy--color);"> ردود</button><button class="replay-feedback" value="'+value.cmt['comment_id']+'" style="margin-right:20px; color:var(--Navy--color);"><i class="fas fa-comments"style="margin-left:5px;color:var(--orang--color);"></i>رد على تعليق</button>\
+            <div class=" replay_section"></div>\
           </div>');
         });
         }
@@ -92,10 +92,10 @@ function load_comment(postId){
 
         $('.replay_section').html("");
         thisClicked.closest('.back-ground-comment-part-one').find('.replay_section').
-        html('<input type="text" class="reply_msg form-control my-2" placholder="reply">\
-                <div class="text-end">\
-                    <button class="btn btn-sm btn-primary reply_add_btn">reply</button>\
-                    <button class="btn btn-sm btn-danger reply_cancel_btn">cancel</button>\
+        html('<input type="text" class="reply_msg form-control my-2" placholder="reply"style="border-radius:30px;">\
+                <div class="text-end"style="margin-right:30px;">\
+                    <button class="btn btn-sm btn-primary reply_add_btn"style="margin-left:10px;">الرد على التعليق</button>\
+                    <button class="btn btn-sm btn-danger reply_cancel_btn">إلغاء</button>\
                 </div>');
 
     });
@@ -156,12 +156,12 @@ function load_comment(postId){
                     $.each(response, function(key, value) {
 
                     thisClicked.closest('.back-ground-comment-part-one ').find('.replay_section').
-                    append('<div class="back-ground-comment-part-one border-buttom">\
+                    append('<div class="back-ground-comment-part-one border-buttom"style="box-shadow:none;">\
                     <input type="hidden" class="get_username" value="'+ value.user['name'] +'" />\
-                    <img class="imge-comment" src="../project-myserves/layot/img/'+value.user['imgg']+'" alt=""><span class="commnt-span"> '+ value.user['name'] +' </span><i class="far fa-clock icon-commint-details"></i><span class="span-commnt-data">'+ value.cmt['commented_on'] +'</span>\
+                    <img class="imge-comment" src="../project-myserves/layot/img/'+value.user['imgg']+'" alt=""><span class="commnt-span"> '+ value.user['name'] +' </span><i class="far fa-clock icon-commint-details"style="margin-right:5px;margin-left:-9px;"></i><span class="span-commnt-data">'+ value.cmt['commented_on'] +'</span>\
                     <div class="commnt-text"> '+ value.cmt['reply_msg'] +' </div>\
                     <i class="fas fa-reply icon-commint-details-tow"></i><button class="sub_replay-feedback" value="'+ value.cmt['comt_id'] +'" style="margin-right:20px">رد على تعليق</button>\
-                    <div class="ml-4 sub_replay_section"></div>\
+                    <div class="sub_replay_section"></div>\
                     </div>\
                 ');
                });
@@ -180,11 +180,11 @@ function load_comment(postId){
         $('.sub_replay_section').html("");
         thisClicked.closest('.back-ground-comment-part-one').find('.sub_replay_section').
             append('<div>\
-                        <input type="text" value="@'+username+' " class="sub_reply_msg form-control my-2" placeholder="ردك" />\
+                        <input type="text" value="@'+username+' " class="sub_reply_msg form-control my-2" placeholder="ردك" style="border-radius:30px;" />\
                     </div>\
                     <div class="text-end">\
-                        <button class="btn btn-sm sub_replay-feedback_add_btn" value="" style="margin-right:20px">رد على تعليق</button>\
-                        <button class="btn btn-sm sub_replay-feedback_cancel_btn" value="" style="margin-right:20px">ألغاء </button>\
+                        <button class="btn btn-sm btn-primary sub_replay-feedback_add_btn" value="" style="margin-right:20px">رد على تعليق</button>\
+                        <button class="btn btn-sm btn-danger sub_replay-feedback_cancel_btn" value="" style="margin-right:20px">ألغاء </button>\
                     </div>\
             ');
 

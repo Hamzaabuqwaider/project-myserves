@@ -10,34 +10,49 @@ $('.navbar-collapse li a').click(function(){
     //scroll nav bar
     $(document).ready(function(){ 
 
-    if (location.pathname == '/project-myserves/mainpage.php'){
+    if (location.pathname == '/project-myserves/' ){
+            $(window).scroll(function(){
+            $('.navbar-edit').toggleClass("sticky", $(this).scrollTop() > 0);   
+             })
+     }else if(location.pathname == '/project-myserves/index.php'){
+        $(window).scroll(function(){
+        $('.navbar-edit').toggleClass("sticky", $(this).scrollTop() > 0); 
+        })  
 
-    $(window).scroll(function(){
-    $('.navbar-edit').toggleClass("sticky", $(this).scrollTop() > 0);   
-    
-     })
-} else { 
-
-        $('.navbar-edit').removeClass("back-color-nav");
-        $('.navbar-edit').addClass("sticky");
-        
+      }else { 
+            $('.navbar-edit').removeClass("back-color-nav");
+            $('.navbar-edit').addClass("sticky");
        }
 });
+//new upload
+var btnUpload = $("#uploadss_file"),
+btnOuter = $(".button_outer");
+btnUpload.on("change", function(e){
+var ext = btnUpload.val().split('.').pop().toLowerCase();
+if($.inArray(ext, ['gif','png','jpg','jpeg']) == -1) {
+    $(".error_msg").text("Not an Image...");
+} else {
+    $(".error_msg").text("");
+    btnOuter.addClass("file_uploading");
+    setTimeout(function(){
+        btnOuter.addClass("file_uploaded");
+    },3000);
+    var uploadedFile = URL.createObjectURL(e.target.files[0]);
+    setTimeout(function(){
+        $("#uploaded_view").append('<img  src="'+uploadedFile+'" />').addClass("show");
+    },3500);
+}
+});
+$(".file_remove").on("click", function(e){
+$("#uploaded_view").removeClass("show");
+$("#uploaded_view").find("img").remove();
+btnOuter.removeClass("file_uploading");
+btnOuter.removeClass("file_uploaded");
+});
 
-    //upload-add-serves
-
-   function readUrl(input){
-    var uploadimg = document.getElementById("imguploadserves");
-
-       if(input.files){
-           var reader = new FileReader();
-           reader.readAsDataURL(input.files[0]);
-           reader.onload=(download)=>{
-            uploadimg.src = download.target.result;
-
-           }
-       }
-   }
+    //serch
+  
+  
    //login
   function addclassnewaccount() {
       "use strict"
@@ -147,21 +162,24 @@ $(window).load(function () {
     
     // Loading Elements
     
-    $(".loading-overlay .spinner").fadeOut(2500, function () {
+    $(".loading-overlay .load hr").fadeOut(2500, function () {
         
         // Show The Scroll
 
         $("body").css("overflow-y", "auto");
         
-        $(this).parent().fadeOut(2500, function () {
+        $(this).parent().fadeOut(50, function () {
             
-            $(this).remove();
+            $(".loading-overlay ").remove();
         });
     });
 });
 document.getElementById("requst").onkeyup=function(){
     var input1= Number(document.getElementById("requst").value);
     var numVal2 = Number(document.getElementById("discount").value=5) / 100;
-    var totalValue = input1 - (input1 * numVal2)
+    var totalValue = input1 - (input1 * numVal2);
+    var input5=document.getElementById("discount-tow").value=input1-totalValue;
     document.getElementById("moyna").value = totalValue.toFixed(2);
 };
+//new upload 
+

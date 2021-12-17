@@ -1,4 +1,5 @@
 <?php 
+$titlePage = "chat";
 ob_start();
 include ("include/session.php");
 include ("include/connect.php");
@@ -6,6 +7,8 @@ include ("include/header.php");
 include ("include/topnav.php");
 include ("include/function.php");
 include('include/loding.php');
+
+
 if (isset($_SESSION['userid']))
 {
     $name = isset($_GET['user_id']) && is_numeric($_GET['user_id']) ? intval($_GET['user_id']) :0;
@@ -16,7 +19,7 @@ if (isset($_SESSION['userid']))
     $row = $getUser->fetch();
 
   	if (!isset($_GET['post'])) {
-  		header("Location: mainpage.php");
+  		header("Location: index.php");
   		exit;  
   	}
 
@@ -29,83 +32,90 @@ if (isset($_SESSION['userid']))
 
   	opened($row['id'], $con, $chats);
 ?>
-
-<div class="d-flex
-             justify-content-center
-             align-items-center
-             vh-100">
-    <div class="w-400 shadow p-4 rounded">
-    	<a href="detailsservice.php"
-    	   class="fs-4 link-dark">&#8592;</a>
-
-    	   <div class="d-flex align-items-center">
-    	   	  <img src="layot/img/<?=$row['imgg']?>"
-    	   	       class="w-15 rounded-circle">
-
-               <h3 class="display-4 fs-sm m-2">
-               	  <?=$row['name']?> <br>
-               	  <div class="d-flex
-               	              align-items-center"
-               	        title="online">
-               	    <?php
+<div class="main-caht">
+    <div>
+			<div class="row justify-content-center ">
+				<div class="col-md-9 col-xl-9 chat">
+					<div class="card">
+						<div class="card-header msg_head">
+							<div class="d-flex bd-highlight">
+								
+								<?php
                         if (last_seen($row['last_seen']) == "Active") {
-               	    ?>
-               	        <div class="online"></div>
-               	        <small class="d-block p-1">Online</small>
-               	  	<?php }else{ ?>
-               	         <small class="d-block p-1">
-               	         	Last seen:
-               	         	<?=last_seen($row['last_seen'])?>
-               	         </small>
-               	  	<?php } ?>
-               	  </div>
-               </h3>
-    	   </div>
-
-    	   <div class="shadow p-4 rounded
-    	               d-flex flex-column
-    	               mt-2 chat-box"
-    	        id="chatBox">
-    	        <?php 
-                     if (!empty($chats)) {
-                     foreach($chats as $chat){
-                     	if($chat['from_id'] == $_SESSION['userid'])
-                     	{ ?>
-						<p class="rtext align-self-end
-						        border rounded p-2 mb-1">
-						    <?=$chat['message']?> 
-						    <small class="d-block">
-						    	<?=$chat['created_at']?>
-						    </small>      	
-						</p>
-                    <?php }else{ ?>
-					<p class="ltext border 
-					         rounded p-2 mb-1">
-					    <?=$chat['message']?> 
-					    <small class="d-block">
-					    	<?=$chat['created_at']?>
-					    </small>      	
-					</p>
-                    <?php } 
-                     }	
-    	        }else{ ?>
-               <div class="alert alert-info 
-    				            text-center">
-				   <i class="fa fa-comments d-block fs-big"></i>
-	               No messages yet, Start the conversation
-			   </div>
-    	   	<?php } ?>
-    	   </div>
-    	   <div class="input-group mb-3">
-    	   	   <textarea cols="3"
-    	   	             id="message"
-    	   	             class="form-control"></textarea>
-    	   	   <button class="btn btn-primary"
-    	   	           id="sendBtn">
-    	   	   	  <i class="fa fa-paper-plane"></i>
-    	   	   </button>
-    	   </div>
-
+							?>
+							<div class="img_cont">
+								<img src="layot/img/<?=$row['imgg']?>" class="rounded-circle user_img">
+									<span class="online_icon"></span>
+							</div>
+								<div class="user_info">
+                                    &nbsp;&nbsp;&nbsp;<span> <?=$row['name']?></span>
+								</div>
+							<?php  }else{ ?>
+								<div class="img_cont">
+								<img src="layot/img/<?=$row['imgg']?>" class="rounded-circle user_img">
+									<span class="online_icon_tow"></span>
+								</div>
+								<div class="user_info">
+                                    &nbsp;&nbsp;&nbsp;<span> <?=$row['name']?></span>
+								</div>
+								<small class="d-block  tiem-zone">
+									Last seen:
+									<?=last_seen($row['last_seen'])?>
+								</small>
+							<?php  } ?>
+								
+							</div>
+                            <div class="exit_info">
+                                   <abbr title="رجوع الى الصفحه"><a href="index.php"><i class="fas fa-sign-out-alt"></i></a> </abbr> 
+							</div>
+						</div>
+						<div class="card-body msg_card_body" id="chatBox">
+                            <?php 
+                        if (!empty($chats)) {
+                        foreach($chats as $chat){
+                            if($chat['from_id'] == $_SESSION['userid'])
+                            { ?>
+							<div class="d-flex justify-content-start mb-4">
+								<div class="img_cont_msg">
+									<img   src="layot/img/<?=$chat['IMG']?>" class="rounded-circle user_img_msg">
+								</div>
+								<div class="msg_cotainer">
+                                    <?=$chat['message']?>
+									<span class="msg_time"><?=$chat['created_at']?></span>
+								</div>
+							</div>
+                            <?php }else{ ?>
+							<div class="d-flex justify-content-end mb-4">
+								<div class="msg_cotainer_send">
+                                    <?=$chat['message']?>
+									<span class="msg_time_send"><?=$chat['created_at']?></span>
+								</div>
+								<div class="img_cont_msg">
+								<img src="layot/img/<?=$chat['IMG']?>"class="rounded-circle user_img_msg">
+								</div>
+							</div>
+                            <?php } 
+                                }	
+                            }else{ ?>
+                        <div class="alert alert-info 
+                                            text-center">
+                            <i class="fa fa-comments d-block fs-big"></i>
+                            No messages yet, Start the conversation
+                        </div>
+                        <?php } ?>
+						</div>
+						<div class="card-footer">
+							<div class="input-group">
+								<textarea id="message" name="" class="form-control type_msg" placeholder="Type your message..."></textarea>
+								<div class="input-group-append">
+									<span class="input-group-text "><i  id="sendBtn" class="fas fa-location-arrow"></i></span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
     </div>
 </div>
 

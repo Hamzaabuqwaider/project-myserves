@@ -8,7 +8,7 @@ if (isset($_SESSION['username'])) {
 	if (isset($_POST['id_2'])) {
 	
 	# database connection file
-	include 'connect.php';
+	include 'include/connect.php';
 
 	$id_1  = $_SESSION['userid'];
 	$id_2  = $_POST['id_2'];
@@ -37,14 +37,25 @@ if (isset($_SESSION['username'])) {
 	    		$stmt2 = $con->prepare($sql2);
 	            $stmt2->execute([$opened, $chat_id]);
 
-	            ?>
-                  <p class="ltext border 
-					        rounded p-2 mb-1">
-					    <?=$chat['message']?> 
-					    <small class="d-block">
-					    	<?=$chat['created_at']?>
-					    </small>      	
-				  </p>        
+
+                $id_3  = $_SESSION['userid'];
+                $id_4  = $_POST['id_2'];
+                $st = $con->prepare("SELECT *,users.imgg as imgg  FROM chat
+                INNER JOIN users ON users.id  = chat.to_id
+                WHERE to_id = ?
+                AND   from_id= ?");
+                $st->execute([$id_4,$id_3]);
+                $row = $st->fetch();
+	            ?>   
+                <div class="d-flex justify-content-end mb-4">
+								<div class="msg_cotainer_send">
+                                    <?=$chat['message']?>
+									<span class="msg_time_send"><?=$chat['created_at']?></span>
+								</div>
+								<div class="img_cont_msg">
+								<img  src="layot/img/<?=$row['imgg']?>" class="rounded-circle user_img_msg">
+								</div>
+				</div>
 	            <?php
 	    	}
 	    }
@@ -53,7 +64,7 @@ if (isset($_SESSION['username'])) {
  }
 
 }else {
-	header("Location: main-login.php");
+	header("Location: index.php");
 	exit;
 }
 ?>

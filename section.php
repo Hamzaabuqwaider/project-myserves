@@ -1,14 +1,14 @@
 <?php 
+    $titlePage = "section";
     include ("include/session.php");
     include ("include/connect.php");
     include ("include/header.php");
     include ("include/topnav.php");
-    include ("include/function.php");
+    // include ("include/function.php");
     include('include/loding.php');
 ?>
 <!-- start name and drodawn create ghazal-->
 <?php 
-
 // $sort = 'DESC';
 // $sort_array = array('DESC');
 // if(isset($_GET['sort']) && in_array($_GET['sort'] && isset($_POST['desc']) , $sort_array)){
@@ -48,13 +48,30 @@ $stmt = $stmt->fetchAll();
                 <?php foreach($stmt as $sectionId) { ?>
                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs">
 
-                    <div class="card">
-
-                        <div class="img">
-                            
-                            <img class="card-img-top" src="../project-myserves\layot\img\<?php echo $sectionId['img'];?>" alt="Card image cap">
-                        </div>
-                        <div class="visit-wibsite">
+                    <article class="material-card Red">
+                <div id="description-box" class="description-front-box ">
+                <h2><?php echo $sectionId['title']?></h2>
+                    <p><i class="far fa-eye" style="margin-left:5px;color: #f8f9fa;"></i>50 من طلبوا هذه الخدمة</p>
+                    <a href="details-test.php?id=<?= $sectionId['id']?>"><button type="button" class="btn btn-outline-light" style="font-weight: bold;">تفاصيل الخدمة</button></a>
+                </div>
+              
+                <div class="mc-content">
+                <div id="" class="color-overlay-section-main mains-sections"></div>
+                    <div class="img-container">
+                        <img class="img-responsive" src="../project-myserves\layot\img\<?php echo $sectionId['img'];?>">
+                    </div>
+                    <div class="mc-description">
+                    <div class="description-back-box">
+                        <h2><?php echo $sectionId['title']?></h2>
+                        <p><i class="far fa-eye" style="margin-left:5px;color: #f8f9fa;"></i>50 من طلبوا هذه الخدمة</p>
+                    </div>
+                      <div class="ul-details-tow-ico">
+                         <ul>
+                            <li><i class="fas fa-truck"></i><span>10 طلبات جاري تنفيذها</span></li>
+                            <li> <i class="fas fa-reply"></i><span>م. سرعة رد: 10 ساعات</span></li>
+                         </ul>
+                       </div>
+                       <div class="visit-wibsite">
                             <ul>
                                 <li><i class="fas fa-star"></i></li>
                                 <li><i class="fas fa-star"></i></li>
@@ -62,18 +79,16 @@ $stmt = $stmt->fetchAll();
                                 <li><i class="fas fa-star"></i></li>
                                 <li><i class="fas fa-star set-white"></i></li>
                             </ul>
-                        </div>
-                        <div class="vist">
-                            <h3>1000<i class="far fa-eye"></i></h3>
-                        </div>
-                        <div class="card-body">
-                            <hr>
-                            <h5 class="card-title"><?php echo $sectionId['title']?></h5>
-                        </div>
-                        <div class="card-footer">
-                        <a href="detailsservice.php?id=<?= $sectionId['id']?>"> <button type="button" class="btn btn-primary"> تفاصيل الخدمه</button></a>
-                        </div>
+                        </div>                    
                     </div>
+                </div>
+                <a class="mc-btn-action">
+                    <i class="fa fa-bars"></i>
+                </a>
+                <div class="mc-footer">
+                    <a href=""><button type="button" class="btn btn-outline-light">طلب الخدمة</button></a>
+                </div>
+            </article>
                 </div>
                 <?php } ?> 
 

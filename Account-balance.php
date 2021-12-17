@@ -1,10 +1,20 @@
 <!-- start-account-balance-->
 <?php
+    $titlePage = "balance";
     include ("include/session.php");
     include ("include/connect.php");
     include ("include/header.php");
     include ("include/topnav.php");
     include('include/loding.php');
+
+    if(isset($_SESSION["userid"]))
+{
+
+  $SESSION = $_SESSION['userid'];
+  $price = $con->prepare("SELECT *,Count(price) as CCount FROM orders WHERE to_id ='$SESSION'");
+  $price->execute();
+  $row = $price->fetch();
+
 ?>
 
 <div class="accountitel-ds text-center">
@@ -13,7 +23,7 @@
             <div class="col-lg-4 col-md-4 -col-xs-12">
                 <div class="box-account">
                     <h2 class="account-h2">الرصيد الكلي</h2>
-                    <h3 class="account-h3"> $3.500</h2>
+                    <h3 class="account-h3"> <?php echo $row['CCount'] ?> </h2>
                     <p class=" account-p">كامل الرصيد الموجود في حسابك  يتضمن الأرباح والرصيد المعلّق أيضاً.</p>
                 </div>
             </div>
@@ -51,4 +61,10 @@
         </div>
     </div>
 </div>
-<?php include ("include/footer.php");?>
+<?php 
+        } else {
+
+            header('Location: main-login.php');
+            exit();
+        }
+ include ("include/footer.php");?>

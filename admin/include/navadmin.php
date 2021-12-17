@@ -7,7 +7,7 @@ include ("../include/connect.php");
    <ul class="navbar-nav">
       <li class="nav-item">
          <a href="#" class="nav-link">
-            <i class="fas fa-bars" onclick="collapsesidebar()"></i>
+            <i  class="fas fa-bars" onclick="collapsesidebar()"></i>
          </a>
       </li>
        <li class="nav-item">

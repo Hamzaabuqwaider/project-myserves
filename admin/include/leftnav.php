@@ -88,7 +88,7 @@
 </div>
 
 
-<<<<<<< HEAD:admin/leftnav.php
+
 <script src="layot/js/jquery-3.5.1.min.js"></script>
     <script src="layot/js/popper.min.js"></script>
     <script src="layot/js/bootstrap.min.js"></script>
@@ -96,6 +96,5 @@
     <script src="https://pagead2.googlesyndication.com/pagead/managed/js/adsense/m202110050101/show_ads_impl_fy2019.js" id="google_shimpl"></script><script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
     <script src="layot/js/mainadmin.js"></script>
-=======
 
->>>>>>> 7d5d85ee5d0a964230fbd740c1e4435efd476e32:dasbord.php
+

@@ -7,7 +7,7 @@ btn.onclick = function(){
     
     sidedar.classList.toggle("active");
 }
-searchbtn.onclick = function(){
+searchbtn.onclick=function(){
     
     sidedar.classList.toggle("active");
 }

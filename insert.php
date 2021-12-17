@@ -37,7 +37,7 @@ if (isset($_SESSION['username'])) {
 
 	    // setting up the time Zone
 		// It Depends on your location or your P.c settings
-		define('TIMEZONE', 'Africa/Addis_Ababa');
+		define('TIMEZONE', 'Asia/Amman');
 		date_default_timezone_set(TIMEZONE);
 
 		$time = date("h:i:s a");
@@ -50,14 +50,21 @@ if (isset($_SESSION['username'])) {
 			$stmt3 = $con->prepare($sql3); 
 			$stmt3->execute([$from_id, $to_id]);
 		}
-		?>
 
-		<p class="rtext align-self-end
-		          border rounded p-2 mb-1">
-		    <?=$message?>  
-		    <small class="d-block"><?=$time?></small>      	
-		</p>
-
+		$w = $_SESSION["userid"];
+        $st = $con->prepare("SELECT * FROM users WHERE id = '$w' ");
+	    $st->execute();
+	    $row = $st->fetch();
+	   ?>
+							<div class="d-flex justify-content-start mb-4">
+								<div class="img_cont_msg">
+									<img   src="layot/img/<?=$row['imgg']?>" class="rounded-circle user_img_msg">
+								</div>
+								<div class="msg_cotainer">
+									<?=$message?>
+									<span class="msg_time"><?=$time?></span>
+								</div>
+							</div>
     <?php 
      }
   }
