@@ -171,7 +171,8 @@ if (isset($_SESSION['userid'])) {
                                     'zbody'     =>$Body,
                                     'zsub'      =>$sub_c,
                                     'userid'    =>$_SESSION['userid'],
-                                    'zimg'      =>$image,
+                                    'zimg'      =>$image
+                             
                             ));
                             echo '<script>alert("بإنتظار موافقة الادمن")</script>';
                             $location ="index.php";

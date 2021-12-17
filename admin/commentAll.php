@@ -10,16 +10,15 @@ session_start();
 
    $do = isset($_GET['do']) ? $_GET['do'] : "Manage";
 
-   $comment = $_GET["comment_id"];
-
    if($do == 'Manage'){
 
    include ("include/navadmin.php");
 
    $stmt = $con->prepare("SELECT * , comment.comment_id as ID , users.name as NAME 
    FROM comment
-   INNER JOIN users ON users.id  = comment.comment_user WHERE post_id = '$comment' ");
-
+   INNER JOIN users ON users.id  = comment.comment_user
+   ORDER BY comment_id DESC 
+   LIMIT 7 ");
    $stmt->execute();
 
    $comments = $stmt->fetchAll();
@@ -54,7 +53,7 @@ session_start();
                               <td><?php echo $comm["NAME"] ?></td>
                               <td><?php echo $comm["comment"] ?></td>
                               <td>
-                                <a href="comment.php?do=Delete&comment_id=<?php echo $comm["ID"] ?>"><button type="submit" name ="delete" class="btn btn-danger">حذف التعليق</button></a>
+                                <a href="commentAll.php?do=Delete&comment_id=<?php echo $comm["ID"] ?>"><button type="submit" name ="delete" class="btn btn-danger">حذف التعليق</button></a>
                               </td>
                           </tr>
                           <?php } ?>
@@ -85,17 +84,15 @@ session_start();
             $stmt->bindParam(":zcomment",$comment);
 
             $stmt->execute();
-            echo "<script>alert('تم مسح التعليق');</script>";
-            $Location = "order-admin.php?do=Manage";
-            redirectHome($Location,5);
+            echo "<script>alert('تم حذف التعليق');</script>";
+            $Location = "servesadmin.php";
 
-            // $Location = "comment.php?do=Manage&comment_id=" . $comment;
+            redirectHome($Location,2);
 
-            // redirectHome($Location);
 
             } else {
 
-                $Location = "comment.php?do=Manage";
+                $Location = "commentAll.php?do=Manage";
 
                 redirectHome($Location);
 

@@ -5,7 +5,7 @@ include ("include/connect.php");
 include ("include/header.php");
 include ("include/topnav.php");
 include ("include/function.php");
-include('include/loding.php');
+// include('include/loding.php');
 
 if (isset($_SESSION['userid'])) {
 
@@ -65,10 +65,6 @@ if (isset($_SESSION['userid'])) {
   <!--comment-->
 
   <?php 
-        } else {
-
-            header('Location: main-login.php');
-            exit();
+   include ("include/footer.php");
         }
- include ("include/footer.php");?>
-
+        ?>

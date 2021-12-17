@@ -7,7 +7,7 @@ btn.onclick = function(){
     
     sidedar.classList.toggle("active");
 }
-searchbtn.onclick=function(){
+searchbtn.onclick = function(){
     
     sidedar.classList.toggle("active");
 }
@@ -17,6 +17,12 @@ function collapsesidebar(){
 
     body.classList.toggle("sidebar-expand");
 }
+/*add-img-edit-profile-click*/
+function uptateimge(){
+    "use strict"
+var uptateimgeS=document.getElementById("uplode-img-edit");
+uptateimgeS.click();};
+
 /*var ctx = document.getElementById('myChart');
 var chart = new Chart(ctx, {
     // The type of chart we want to create
