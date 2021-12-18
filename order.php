@@ -90,12 +90,9 @@ redirectHome($Location);
 
 }
 
-
-
+ include ("include/footer.php");
 }else
 {
     header("Location: main-login.php");
 }
 ?>
-
-<?php include ("include/footer.php");?>

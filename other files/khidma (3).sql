@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 17, 2021 at 07:09 PM
+-- Generation Time: Dec 18, 2021 at 11:34 PM
 -- Server version: 10.4.17-MariaDB
--- PHP Version: 8.0.2
+-- PHP Version: 7.4.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -64,7 +64,8 @@ CREATE TABLE `chat` (
 INSERT INTO `chat` (`chat_id`, `from_id`, `to_id`, `message`, `opened`, `created_at`) VALUES
 (8, 16, 16, 'اهلين', 1, '2021-12-17'),
 (9, 16, 16, 'منيح', 1, '2021-12-17'),
-(10, 16, 16, 'مرحب', 1, '2021-12-17');
+(10, 16, 16, 'مرحب', 1, '2021-12-17'),
+(11, 20, 16, 'hi', 0, '2021-12-17');
 
 -- --------------------------------------------------------
 
@@ -134,7 +135,8 @@ CREATE TABLE `conversation` (
 
 INSERT INTO `conversation` (`conversation_id`, `user_1`, `user_2`) VALUES
 (1, 6, 1),
-(2, 16, 16);
+(2, 16, 16),
+(3, 20, 16);
 
 -- --------------------------------------------------------
 
@@ -202,7 +204,9 @@ CREATE TABLE `orders` (
 
 INSERT INTO `orders` (`id`, `to_id`, `post_name`, `post_id`, `from_id`, `price`) VALUES
 (176, 16, 'شمسان للكيمبيوتر', 64, 16, 0),
-(177, 16, 'java', 65, 16, 950);
+(177, 16, 'java', 65, 16, 950),
+(178, 16, 'فلاتر مياه (الجبل الأبيض)', 63, 19, 475),
+(179, 16, 'فلاتر مياه (الجبل الأبيض)', 63, 19, 171000000);
 
 -- --------------------------------------------------------
 
@@ -231,7 +235,8 @@ INSERT INTO `post` (`id`, `title`, `body`, `category_id`, `user_id`, `main_id`, 
 (61, 'ayham', '888888888888', 10, 16, 0, '63258_AYHAM.png', 'وفعتيلبؤر ', '2021-12-14', 0),
 (63, 'فلاتر مياه (الجبل الأبيض)', 'فلاتر ابو كحل', 10, 16, 0, '37048_hamzahQ.jpg', 'فلاتر', '2021-12-16', 1),
 (64, 'شمسان للكيمبيوتر', 'شمسان', 6, 16, 0, '94901_pexels-cottonbro-3584973.jpg', '', '2021-12-17', 0),
-(65, 'java', 'java', 10, 16, 0, '27618_pexels-cottonbro-3584973.jpg', '', '2021-12-17', 0);
+(65, 'java', 'java', 10, 16, 0, '27618_pexels-cottonbro-3584973.jpg', '', '2021-12-17', 0),
+(66, 'IGI 10', 'good', 10, 19, 0, '684_ahmad2.jpg', '', '2021-12-18', 1);
 
 -- --------------------------------------------------------
 
@@ -273,7 +278,7 @@ CREATE TABLE `users` (
   `last_name` varchar(255) NOT NULL,
   `gender` varchar(255) NOT NULL,
   `date_birth` date DEFAULT NULL,
-  `imgg` varchar(255) NOT NULL DEFAULT 'img.jpg',
+  `imgg` varchar(255) NOT NULL DEFAULT 'download.png',
   `Response_speed` time NOT NULL DEFAULT current_timestamp(),
   `date` date DEFAULT NULL,
   `last_seen` datetime DEFAULT NULL,
@@ -286,7 +291,9 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `type`, `name`, `password`, `Email`, `Num_Phone`, `Response`, `Location`, `first_name`, `last_name`, `gender`, `date_birth`, `imgg`, `Response_speed`, `date`, `last_seen`, `RegStatus`) VALUES
 (16, 1, 'ayham', '827ccb0eea8a706c4c34a16891f84e7b', 'ayham@gmail.com', 79, NULL, 'الاردن', 'أيهم', 'الخلايلة', 'ذكر', '1999-07-22', 'img.png', '15:14:06', '2021-11-24', NULL, 1),
-(17, 1, 'hamza', '827ccb0eea8a706c4c34a16891f84e7b', 'hamza@gmail.com', 772076544, NULL, 'الاردن', 'حمزة', 'أو قويدر', 'ذكر', '1999-08-28', 'hamzahQQQ.jpg', '15:22:55', '2021-11-24', NULL, 1);
+(17, 1, 'hamza', '827ccb0eea8a706c4c34a16891f84e7b', 'hamza@gmail.com', 772076544, NULL, 'الاردن', 'حمزة', 'أو قويدر', 'ذكر', '1999-08-28', 'hamzahQQQ.jpg', '15:22:55', '2021-11-24', NULL, 1),
+(19, 1, '', '827ccb0eea8a706c4c34a16891f84e7b', 'hamza@mail.com', NULL, NULL, NULL, 'hamza', 'abu qwaider', '', NULL, 'download.png', '20:28:04', '2021-12-17', NULL, 0),
+(20, 1, '', '827ccb0eea8a706c4c34a16891f84e7b', 'ayman@mail.com', NULL, NULL, NULL, 'ايمن', 'حسين', '', NULL, 'download.png', '20:32:05', '2021-12-17', NULL, 0);
 
 --
 -- Indexes for dumped tables
@@ -386,7 +393,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `chat`
 --
 ALTER TABLE `chat`
-  MODIFY `chat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `chat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `comment`
@@ -404,7 +411,7 @@ ALTER TABLE `comment_replies`
 -- AUTO_INCREMENT for table `conversation`
 --
 ALTER TABLE `conversation`
-  MODIFY `conversation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `conversation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `main_categories`
@@ -422,13 +429,13 @@ ALTER TABLE `notes`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=178;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=180;
 
 --
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT for table `sub_category`
@@ -440,7 +447,7 @@ ALTER TABLE `sub_category`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- Constraints for dumped tables

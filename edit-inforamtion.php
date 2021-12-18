@@ -229,9 +229,11 @@ if (isset($_SESSION['userid'])){
     echo "</div>";
 }
 
-
+include ("include/footer.php");
+}else {
+    header("Location: main-login.php");
 }
-    ob_end_flush();
 
- include ("include/footer.php");?>
+?>
+    
         

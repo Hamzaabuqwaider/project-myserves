@@ -187,7 +187,7 @@ if (isset($_SESSION['userid']))
 </script>
 <?php
   }else{
-	header('Location: login.php');
+	header('Location: main-login.php');
 	exit;
   }
   ob_end_flush();

@@ -29,7 +29,7 @@ include ("../include/connect.php");
 
             $_SESSION['admin'] = $email; // Register Session Name
             $_SESSION['id_admin'] = $row['id']; // Register Session ID
-            header('Location: index-admin.php');//Redirect To Dashoard Page 
+            header('Location: index.php');//Redirect To Dashoard Page 
             exit();
         }
         

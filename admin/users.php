@@ -158,7 +158,7 @@ if(isset($_SESSION['admin'])){
 
 } else {
 
-    header('Location: index-admin.php');
+    header('Location: index.php');
 
     exit();
 }

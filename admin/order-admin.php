@@ -133,10 +133,12 @@ $post_ID = isset($_GET['post_ID']) && is_numeric($_GET['post_ID']) ? intval($_GE
     redirectHome($Location);
 }
 
+include ("include/footer-admin.php");
 } else {
 
-header('Location: index-admin.php');
+    header('Location: index.php');
 
 exit();
 }
-include ("include/footer-admin.php");?>
+
+?>

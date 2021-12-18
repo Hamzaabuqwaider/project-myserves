@@ -27,6 +27,14 @@ function redirect( $Location, $Seconds=0){
     exit();
 }
 
+function regester($type){
+    global $con;
+
+    $stmt = $con->prepare("SELECT RegStatus FROM post where id = '$type'");
+    $stmt->execute();
+    $reg = $stmt->fetchAll();
+    return $reg;
+}
 function getCat() {
     global $con;
     $getCat= $con->prepare("SELECT * FROM post");

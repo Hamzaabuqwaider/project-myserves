@@ -118,9 +118,8 @@ if (isset($_SESSION['userid'])) {
                 
             </script>
          <?php } 
-                elseif($action == 'Insert') {
+                    elseif($action == 'Insert') {
                 
-
                 // $userid = isset($_GET['userid']) && is_numeric($_GET['userid']) ? intval($_GET['userid']) :0;
                 if($_SERVER['REQUEST_METHOD'] == 'POST'){
                
@@ -136,24 +135,28 @@ if (isset($_SESSION['userid'])) {
                     $imageExtension = strtolower(end(explode('.' , $imageName)));
                     $formErrors = array();
                     if(empty($name)) {
-                        $formErrors[] = 'name cant be <strong>Empty</strong>';
+                        $formErrors[] = 'يرجى إدخال الإسم';
                     }
                     if(empty($sub_c)) {
-                        $formErrors[] = 'Sub Category cant be <strong>Empty</strong>';
+                        $formErrors[] = 'يرجى إدخال القسم الفرعي';
                         }
                     if(empty($Body)) {
-                        $formErrors[] = 'Body cant be <strong>Empty</strong>';
+                        $formErrors[] = 'يرجى إدخال وصف الخدمه';
                     }
                     if(!empty($imageName) && ! in_array($imageExtension,$imageAllowedExtentions)){
-                        $formErrors[] = 'This Extension is Not<strong>Allowed</strong>';
+                        $formErrors[] = 'هذا البرنامج لا يدعم امتداد هذه الصوره';
 
                     }
                     if(empty($imageName)) {
-                        $formErrors[] = 'Image IS <strong>Required</strong>';
+                        $formErrors[] = 'يرجى إدخال صوره ';
                     }
-              
+                    // echo '<div class="alert alert-danger">' . $erros . '</div>';
                     foreach($formErrors as $erros){
-                        echo '<div class="alert alert-danger">' . $erros . '</div>';
+                        echo "<script>alert('$errors');</script>";
+                        $location ="add-serves.php";
+                        redirect($location);
+                        
+                        
             
                     }
                     
@@ -174,25 +177,29 @@ if (isset($_SESSION['userid'])) {
                                     'zimg'      =>$image
                              
                             ));
-                            echo '<script>alert("بإنتظار موافقة الادمن")</script>';
+                            echo '<script>alert("بإنتظار موافقة الأدمن")</script>';
                             $location ="index.php";
-                            
-                            redirect($location,1);
+                            redirect($location);
 
                                 }else {
-                                   echo "No Record Added";
+                                echo '<script>alert("فشل في إضافة الخدمه")</script>';
+                                $location ="index.php";
+                                redirect($location);
                                 } 
                         }       
                         echo "</div>";                 
-                    }else{
-                        echo "No Action Insert";
+                }   else {
+                    echo '<script>alert("لا يمكنك الوصول ")</script>';
+                    $location ="index.php";
+                    redirect($location);
+                    
                     }  
-            } else {
-
+                     include ("include/footer.php");
+                } else {
                 header('location: main-login.php');
                 exit();
             }
         ob_end_flush();
    ?>
 
-   <?php include ("include/footer.php");?>
+
