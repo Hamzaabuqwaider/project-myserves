@@ -86,5 +86,10 @@ if($do == 'Manage'){
         redirectHome($Location);
 
   } 
+include ("include/footer-admin.php");
+}else {
+    header('Location: index.php');
+    exit();
 }
-include ("include/footer-admin.php");  ?>
+
+?>

@@ -1,10 +1,11 @@
 <?php
+ob_start();
 $titlePage = "required-service";
 include ("include/session.php");
 include ("include/connect.php");
 include ("include/header.php");
 include ("include/topnav.php");
-include('include/loding.php');
+// include('include/loding.php');
 
 if(isset($_SESSION["userid"]))
 {
@@ -52,19 +53,18 @@ $row = $stmt->fetchAll();
             <td style="padding:5px"></td>
             <td style="padding:5px"></td>
             
-          </tr>
-          <?php } ?>
-    </table>
-</div>
-
-        <?php
-
+            </tr>
+              <?php } ?>
+        </table>
+    </div> 
+    <?php 
+        include("include/footer.php");
     }else
     {
         header("Location: main-login.php");
     }
 ?>
-<?php include ("include/footer.php");?>
+
 
 
 

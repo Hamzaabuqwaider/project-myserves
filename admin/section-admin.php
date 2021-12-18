@@ -146,11 +146,17 @@
 
       }
     }
+    php include ("include/footer-admin.php");
+}else {
+    header('Location: index.php');
+    exit();
 }
 ob_end_flush();
 ?>
+
 <!--end wraper-->
 
 <!--end section-->
 
-<?php include ("include/footer-admin.php");?>
+
+?>

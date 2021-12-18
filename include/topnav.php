@@ -26,10 +26,12 @@
                         <a class="nav-link  main-text-nav" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                            <i class="fas fa-align-justify"></i>الاقسام</a>     
                         </a>
+
                             <div class="dropdown-menu section-navbar" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="freelansiter-section.php"><i class="fas fa-laptop-house"></i>قسم العمل الحر</a>
                                 <a class="dropdown-item" href="serves-section.php"><i class="far fa-building"></i>قسم الخدمات</a>
                             </div>
+
                         </li><?php } ?>
                         <?php  if(isset($_SESSION['userid'])) { ?>
                         <li class="nav-item custom-nav-order">
@@ -168,8 +170,6 @@
                                 <img class="main-img-profile" src="layot/img/<?php echo $info['imgg'] ?>">
                             </a>
                             <div class="dropdown-menu drop-nav-profile" aria-labelledby="navbarDropdownMenuLink">
-
-
                                 <a class="dropdown-item" href="khadmatuk.php?do=Manage&userid=<?php echo $_SESSION['userid']?>"><i class="far fa-address-card"></i>خدماتي</a>
                                 <a class="dropdown-item" href="Account-balance.php"><i class="fas fa-wallet"></i>الرصيد</a>
                                 <a class="dropdown-item" href="edit-inforamtion.php?do=Edit&userid=<?php echo $_SESSION['userid']?>"><i class="fas fa-user-edit"></i>تعديل الحساب</a>

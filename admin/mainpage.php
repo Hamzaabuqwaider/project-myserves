@@ -6,11 +6,8 @@
    include ("../include/connect.php");
    include ("include/function.php");
 
-   if(isset($_SESSION['admin'])){
-?>
+   if(isset($_SESSION['admin'])) { ?>
 
-if(isset($_SESSION['admin'])){
-?>
 <!--start main-content-->
  <div class="wrapper">
  <div class="panel post">
@@ -207,6 +204,6 @@ if(isset($_SESSION['admin'])){
         });
     </script>
 
-    <?php }else{
-        header("Location:loginadmin.php");
-    } ?>
+    <?php } else{
+header('Location: index.php');
+} ?>

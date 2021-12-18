@@ -1,11 +1,12 @@
 <?php
+ob_start();
 $titlePage = "request";
 include ("include/session.php");
 include ("include/connect.php");
 include ("include/header.php");
 include ("include/topnav.php");
 include ("include/function.php");
-include("include/loding.php");
+// include("include/loding.php");
 
 if(isset($_SESSION["userid"]))
 {
@@ -91,7 +92,7 @@ if(isset($_SESSION["userid"]))
     <?php include ("include/footer.php");?>
 <?php 
   }else {
-  "not found";
+    header("Location: main-login.php");
 }
 ?>
 

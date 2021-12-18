@@ -98,15 +98,13 @@ session_start();
 
             }
       }
+            include ("include/footer-admin.php");
 
    } else {
 
-    header('Location: index-admin.php');
+    header('Location: index.php');
 
     exit();
 }
 
 ?>
-
-
-<?php include ("include/footer-admin.php"); ?>

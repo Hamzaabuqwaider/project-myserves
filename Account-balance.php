@@ -1,5 +1,6 @@
 <!-- start-account-balance-->
 <?php
+ob_start();
     $titlePage = "balance";
     include ("include/session.php");
     include ("include/connect.php");
@@ -71,9 +72,10 @@
     </div>
 </div>
 <?php 
+        include ("include/footer.php");
         } else {
-
             header('Location: main-login.php');
             exit();
         }
- include ("include/footer.php");?>
+
+        ?>

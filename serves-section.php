@@ -1,11 +1,14 @@
 <?php
+ob_start();
     $titlePage = "service";
   include ("include/session.php");
   include ("include/connect.php");
   include ("include/header.php");
   include ("include/topnav.php");
-  include('include/loding.php');
+  // include('include/loding.php');
+  if(isset($_SESSION['userid'])) {
 ?>
+
 <?php
 $row_category=array();
 $free1 ="SELECT * from main_categories WHERE main_categories.type='S'";
@@ -61,4 +64,6 @@ while($row_free = $run_free->fetch())
 </div>
 <!--start section-->
 
-<?php include ("include/footer.php");?>
+<?php include ("include/footer.php"); } else {
+  header("Location: main-login.php");
+}?>

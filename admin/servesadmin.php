@@ -99,11 +99,12 @@
 
             redirectHome($Location);
     }
-
+    
+    include ("include/footer-admin.php");
 } else {
 
-    header('Location: index-admin.php');
-
+    header('Location: index.php');
+    
     exit();
 }
-include ("include/footer-admin.php");?>
+?>
