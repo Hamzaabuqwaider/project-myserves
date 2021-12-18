@@ -320,7 +320,7 @@ include ("../include/connect.php");
                     </a>
                 </li>
                 <li class="dropdown-menu-item ">
-                    <a href="loginadmin.php" class="dropdown-menu-link drop-img">
+                    <a href="logout_admin.php" class="dropdown-menu-link drop-img">
                         <div>
                            <i class="fas fa-sign-out-alt"></i> 
                         </div>
@@ -338,7 +338,7 @@ include ("../include/connect.php");
 <div class="sidebar-main-page">
   <ul class="sidebar-nav">
      <li class="sidebar-nav-item">
-         <a href="index-admin.php"class="sidebar-nav-link">
+         <a href="mainpage.php"class="sidebar-nav-link">
            <div>
               <i class="fas fa-th-large"></i>
            </div>
