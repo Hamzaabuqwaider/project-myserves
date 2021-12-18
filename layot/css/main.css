@@ -34,6 +34,13 @@ body{
     left: 0;
     transition: 1.5s; 
 }
+.test-login .logo{margin-left: 70%;}
+
+.customer-nav .custom-nav-section{margin-right: 100px;}
+
+.customer-nav .custom-nav-order{margin-right: 130px;}
+
+.customer-nav .icon-nav-space{margin-right: 210px;}
 .back-color-nav{position: fixed !important;}
 /*start section-navbar*/
 .section-navbar{ left: 60%;  height: 130px; background-color:var(--Navy--color);}
