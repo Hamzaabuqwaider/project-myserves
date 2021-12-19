@@ -10,11 +10,11 @@
 
     $do = isset($_GET['do']) ? $_GET['do'] : "Manage";
    
+    $sub = $_GET["sub_id"];
 
     if($do == 'Manage'){
 
             
-        $sub = $_GET["sub_id"];
 
       include ("include/navadmin.php");
 
@@ -56,7 +56,7 @@
                               <td><?php echo $row["Title"] ?></td>
                               <td><?php echo $row["created_at"] ?></td>
                               <td>
-                                <a href="sectionsub.php?do=Delete&sub_c=<?php echo $row["SUB_C"] ?>"><button type="button" class="btn btn-danger">حذف القسم</button></a>
+                                <a href="sectionsub.php?do=Delete&sub_c=<?php echo $row["SUB_C"] ?>&sub_id=<?=$_GET['sub_id']?>"><button type="button" class="btn btn-danger">حذف القسم</button></a>
                               </td>
                           </tr>
                           <?php } ?>
@@ -76,7 +76,7 @@
                   <i class="fas fa-ellipsis-h"></i>
               </div>
               <div class="cardsd-content">
-                    <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post"> 
+                    <form action="" method="post"> 
                     <div class="form-group">
                         <label for="formGroupExampleInput">اسم القسم</label>
                         <input type="text" name="name_sub" class="form-control" id="formGroupExampleInput" placeholder="اسم القسم">
@@ -87,7 +87,7 @@
           </div>
       </div>
       <?php 
-      echo $sub;
+     
       if(isset($_POST["ins"])){
 
         $name_sub = $_POST["name_sub"];
@@ -98,7 +98,7 @@
             'zname' => $name_sub,
             'ztype' => $sub
         ));
-        $Location = "sectionsub.php?do=Manage&sub_id=$sss";
+        $Location = "sectionsub.php?do=Manage&sub_id=$sub";
 
         redirectHome($Location);
 
@@ -127,7 +127,7 @@
           $stmt->execute();
 
           echo "<script>alert('تم حذف القسم الفرعي');</script>";
-          $Location = "section-admin.php";
+          $Location = "sectionsub.php?do=Manage&sub_id=$sub";
 
           redirectHome($Location,0);
 
@@ -140,13 +140,11 @@
 
       }
     }
-    include ("include/footer-admin.php");
-}else {
-    header('Location: index.php');
-    exit();
 }
 ob_end_flush();
 ?>
 <!--end wraper-->
 
 <!--end section-->
+
+<?php include ("include/footer-admin.php");?>

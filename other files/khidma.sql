@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 18, 2021 at 11:34 PM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 7.4.15
+-- Generation Time: Dec 19, 2021 at 12:35 AM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 7.3.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -40,7 +40,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `admin_name`, `email`, `Password`, `img`) VALUES
-(1, 'حمزة بلال قويدر', 'mohmmad@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'hamzahQQQ.jpg');
+(1, 'حمزة بلال قويدر', 'mohmmad@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 'hamzahQQQ.jpg');
 
 -- --------------------------------------------------------
 
@@ -65,7 +65,8 @@ INSERT INTO `chat` (`chat_id`, `from_id`, `to_id`, `message`, `opened`, `created
 (8, 16, 16, 'اهلين', 1, '2021-12-17'),
 (9, 16, 16, 'منيح', 1, '2021-12-17'),
 (10, 16, 16, 'مرحب', 1, '2021-12-17'),
-(11, 20, 16, 'hi', 0, '2021-12-17');
+(11, 20, 16, 'hi', 0, '2021-12-17'),
+(12, 19, 19, 'jhiunjl', 1, '2021-12-18');
 
 -- --------------------------------------------------------
 
@@ -81,13 +82,6 @@ CREATE TABLE `comment` (
   `commented_on` date NOT NULL DEFAULT current_timestamp(),
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `comment`
---
-
-INSERT INTO `comment` (`comment_id`, `comment_user`, `comment`, `post_id`, `commented_on`, `created_at`) VALUES
-(123, 16, 'ljkjnb', 65, '2021-12-17', '2021-12-17 17:45:52');
 
 -- --------------------------------------------------------
 
@@ -136,7 +130,8 @@ CREATE TABLE `conversation` (
 INSERT INTO `conversation` (`conversation_id`, `user_1`, `user_2`) VALUES
 (1, 6, 1),
 (2, 16, 16),
-(3, 20, 16);
+(3, 20, 16),
+(4, 19, 19);
 
 -- --------------------------------------------------------
 
@@ -156,11 +151,16 @@ CREATE TABLE `main_categories` (
 --
 
 INSERT INTO `main_categories` (`id`, `title_cat`, `type`, `Date_create`) VALUES
-(6, 'صرف صحي', 'S', '2021-11-24'),
-(8, 'فلاتر مياه ', 'S', '2021-11-24'),
-(14, 'بسطة بطيخ', 'F', '2021-12-02'),
-(23, 'بسطة بطاطا', 'S', '2021-12-17'),
-(24, 'بسطة غزال للتمور', 'S', '2021-12-17');
+(25, 'أعمال', 'F', '2021-12-18'),
+(26, 'برمجة وتطوير', 'F', '2021-12-18'),
+(27, 'تسويق الكتروني', 'F', '2021-12-18'),
+(28, 'تدريب عن بعد', 'F', '2021-12-18'),
+(29, 'تصميم فيديو', 'F', '2021-12-18'),
+(30, 'تصميم', 'F', '2021-12-18'),
+(31, 'كهرباء', 'S', '2021-12-18'),
+(32, 'صيانة سيارات', 'S', '2021-12-18'),
+(33, 'ادوات اعمار', 'S', '2021-12-18'),
+(34, 'خدمات اخرى', 'S', '2021-12-18');
 
 -- --------------------------------------------------------
 
@@ -198,16 +198,6 @@ CREATE TABLE `orders` (
   `price` int(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `orders`
---
-
-INSERT INTO `orders` (`id`, `to_id`, `post_name`, `post_id`, `from_id`, `price`) VALUES
-(176, 16, 'شمسان للكيمبيوتر', 64, 16, 0),
-(177, 16, 'java', 65, 16, 950),
-(178, 16, 'فلاتر مياه (الجبل الأبيض)', 63, 19, 475),
-(179, 16, 'فلاتر مياه (الجبل الأبيض)', 63, 19, 171000000);
-
 -- --------------------------------------------------------
 
 --
@@ -232,11 +222,9 @@ CREATE TABLE `post` (
 --
 
 INSERT INTO `post` (`id`, `title`, `body`, `category_id`, `user_id`, `main_id`, `img`, `Keyword`, `date`, `RegStatus`) VALUES
-(61, 'ayham', '888888888888', 10, 16, 0, '63258_AYHAM.png', 'وفعتيلبؤر ', '2021-12-14', 0),
-(63, 'فلاتر مياه (الجبل الأبيض)', 'فلاتر ابو كحل', 10, 16, 0, '37048_hamzahQ.jpg', 'فلاتر', '2021-12-16', 1),
-(64, 'شمسان للكيمبيوتر', 'شمسان', 6, 16, 0, '94901_pexels-cottonbro-3584973.jpg', '', '2021-12-17', 0),
-(65, 'java', 'java', 10, 16, 0, '27618_pexels-cottonbro-3584973.jpg', '', '2021-12-17', 0),
-(66, 'IGI 10', 'good', 10, 19, 0, '684_ahmad2.jpg', '', '2021-12-18', 1);
+(67, 'تصميم موقع احترافى ', 'هل لديك فكرة أو مشروع وتريد تصميم موقع إحترافي وبمواصفات عالية، ؟ هل تريد الدخول فى عالم السوشيال ميديا والظهور من بين المنافسين بصوره قويه ؟ هنا الحل بإذن الله،\r\n\r\nسوف ننشئ لك الموقع الالكتروني الذي تريده على حسب ذوقك واختيارك ليتناسب مع فكرتك وبتصميم إحترافي وجودة عالية،\r\nكما سيتم انشائه responsive اى سيكون يعمل على كل الشاشات المختلفه باحجامها كالاندرويد والايباد والكمبيوتر ..الخ\r\nأيضا نقدم لك كتابه محتوى موقعك بشكل احترافى', 43, 19, 0, '100_pexels-marc-mueller-325111.jpg', '', '2021-12-18', 1),
+(68, 'تصميم وبرمجة مواقع', 'حاصل علي بكالريوس الحسابات والمعلومات وحاصل علي منحة ITI Full stack with MERN\r\n\r\nاقدم لكم اليوم خدمة تصميم وعمل المواقع من خلال احدث واسرع التقنيات الموجودة في الوقت الحالي\r\nوهي الجافا سكربيت ( node JS ) حيث ما تمتاز به هذه الطريقة البرمجية :\r\n\r\n1- 35% اسرع من اي موقع باي لغه برمجية اخري .\r\n2- ضعف عدد الطلبات / الثانية ( يضمن استقرار الموقع مهما كان عدد الزوار ) .\r\n3- 40% حجم اقل بالنسبة لنفس المشروع باي لغه برمجية اخري .\r\n\r\nوهذا ما جعل كبري الشركات تقوم بتحويل خدماتها الي node JS مثل ( PayPal - Uber - Netflix) .', 43, 19, 0, '56290_pexels-olia-danilevich-4974912.jpg', '', '2021-12-18', 1),
+(69, 'تصميم Landing Page', 'اقوم بتصميم وبرمجة المواقع بالطرق الحديثة لجعل اعمالك احترافية بأستخدام تقنيات حديثة مثل HTML5, CSS3, Bootstrap 5, JavaScript, ES6 اذا تريد موقع احترافى لعملك لتزيد من أحترافك فى العمل مقابل 5$ يمكنك التواصل معى.\r\nصفحة الهبوط تتكون من عدة اقسام احصل على تصميم مميز وابداعي للقسم الأول من صفحة الهبوط التي تريدها مقابل 5$.\r\nو أن شاء الله سوف تحصل على خدمه مرضيه لك وبجودة عالية.', 43, 19, 0, '32744_pexels-cottonbro-6804595.jpg', '', '2021-12-18', 1);
 
 -- --------------------------------------------------------
 
@@ -256,8 +244,38 @@ CREATE TABLE `sub_category` (
 --
 
 INSERT INTO `sub_category` (`id`, `Name`, `parent_id`, `created_at`) VALUES
-(6, 'قطع صرف صحي', 6, '2021-11-27'),
-(10, 'تركيب فلاترمياه ', 8, '2021-11-27');
+(37, 'ادخال بيانات', 25, '2021-12-18'),
+(38, 'استشارات أعمال', 25, '2021-12-18'),
+(39, 'تجارة الكترونية', 25, '2021-12-18'),
+(40, 'خدمات قانونية', 25, '2021-12-18'),
+(41, 'أنظمة ادارة المحتوى', 26, '2021-12-18'),
+(42, 'اختبارات تجريبية', 26, '2021-12-18'),
+(43, 'برمجة CSS و HTML', 26, '2021-12-18'),
+(44, 'إعلانات المواقع', 27, '2021-12-18'),
+(45, 'استشارات تسويقية', 27, '2021-12-18'),
+(46, 'الإعلانات والتسويق على الجوال', 27, '2021-12-18'),
+(47, 'استشارات شخصية', 28, '2021-12-18'),
+(48, 'الصحة واللياقة البدنية', 28, '2021-12-18'),
+(49, 'تعلم البرمجة', 28, '2021-12-18'),
+(50, 'تصميم صور متحركة', 29, '2021-12-18'),
+(51, 'تصميم مقدمات فيديو', 29, '2021-12-18'),
+(52, 'موشن جرافيك', 29, '2021-12-18'),
+(53, 'أغلفة كتب ومجلات', 30, '2021-12-18'),
+(54, 'تصميم بانرات إعلانية', 30, '2021-12-18'),
+(55, 'تصميم بطاقات أعمال', 30, '2021-12-18'),
+(56, 'صيانة محركات كهربائية', 31, '2021-12-18'),
+(57, 'كهربائي منازل', 31, '2021-12-18'),
+(58, 'كهربائي مشاريع', 31, '2021-12-18'),
+(59, 'ميكانيكي عام', 32, '2021-12-18'),
+(60, 'كهرباء سيارات', 32, '2021-12-18'),
+(61, 'دهان سيارات', 32, '2021-12-18'),
+(62, 'مهندس مدني', 33, '2021-12-18'),
+(63, 'مدير مشاريع', 33, '2021-12-18'),
+(64, 'عمال مياومة', 33, '2021-12-18'),
+(65, 'نجار', 34, '2021-12-18'),
+(66, 'حداد', 34, '2021-12-18'),
+(67, 'مطابخ المنيوم', 34, '2021-12-18'),
+(68, 'تنجيد', 34, '2021-12-18');
 
 -- --------------------------------------------------------
 
@@ -393,7 +411,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `chat`
 --
 ALTER TABLE `chat`
-  MODIFY `chat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `chat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `comment`
@@ -411,13 +429,13 @@ ALTER TABLE `comment_replies`
 -- AUTO_INCREMENT for table `conversation`
 --
 ALTER TABLE `conversation`
-  MODIFY `conversation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `conversation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `main_categories`
 --
 ALTER TABLE `main_categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `notes`
@@ -435,13 +453,13 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT for table `sub_category`
 --
 ALTER TABLE `sub_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT for table `users`

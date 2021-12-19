@@ -146,7 +146,7 @@
 
       }
     }
-    php include ("include/footer-admin.php");
+ include ("include/footer-admin.php");
 }else {
     header('Location: index.php');
     exit();

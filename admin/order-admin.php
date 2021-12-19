@@ -1,5 +1,4 @@
 <?php 
-session_start();
    $titlePage = "servesadmin";
    session_start();
    include ("include/header-admin.php");

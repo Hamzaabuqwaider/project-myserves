@@ -338,7 +338,7 @@ include ("../include/connect.php");
 <div class="sidebar-main-page">
   <ul class="sidebar-nav">
      <li class="sidebar-nav-item">
-         <a href="index-admin.php"class="sidebar-nav-link">
+         <a href="mainpage.php"class="sidebar-nav-link">
            <div>
               <i class="fas fa-th-large"></i>
            </div>
