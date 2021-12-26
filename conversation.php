@@ -29,7 +29,7 @@ function getConversation($user_id, $con){
             	$stmt2->execute([$conversation['user_2']]);
             }else {
             	$sql2  = "SELECT *
-            	          FROM users WHERE id=?";
+            	            FROM users WHERE id=?";
             	$stmt2 = $con->prepare($sql2);
             	$stmt2->execute([$conversation['user_1']]);
             }

@@ -9,6 +9,11 @@ function checkCat($type){
     return $main_cat;
 }
 
+function ConfirmDelete()
+{
+  return confirm("Are you sure you want to delete?");
+}
+
 function redirectHome($location){
     header("refresh:0;$location");
     exit();

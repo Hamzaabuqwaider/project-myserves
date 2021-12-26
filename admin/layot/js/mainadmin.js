@@ -23,6 +23,8 @@ function uptateimge(){
 var uptateimgeS=document.getElementById("uplode-img-edit");
 uptateimgeS.click();};
 
+
+
 /*var ctx = document.getElementById('myChart');
 var chart = new Chart(ctx, {
     // The type of chart we want to create

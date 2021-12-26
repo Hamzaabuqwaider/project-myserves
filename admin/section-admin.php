@@ -54,7 +54,7 @@
                               <td><?php echo $row["type"] ?></td>
                               <td><?php echo $row["Date_create"] ?></td>
                               <td>
-                                <a href="section-admin.php?do=Delete&main_c=<?php echo $row["id"] ?>"><button type="button" class="btn btn-danger">حذف القسم</button></a>
+                                <a href="section-admin.php?do=Delete&main_c=<?php echo $row["id"] ?>"><button type="button" onclick="return confirm('هل أنت متأكد من حذف هذا القسم ؟ سيتم حذف القسم وبما يحتويه من اقسام فرعيه !')" class="btn btn-danger">حذف القسم</button></a>
                               </td>
                               <td>
                                  <a href="sectionsub.php?do=Manage&sub_id=<?php echo $row["id"] ?>"><button type="button" class="btn btn-primary">الاقسام الفرعي</button></a>
@@ -123,40 +123,30 @@
       $check = checkItem('id', "main_categories", $main_c);
 
       // If There's Such ID Show The Form
-      
-      if($check > 0){ 
-      
-          $stmt = $con->prepare("DELETE FROM main_categories  WHERE id = :zmainc");
-
-          $stmt->bindParam(":zmainc",$main_c);
-
-          $stmt->execute();
-
-          echo "<script>alert('تم حذف القسم');</script>";
-          $Location = "section-admin.php";
-
-          redirectHome($Location,0);
-  
-      } else {
-
-          $Location = "section-admin.php";
-
-
-          redirectHome($Location);
-
-      }
+        
+        if($check > 0){ 
+        
+            $stmt = $con->prepare("DELETE FROM main_categories  WHERE id = :zmainc");
+            $stmt->bindParam(":zmainc",$main_c);
+            $stmt->execute();
+            $Location = "section-admin.php";
+            redirectHome($Location);
+    
+        } else {
+            $Location = "section-admin.php";
+            redirectHome($Location);
+        }
+        }
+        include ("include/footer-admin.php");
+    }else {
+        header('Location: index.php');
+        exit();
     }
- include ("include/footer-admin.php");
-}else {
-    header('Location: index.php');
-    exit();
-}
-ob_end_flush();
-?>
+    ob_end_flush();
+    ?>
 
 <!--end wraper-->
 
 <!--end section-->
 
 
-?>

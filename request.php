@@ -1,12 +1,11 @@
 <?php
-ob_start();
 $titlePage = "request";
 include ("include/session.php");
 include ("include/connect.php");
 include ("include/header.php");
 include ("include/topnav.php");
 include ("include/function.php");
-// include("include/loding.php");
+include("include/loding.php");
 
 if(isset($_SESSION["userid"]))
 {
@@ -67,7 +66,7 @@ if(isset($_SESSION["userid"]))
                 <input type="text" id="discount" value="$">
                 <span class="highlight"></span>
                 <span class="bar"></span>
-                <label>ضريبة ألموقع (5%)</label>
+                <label>ضريبة الموقع (5%)</label>
             </div>
             <div class="group">      
                 <input type="text" id="discount-tow" value="$" >
@@ -79,7 +78,7 @@ if(isset($_SESSION["userid"]))
                 <input type="text" id="moyna" value="$" name="price">
                 <span class="highlight"></span>
                 <span class="bar"></span>
-                <label> ألناتج النهائي (بدينار)</label>
+                <label> الناتج النهائي (بدينار)</label>
             </div>
             <a href="order.php"> <input class="btn btn-primary " type="submit" value="طلب الخدمة" name="save"></a>
       </form>
@@ -92,7 +91,6 @@ if(isset($_SESSION["userid"]))
     <?php include ("include/footer.php");?>
 <?php 
   }else {
-    header("Location: main-login.php");
+  "not found";
 }
 ?>
-

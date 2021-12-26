@@ -143,7 +143,11 @@
                                             <span class="text-notification text-maseges">
                                                 <?php echo $row["first_name"]." ".$row["last_name"];?>
                                             </span>
+                                            <?php if(empty($row['message'])) { ?>
                                             <p class="maasage-chat-ul"><?php echo $row["message"];?></p>
+                                            <?php }else {
+                                                echo "no message";
+                                            } ?>
                                     </li>
                                     </a>
                                     </div>

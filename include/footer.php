@@ -81,7 +81,7 @@ include ("include/connect.php");
                                                 <textarea class="form-control" name="Message" id="exampleMessage" placeholder="ألرسالة"></textarea>
                                             </fieldset>
                                             <fieldset class="form-group text-xs-right">
-                                                    <button type="submit" name="send" class="btn btn-outline-light">أرسال</button>
+                                                    <button type="submit" name="send" class="btn btn-outline-light">إرسال</button>
                                             </fieldset>
                                         </form>
                                 </div>

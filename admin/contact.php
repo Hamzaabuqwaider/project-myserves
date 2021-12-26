@@ -51,7 +51,7 @@ if($do == 'Manage'){
                               <td><?php echo $contact['Message']?> </td>
                               <td><?php echo $contact['Date']?></td>
                               <td>
-                             <a href="contact.php?do=Delete&Messag_ID=<?php echo $contact['id'] ?>"><button type="button" class="btn btn-danger">حذف الالرسالة</button></a>
+                             <a href="contact.php?do=Delete&Messag_ID=<?php echo $contact['id'] ?>"><button type="button" onclick="return confirm('هل أنت متأكد من حذف هذه الرساله ؟')" class="btn btn-danger">حذف الرسالة</button></a>
                               </td>
                           </tr>
                           <!--test-->
