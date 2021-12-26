@@ -55,12 +55,12 @@ if(isset($_SESSION['admin'])){
                       <?php foreach($rows as $row) { ?>
                           <tr>
                               <td><?php echo $row['id'] ?></td>
-                              <td><?php echo $row['name'] ?></td>
+                              <td><?php echo $row['first_name'] ?></td>
                               <td><?php echo $row['Email'] ?></td>
                               <td><?php echo $row['first_name'] ."  ". $row['last_name'] ?></td>
                               <td><?php echo $row['date_birth'] ?></td>
                               <td>
-                                <a href='users.php?do=Delete&User_ID=<?php echo $row['id'] ?>' class='btn btn-danger confirm'><i class='fa fa-close'></i>حذف</a>
+                                <a href='users.php?do=Delete&User_ID=<?php echo $row['id'] ?>' onclick="return confirm('هل انت متأكد من حذف المستخدم ؟ سيتم حذف المستخدم كاملا من الموقع!')" class='btn btn-danger confirm'><i class='fa fa-close'></i>حذف</a>
                                <?php if ($row['RegStatus'] == 0) {
                                     echo "<a href='users.php?do=Activate&User_ID=" . $row['id'] . "' class='btn btn-info activate'><i class='fa fa-check'></i> قبول</a>";
                                    } ?>

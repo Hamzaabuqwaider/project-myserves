@@ -51,10 +51,10 @@ session_start();
                       <?php foreach($comments as $comm){ ?>
                           <tr>
                               <td><?php echo $comm["ID"] ?></td>
-                              <td><?php echo $comm["NAME"] ?></td>
+                              <td><?php echo $comm["first_name"] . ' ' . $comm['last_name'] ?></td>
                               <td><?php echo $comm["comment"] ?></td>
                               <td>
-                                <a href="comment.php?do=Delete&comment_id=<?php echo $comm["ID"] ?>"><button type="submit" name ="delete" class="btn btn-danger">حذف التعليق</button></a>
+                                <a href="comment.php?do=Delete&comment_id=<?php echo $comm["ID"] ?>"><button type="submit" onclick="return confirm('هل أنت متأكد بحذف هذا التعليق ؟')" name ="delete" class="btn btn-danger">حذف التعليق</button></a>
                               </td>
                           </tr>
                           <?php } ?>
@@ -85,13 +85,8 @@ session_start();
             $stmt->bindParam(":zcomment",$comment);
 
             $stmt->execute();
-            echo "<script>alert('تم مسح التعليق');</script>";
-            $Location = "order-admin.php?do=Manage";
-            redirectHome($Location,5);
-
-            // $Location = "comment.php?do=Manage&comment_id=" . $comment;
-
-            // redirectHome($Location);
+            $Location = "servesadmin.php?do=Manage";
+            redirectHome($Location);
 
             } else {
 
@@ -109,6 +104,8 @@ session_start();
         exit();
 }
 
+
 ?>
+
 
 

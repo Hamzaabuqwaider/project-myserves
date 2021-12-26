@@ -20,8 +20,7 @@
                             <h1>أنجز مشاريعك عبر الإنترنت بسهولة وأمان</h1>
                             <p>قدم خدماتك واعمالك عند التسجيل</p>
                             <?php if(!isset($_SESSION['userid'])) {
-
-                            echo '<button type="button" class="btn btn-outline-secondary"><i class="fas fa-sign-in-alt"></i>&nbsp;سجل ألان</button>';
+                            echo '<a href="Signup.php"><button type="button" class="btn btn-outline-secondary"><i class="fas fa-sign-in-alt"></i>&nbsp;سجل الآن</button></a>';
                             } ?>
                         </div>
             </article>
