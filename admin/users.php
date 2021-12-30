@@ -55,7 +55,7 @@ if(isset($_SESSION['admin'])){
                       <?php foreach($rows as $row) { ?>
                           <tr>
                               <td><?php echo $row['id'] ?></td>
-                              <td><?php echo $row['name'] ?></td>
+                              <td><?php echo $row['first_name'] ?></td>
                               <td><?php echo $row['Email'] ?></td>
                               <td><?php echo $row['first_name'] ."  ". $row['last_name'] ?></td>
                               <td><?php echo $row['date_birth'] ?></td>

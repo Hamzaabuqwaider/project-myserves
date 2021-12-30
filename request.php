@@ -15,7 +15,8 @@ if(isset($_SESSION["userid"]))
   $post_name = $_GET["post_name"];
   $post_id = (int)$_GET["post_id"];
 
-  $post = $con->prepare("SELECT *,post.id as post_id, users.first_name,users.id as user , users.last_name , users.Response_speed FROM post INNER JOIN users ON users.id  = post.user_id WHERE post.id='$post_id'");
+  $post = $con->prepare("SELECT *,post.id as post_id, users.first_name,users.id as user ,
+   users.last_name , users.Response_speed FROM post INNER JOIN users ON users.id  = post.user_id WHERE post.id='$post_id'");
   $post->execute();
   $row = $post->fetch();
 
