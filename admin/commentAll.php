@@ -50,10 +50,10 @@ session_start();
                       <?php foreach($comments as $comm){ ?>
                           <tr>
                               <td><?php echo $comm["ID"] ?></td>
-                              <td><?php echo $comm["NAME"] ?></td>
+                              <td><?php echo $comm["first_name"] . ' ' . $comm['last_name'] ?></td>
                               <td><?php echo $comm["comment"] ?></td>
                               <td>
-                                <a href="commentAll.php?do=Delete&comment_id=<?php echo $comm["ID"] ?>"><button type="submit" name ="delete" class="btn btn-danger">حذف التعليق</button></a>
+                                <a href="commentAll.php?do=Delete&comment_id=<?php echo $comm["ID"] ?>"><button type="submit" onclick="return confirm('هل أنت متأكد من حذف التعليق بشكل كامل ؟')" name ="delete" class="btn btn-danger">حذف التعليق</button></a>
                               </td>
                           </tr>
                           <?php } ?>
@@ -84,10 +84,9 @@ session_start();
             $stmt->bindParam(":zcomment",$comment);
 
             $stmt->execute();
-            echo "<script>alert('تم حذف التعليق');</script>";
-            $Location = "servesadmin.php";
+            $Location = "commentAll.php?do=Manage";
 
-            redirectHome($Location,2);
+            redirectHome($Location);
 
 
             } else {

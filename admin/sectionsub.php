@@ -56,7 +56,7 @@
                               <td><?php echo $row["Title"] ?></td>
                               <td><?php echo $row["created_at"] ?></td>
                               <td>
-                                <a href="sectionsub.php?do=Delete&sub_c=<?php echo $row["SUB_C"] ?>&sub_id=<?=$_GET['sub_id']?>"><button type="button" class="btn btn-danger">حذف القسم</button></a>
+                                <a href="sectionsub.php?do=Delete&sub_c=<?php echo $row["SUB_C"] ?>&sub_id=<?=$_GET['sub_id']?>"><button type="button" onclick="return confirm('هل انت متأكد من حذف القسم الفرعي ؟')" class="btn btn-danger">حذف القسم</button></a>
                               </td>
                           </tr>
                           <?php } ?>
@@ -125,11 +125,9 @@
           $stmt->bindParam(":zsub_c",$sub_c);
 
           $stmt->execute();
-
-          echo "<script>alert('تم حذف القسم الفرعي');</script>";
           $Location = "sectionsub.php?do=Manage&sub_id=$sub";
 
-          redirectHome($Location,0);
+          redirectHome($Location);
 
   
       } else {

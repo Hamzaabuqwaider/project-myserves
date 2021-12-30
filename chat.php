@@ -18,19 +18,19 @@ if (isset($_SESSION['userid']))
     $getUser->execute();
     $row = $getUser->fetch();
 
-  	if (!isset($_GET['post'])) {
-  		header("Location: index.php");
-  		exit;  
-  	}
+		if (!isset($_GET['post'])) {
+			header("Location: index.php");
+			exit;  
+		}
 
-  	# Getting User data data
-  	$chatWith = getUser($row['id'], $con);
+		# Getting User data 
+		$chatWith = getUser($row['id'], $con);
 
-	  
+	
 
-  	$chats = getChats($_SESSION['userid'], $row['id'], $con);
+  		  $chats = getChats($_SESSION['userid'], $row['id'], $con);
 
-  	opened($row['id'], $con, $chats);
+    	opened($row['id'], $con, $chats);
 ?>
 <div class="main-caht">
     <div>

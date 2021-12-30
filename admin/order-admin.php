@@ -96,8 +96,8 @@
                                     echo "<a href='order-admin.php?do=Activate&post_ID=" . $post["ID"] . "' class='btn btn-Success'><i class='fa fa-check'></i> قبول الخدمة</a>";
                                    } ?>
                               </td>
-                              <td>
-                              <a href="order-admin.php?do=Delete&post_ID=<?php echo $post["ID"] ?>"><button type="button" class="btn btn-danger"><i class="fas fa-times"></i> رفض الخدمة</button></a>
+                             <td>
+                              <a href="order-admin.php?do=Delete&post_ID=<?php echo $post["ID"] ?>"><button type="button" onclick="return confirm('هل تريد رفض الخدمه ؟')" class="btn btn-danger">رفض الخدمة</button></a>
                               </td>
                           </tr>
                           <!--test-->

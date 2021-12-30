@@ -55,7 +55,7 @@
                               <td><?php echo $row["type"] ?></td>
                               <td><?php echo $row["Date_create"] ?></td>
                               <td>
-                                <a href="section-admin.php?do=Delete&main_c=<?php echo $row["id"] ?>"><button type="button" class="btn btn-danger"> <i class="far fa-trash-alt"></i> حذف القسم</button></a>
+                                <a href="section-admin.php?do=Delete&main_c=<?php echo $row["id"] ?>"><button type="button" onclick="return confirm('هل أنت متأكد من حذف هذا القسم ؟ سيتم حذف القسم وبما يحتويه من اقسام فرعيه !')" class="btn btn-danger">حذف القسم</button></a>
                               </td>
                               <td>
                                  <a href="sectionsub.php?do=Manage&sub_id=<?php echo $row["id"] ?>"><button type="button" style="background-color: #d39e00; color:white" class="btn ">الاقسام الفرعية</button></a>
@@ -220,6 +220,7 @@
 }
 ob_end_flush();
 ?>
+
 <!--end wraper-->
 <!--end section-->
 <?php include ("include/footer-admin.php");?>
@@ -249,3 +250,6 @@ btnOuter.removeClass("file_uploading");
 btnOuter.removeClass("file_uploaded");
 });
 </script>
+
+
+

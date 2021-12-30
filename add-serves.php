@@ -182,7 +182,7 @@ if (isset($_SESSION['userid'])) {
                                     'zimg'      =>$image
                              
                             ));
-                            echo '<script>alert("بإنتظار موافقة الأدمن")</script>';
+                            echo '<script>alert("تم تثديم خدمتك.. بإنتظار موافقة الأدمن")</script>';
                             $location ="index.php";
                             redirect($location);
 

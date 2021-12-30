@@ -1251,7 +1251,8 @@ font-size: 1.1rem;
 
 .material-card .det-display-none{display: none;}
 
-.material-card .description-back-box{background-color: var(--Navy--color);padding: 5px;color:var(--White--color);padding-left: 60px;}
+
+.material-card .description-back-box{background-color: var(--Navy--color);padding: 5px;padding-left:35px;color:var(--White--color);}
 
 .material-card .description-back-box h2{margin-right: 10px;font-size: 25px;}
 
@@ -1282,7 +1283,7 @@ font-size: 1.1rem;
   z-index: 20;
   transition: all 0.3s;
 }
-.material-card.mc-active .mc-btn-action {top: 100px;}
+.material-card.mc-active .mc-btn-action {top: 92px;}
 
 .material-card .mc-btn-action i{position: absolute;top: 30%;left: 31%;}
 
@@ -2184,14 +2185,15 @@ margin-bottom: 15px !important;
 
 .panel-details h1{color:var(--Navy--color);font-weight: bold;font-family: 'Cairo';}
 
-.panel-details h5{color: #9b9b9b;margin-bottom: 15px;}
+.panel-details h5{color: #9b9b9b;}
 
 .panel-details p{
 font-family: fangsong;
 line-height: 2;
 color: #424242;
 font-weight: 800;
-margin-bottom: -20px;
+margin-bottom: 0;
+margin-top: 5px;
 }
 .pro-img-details {width: 100%;}
     
@@ -2290,4 +2292,52 @@ margin-bottom: -20px;
   .alert .fa {
     margin-right:.3em;
   }
-  
+
+    /*rating*/
+.rating {font-size: 45px;overflow:hidden;direction: rtl;}
+
+.rating a {
+float:right;
+color: #aaa;
+text-decoration: none;
+-webkit-transition: color .4s;
+-moz-transition: color .4s;
+-o-transition: color .4s;
+transition: color .4s;
+float:none
+}
+
+.rating a.select,.rating a.select ~ a		{color: orange;cursor: pointer;}
+.rating2 a:hover,.rating2 a:hover ~ a,.rating2 a:focus,.rating2 a:focus ~ a		{color: orange;cursor: pointer;}
+
+.numberRating {
+  margin-top: -11px;
+}
+
+.rating-show {margin-top: -25px;}
+
+.rating-details{
+    text-align: right;
+    margin-right: -10px;
+    margin-top: -10px;
+}
+.rating-text{font-size: 30px;color: var(--orang--color);margin-top: -15px;}
+
+.go-rating{
+    width: 546px;
+    height: 145px;
+    border: 1px solid #ccc;
+    text-align: center;
+    margin-right: 122px;
+    margin-top: -75px;
+    margin-bottom: 100px;
+    padding-top: 40px;
+    background-color: #49505724;
+}
+.what-rating{
+    font-size: 20px;
+    display: block;
+    margin-top: -30px;
+    font-family: 'Cairo';
+}
+/*rating*/

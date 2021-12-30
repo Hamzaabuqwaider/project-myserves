@@ -312,7 +312,7 @@ include ("../include/connect.php");
                     </a>
                 </li>
                 <li class="dropdown-menu-item">
-                    <a href="#" class="dropdown-menu-link drop-img">
+                    <a href="../index.php" class="dropdown-menu-link drop-img">
                         <div>
                            <i class="fas fa-spinner"></i> 
                         </div>
