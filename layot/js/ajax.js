@@ -1,3 +1,27 @@
+//rating
+$(".ratingJS").on("click", function() {
+    var craftId = $(this).parent().attr("id"),
+    numberStar = $(this).attr("id");
+    var thisButton = $(this);
+    console.log(thisButton);
+    $.ajax({
+        method:"post",
+        url:"ajax.php",
+        data:{craft_Id: craftId, number_Star:numberStar},
+        success:function(result) {
+            console.log(result);
+            var siblings = thisButton.siblings("a.select");
+            siblings.removeClass("select");
+            thisButton.addClass("select");
+            $(".rating-text").text("😇شكراً لك على التقييم ")
+        }
+    });
+    
+});
+
+
+
+
 //add serves 
 $(document).ready(function(){
   
