@@ -37,7 +37,7 @@ if(isset($_SESSION['admin'])){
           <div class="cardsd-taple-page overlay-scrollbar">
               <div class="cardsd-header">
                  <h3>المستخدمين</h3> 
-                  <i class="fas fa-ellipsis-h"></i>
+                 <a href="add-user.php?action=Add"><i class="fas fa-user-plus"></i></a>
               </div>
               <div class="cardsd-content">
                   <table>
@@ -46,8 +46,6 @@ if(isset($_SESSION['admin'])){
                               <th> ID </th>
                               <th> Username </th>
                               <th> Email </th>
-                              <th> Full Name </th>
-                              <th> Date Birth </th>
                               <th>Control</th>
                           </tr>
                       </thead>
@@ -55,15 +53,19 @@ if(isset($_SESSION['admin'])){
                       <?php foreach($rows as $row) { ?>
                           <tr>
                               <td><?php echo $row['id'] ?></td>
-                              <td><?php echo $row['first_name'] ?></td>
+                            
+                              <td><?php echo $row['first_name'] ." ". $row['last_name'] ?></td>
+
                               <td><?php echo $row['Email'] ?></td>
-                              <td><?php echo $row['first_name'] ."  ". $row['last_name'] ?></td>
-                              <td><?php echo $row['date_birth'] ?></td>
+                            
                               <td>
+
                                 <a href='users.php?do=Delete&User_ID=<?php echo $row['id'] ?>' onclick="return confirm('هل انت متأكد من حذف المستخدم ؟ سيتم حذف المستخدم كاملا من الموقع!')" class='btn btn-danger confirm'><i class='fa fa-close'></i>حذف</a>
                                <?php if ($row['RegStatus'] == 0) {
                                     echo "<a href='users.php?do=Activate&User_ID=" . $row['id'] . "' class='btn btn-info activate'><i class='fa fa-check'></i> قبول</a>";
                                    } ?>
+                                   <a href="Edit-users.php?action=Edit&User_ID=<?php echo $row['id'] ?>" class="btn btn-secondary"> <i class="fas fa-user-edit"></i> تـعديل </a>
+
                               </td>
                           </tr>
                           <?php } ?>

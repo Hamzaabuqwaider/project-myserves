@@ -241,4 +241,3 @@ function createAlert(title, summary, details, severity, dismissible, autoDismiss
       }, 5000);
     }
   }
-  

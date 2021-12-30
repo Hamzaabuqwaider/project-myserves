@@ -248,6 +248,7 @@ if(isset($_SESSION['userid']))
         ob_end_flush();
     ?>
 
+
 <script src="layot/js/jquery-3.5.1.min.js"></script>
         <script src="layot/js/popper.min.js"></script>
         <script src="layot/js/bootstrap.min.js"></script>

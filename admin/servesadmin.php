@@ -67,7 +67,7 @@
                               <td>--------</td>
                               <td><?php echo $post["add_data"] ?></td>
                               <td>
-                                 <a href="comment.php?do=Manage&comment_id=<?php echo $post["ID"] ?>"><button type="button" class="btn btn-success">رؤية التعليقات</button></a>
+                                 <a href="comment.php?do=Manage&comment_id=<?php echo $post["ID"] ?>"><button type="button" class="btn btn-success"><i class="far fa-comment-alt"></i> رؤية التعليقات</button></a>
                               </td>
                           </tr>
                           <?php } ?>

@@ -41,6 +41,7 @@ $sub = $stmt1->fetch();
     <div class="row">
         <div class="container">
             <div class="card-group">
+
                 <?php if(!empty($posts)): foreach($posts as $post): 
                     regester($post['id']);
                     if($post['RegStatus'] == 1) { 

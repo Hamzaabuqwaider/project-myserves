@@ -127,7 +127,7 @@
 
                                         <?php
                                         $roo = $_SESSION["userid"];
-                                        $chat = $con->prepare("SELECT  *,users.id as id,users.imgg as img , users.name as name FROM chat
+                                        $chat = $con->prepare("SELECT  *,users.id as id,users.imgg as img FROM chat
                                         INNER JOIN users ON users.id  = chat.from_id
                                         WHERE to_id = '$roo' ORDER BY chat_id DESC LIMIT 5 ");
                                         $chat->execute();
