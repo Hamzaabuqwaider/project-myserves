@@ -42,7 +42,7 @@ $row = $stmt->fetchAll();
                     <img class="imge-cart"   src="../project-myserves/layot/img/<?php echo $row['IMG'] ?>" alt="">
                     <div>
                         <p style="font-weight:800;font-size:20px"><?php echo $row["TITLE"] ?></p>
-                        <small style="font-weight:800 ;font-size:15px"><?php echo $row['namm']; ?></small>
+                        <small style="font-weight:800 ;font-size:15px"><?php echo $row['first_name'] . " " . $row['last_name']; ?></small>
                         <br>
                     </div>
                 </div>

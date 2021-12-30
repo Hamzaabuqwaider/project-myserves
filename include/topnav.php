@@ -127,31 +127,37 @@
 
                                         <?php
                                         $roo = $_SESSION["userid"];
-                                        $chat = $con->prepare("SELECT  *,users.id as id,users.imgg as img FROM chat
-                                        INNER JOIN users ON users.id  = chat.from_id
-                                        WHERE to_id = '$roo' ORDER BY chat_id DESC LIMIT 5 ");
+                                        $chat = $con->prepare("SELECT *, users.id as id,users.imgg as img ,chat.to_id as CHAT_ID,chat.from_id as FROM_ID  FROM users
+                                        INNER JOIN chat ON chat.from_id = users.id
+                                        WHERE chat.to_id = '$roo' ORDER BY id DESC LIMIT 5 ");
+
                                         $chat->execute();
                                         $stmt = $chat->fetchAll();
+
+                                        if(!empty($stmt)){
                                         
                                         foreach($stmt as $row){
                                     ?>
                                     <div class="bgchat">
-                                    <a href="chat.php?user_id=<?php echo $_SESSION['username'];?>&post=<?php echo $row['from_id'] ?>">
+                                    <a href="chat.php?user_id=<?php echo $_SESSION['username'];?>&post=<?php echo $row['FROM_ID'] ?>">
                                     <li class="list-group-item tow-bg ">
                                             <img class="img-profile" src="layot/img/<?php echo $row["img"];?>">
                                             <span class="time-notification"><i class="far fa-clock"></i><?php echo $row["created_at"];?></span>
                                             <span class="text-notification text-maseges">
                                                 <?php echo $row["first_name"]." ".$row["last_name"];?>
-                                            </span>
-                                            <?php if(empty($row['message'])) { ?>
                                             <p class="maasage-chat-ul"><?php echo $row["message"];?></p>
-                                            <?php }else {
-                                                echo "no message";
-                                            } ?>
+                                            
                                     </li>
                                     </a>
                                     </div>
-                                <?php } ?>
+                                <?php }}else{ ?>
+
+                                    <div class="alert alert-info 
+                                            text-center">
+                            <i class="fa fa-comments d-block fs-big"></i>
+                            No messages yet, Start the conversation
+                        </div>
+                               <?php  } ?>
                                 </ul>
                                     <div class="card-header footer-notification">
                                          <i class="far fa-envelope"></i><a href="#">عرض جميع الرسائل</a>

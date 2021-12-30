@@ -160,7 +160,7 @@ if (isset($_SESSION['userid'])) {
                         $location ="add-serves.php";
                         redirect($location);
                         
-                        
+
             
                     }
                     
@@ -182,7 +182,7 @@ if (isset($_SESSION['userid'])) {
                                     'zimg'      =>$image
                              
                             ));
-                            echo '<script>alert("تم تثديم خدمتك.. بإنتظار موافقة الأدمن")</script>';
+                            echo '<script>alert("تم تقديم خدمتك.. بإنتظار موافقة الأدمن")</script>';
                             $location ="index.php";
                             redirect($location);
 

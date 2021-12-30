@@ -126,6 +126,14 @@
       function drawChart() {
 
         var data = google.visualization.arrayToDataTable([
+          ['category_id', 'user_id']]);
+
+        var options = {
+          title: 'My Daily Activities'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
           ['Task', 'Hours per Day'],
           ['Work',     11],
           ['Eat',      2],

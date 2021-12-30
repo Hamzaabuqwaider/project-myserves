@@ -57,6 +57,7 @@ include ("include/connect.php");
                                 <div class="customer-service">
                                         <form action="<?php echo $_SERVER['PHP_SELF']?>" method="POST">
                                 <?php 
+                                
                                     if($_SERVER['REQUEST_METHOD'] == 'POST'){ 
                                         $email = $_POST['email'];
                                         $message = $_POST['Message'];
