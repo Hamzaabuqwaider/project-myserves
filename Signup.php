@@ -4,7 +4,7 @@ include ("include/session.php");
 include ("include/connect.php");
 include ("include/header.php");
 include ("include/function.php");
-include('include/loding.php');
+// include('include/loding.php');
 
 if(isset($_SESSION['userid']))
 {
@@ -60,10 +60,9 @@ if(isset($_SESSION['userid']))
                                     $hashPassword = md5($pass);
 
                                     $insert = $con->prepare("INSERT INTO 
-                                                users(name,first_name,last_name,password,Email,type,date)
-                                                VALUES(:zuser,:zuser1,:zuser2, :zpass, :zmail, :postType , now() )");
+                                                users(first_name,last_name,password,Email,type,date)
+                                                VALUES(:zuser1,:zuser2, :zpass, :zmail, :postType , now() )");
                                     $insert->execute(array(
-                                        'zuser' =>$user,
                                         'zuser1' =>$user1,
                                         'zuser2' =>$user2,
                                         'zpass' =>$hashPassword,
@@ -153,8 +152,8 @@ if(isset($_SESSION['userid']))
                         <select
                             name="type"
                             aria-label="Default select example "  >
-                            <option selected value='1'>مستخدم عادي</option>
-                            <option value='2'>عميل</option>
+                            <option selected value='1'>عميل </option>
+                            <option value='2'>مستخدم عادي</option>
                         </select>                
                     </div>
                 <div class="input-field">

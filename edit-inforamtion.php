@@ -68,14 +68,11 @@ if (isset($_SESSION['userid'])){
 					<input type="text" class="form-control" id="eMail" name="L_name" value='<?php echo $row['last_name'] ?>' placeholder="الأسم الاخير">
 				</div>
 			</div>
-			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 				<div class="form-group">
-					<label for="phone">الجنس</label>
-                    <select id="inputState" class="form-control" name="gender">
-                        <option selected>ذكر</option>
-                        <option>أنثى</option>
-                    </select>				
-                </div>
+                <label for="name">البريد الكتروني</label>
+                    <input type="email" class="form-control " id="inlineFormInput" name='email'  value="<?php echo $row['Email'] ?>" placeholder="البريد الكتروني">
+				</div>
 			</div>
 			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 				<div class="form-group">
@@ -87,18 +84,6 @@ if (isset($_SESSION['userid'])){
 		<div class="row gutters">
 			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 				
-			</div>
-			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-				<div class="form-group">
-                <label for="name">البريد الكتروني</label>
-                    <input type="email" class="form-control " id="inlineFormInput" name='email'  value="<?php echo $row['Email'] ?>" placeholder="البريد الكتروني">
-				</div>
-			</div>
-			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-				<div class="form-group">
-					<label for="name">أسم المستخدم</label>
-                    <input type="text" class="form-control " id="inlineFormInput" name='name'  value="<?php echo $row['name'] ?>" placeholder="أسم المستخدم">
-				</div>
 			</div>
 			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 				<div class="form-group">
@@ -147,12 +132,10 @@ if (isset($_SESSION['userid'])){
         $id = $_POST['userid'];
         $First_Name = $_POST['F_name'];
         $Last_Name = $_POST['L_name'];
-        $Gender = $_POST['gender'];
         $Date_Birth = $_POST['date_birth'];
         $Email = $_POST['email'];
-        $Name = $_POST['name'];
         $Pass = empty($_POST['newpassword']) ? $_POST['oldpassword'] : MD5($_POST['newpassword']);
-        $img = $_POST['upload'];
+        $image = $_POST['upload'];
         // $image = $_POST['upload'];
 
 
@@ -164,18 +147,11 @@ if (isset($_SESSION['userid'])){
         if(empty($Last_Name)){
             $formErrors[] = 'Last Name Cant Be <strong> Empty</strong>';
         }
-        if(empty($Gender)){
-            $formErrors[] = 'Gender Cant Be <strong> Empty</strong>';
-        }
         if(empty($Date_Birth)){
             $formErrors[] = 'Date Birth Cant Be <strong> Empty</strong>';
         }
         if(empty($Email)){
             $formErrors[] = 'Email Cant Be <strong> Empty</strong>';
-        }
-
-        if(empty($Name)){
-            $formErrors[] = 'Name Cant Be <strong> Empty</strong>';
         }
 
         foreach($formErrors as $error) {
@@ -184,40 +160,27 @@ if (isset($_SESSION['userid'])){
 
         if(empty($formErrors)){
 
-            $stm2 = $con->prepare("SELECT * FROM users WHERE name = ? AND id != ?");
-            $stm2->execute(array($Name,$id));
-            $count = $stm2->rowCount();
-
-            if ($count == 1) {
-
-                echo '<div class="alert alert-danger">Sorry This User Is Exist</div>';
-
-            } else {
 
                 $stmt = $con->prepare("UPDATE users SET 
                                                         first_name = ?, 
                                                         last_name = ?, 
-                                                        gender = ?, 
                                                         date_birth = ?, 
                                                         Email = ?,
-                                                        name = ?,
                                                         password=?,
                                                         imgg=?
                                                         WHERE id ='".$_SESSION['userid']."'");
                 $stmt->execute(array(
                                     $First_Name,
                                     $Last_Name,
-                                    $Gender,
                                     $Date_Birth,
                                     $Email,
-                                    $Name,
                                     $Pass,
-                                    $img,
+                                    $image,
                                     ));
 
                 echo '<div class="alert alert-success">Record Updated</div>';
                                     
-            }
+            
         }
 
     } else {

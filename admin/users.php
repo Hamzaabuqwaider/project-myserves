@@ -37,7 +37,7 @@ if(isset($_SESSION['admin'])){
           <div class="cardsd-taple-page overlay-scrollbar">
               <div class="cardsd-header">
                  <h3>المستخدمين</h3> 
-                  <i class="fas fa-ellipsis-h"></i>
+                 <a href="add-user.php&do="><i class="fas fa-user-plus"></i></a>
               </div>
               <div class="cardsd-content">
                   <table>

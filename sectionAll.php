@@ -9,7 +9,7 @@ ob_start();
    include('include/loding.php');
 if(isset($_SESSION['userid'])) {
 $Cat_id = isset($_GET['Cat_id']) && is_numeric($_GET['Cat_id']) ? intval($_GET['Cat_id']) :0;
-$stmt = $con-> prepare("SELECT * FROM post WHERE category_id = ? LIMIT 6 ");
+$stmt = $con-> prepare("SELECT * FROM post WHERE category_id = ? ");
 $stmt->execute(array($Cat_id));
 $stmt = $stmt->fetchAll();
 
@@ -36,10 +36,6 @@ $stmt = $stmt->fetchAll();
                 <?php foreach($stmt as $sectionId) { 
                     regester($sectionId['id']);
                     if($sectionId['RegStatus'] == 1) { 
-
-                        $stmt1 = $con-> prepare("SELECT *,count(id) as Count_order FROM orders WHERE post_id = ? ");
-                        $stmt1->execute(array($sectionId['id']));
-                        $order = $stmt1->fetch();
                     
                     ?>
                      
@@ -48,7 +44,7 @@ $stmt = $stmt->fetchAll();
                     <article class="material-card Red">
                 <div id="description-box" class="description-front-box ">
                 <h2><?php echo $sectionId['title']?></h2>
-                    <p><i class="far fa-eye" style="margin-left:5px;color: #f8f9fa;"></i><?php echo $order['Count_order'] ?> من طلبوا هذه الخدمة</p>
+                    <p><i class="far fa-eye" style="margin-left:5px;color: #f8f9fa;"></i>50 من طلبوا هذه الخدمة</p>
                     <a href="details-test.php?id=<?= $sectionId['id']?>"><button type="button" class="btn btn-outline-light" style="font-weight: bold;">تفاصيل الخدمة</button></a>
                 </div>
               
@@ -92,9 +88,6 @@ $stmt = $stmt->fetchAll();
 
             </div>
         </div>
-    </div>
-    <div class="butoom-section">
-        <a href="sectionAll.php?Cat_id=<?= $Cat_id ?>"><button type="button" class="btn btn-dark">عرض المزيد</button></a>
     </div>
 </div>
 <!-- end section box create ghazal-->

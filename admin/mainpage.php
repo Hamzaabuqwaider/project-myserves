@@ -6,7 +6,14 @@
    include ("../include/connect.php");
    include ("include/function.php");
 
-   if(isset($_SESSION['admin'])) { ?>
+   if(isset($_SESSION['admin'])) { 
+            
+    $stmt1 = $con->prepare("SELECT * FROM admin");
+    $stmt1 ->execute();
+    $row1 = $stmt1->fetchAll();   
+    
+
+            ?>
 
 <!--start main-content-->
  <div class="wrapper">
@@ -26,97 +33,39 @@
       <div class="col-8">
           <div class="cardsd overlay-scrollbar">
               <div class="cardsd-header">
-                 <h3>taple</h3> 
-                  <i class="fas fa-ellipsis-h"></i>
+                 <h3>الآدمـن</h3> 
+                 <a href="add-admin.php?action=Add"><i class="fas fa-user-plus"></i></a>
               </div>
               <div class="cardsd-content">
                   <table>
                       <thead>
                           <tr>
                               <th>#</th>
-                              <th>project</th>
-                              <th>manager</th>
-                              <th>status</th>
-                              <th>due date</th>
+                              <th>Name</th>
+                              <th>Email</th>
+                              <th>Date</th>
                           </tr>
                       </thead>
                       <tbody>
+                      <?php foreach($row1 as $main) { ?>
                           <tr>
-                              <td>1</td>
-                              <td>react</td>
-                              <td>tran anh</td>
+                              <td><?php echo $main['id']; ?></td>
+                              <td><?php echo $main['admin_name']; ?></td>
+                              <td><?php echo $main['email']; ?></td>
                               <td>
                                   <span class="dot">
                                       <i class="bg-success"></i>
-                                      completed
+                                      <?php echo $main['date_add']; ?>
                                   </span>
                               </td>
-                              <td>27/10/2021</td>
                           </tr>
-                          <tr>
-                              <td>2</td>
-                              <td>vue</td>
-                              <td>bui thn</td>
-                              <td>
-                                  <span class="dot">
-                                      <i class="bg-success"></i>
-                                      in progress
-                                  </span>
-                              </td>
-                              <td>25/10/2021</td>
-                          </tr>
-                          <tr>
-                              <td>3</td>
-                              <td>laravel</td>
-                              <td>tra gbh</td>
-                              <td>
-                                  <span class="dot">
-                                      <i class="bg-warning"></i>
-                                      in progress
-                                  </span>
-                              </td>
-                              <td>15/10/2021</td>
-                          </tr>
-                          <tr>
-                              <td>4</td>
-                              <td>django</td>
-                              <td>tranj hj</td>
-                              <td>
-                                  <span class="dot">
-                                      <i class="bg-warning"></i>
-                                      in progress
-                                  </span>
-                              </td>
-                              <td>7/10/2021</td>
-                          </tr>
-                          <tr>
-                              <td>5</td>
-                              <td>mean</td>
-                              <td>tra ncbhib</td>
-                              <td>
-                                  <span class="dot">
-                                      <i class="bg-primary"></i>
-                                      in progress
-                                  </span>
-                              </td>
-                              <td>17/10/2021</td>
-                          </tr>
-                          <tr>
-                              <td>6</td>
-                              <td>mern</td>
-                              <td>robert</td>
-                              <td>
-                                  <span class="dot">
-                                      <i class="bg-primary"></i>
-                                      pending
-                                  </span>
-                              </td>
-                              <td>1/10/2021</td>
-                          </tr>
+                          <?php } ?>
+                            
                       </tbody>
                   </table>
               </div>
           </div>
+          
       </div>
       <div class="col-4">
                     <div class="cardsd">
@@ -160,48 +109,47 @@
                        </div>
                     </div>
                 </div><!--row1-->
-           </div><!--wrapper1-->
-             <div class="row">
-                <div class="col-12" style="padding-top:20px;">
-                    <div class="cardsd">
-                        <div class="cardsd-header">
-                            <h3>
-                                chart js
-                            </h3>
-                        </div>
-                        <div class="cardsd-content">
-                            <canvas id="myChart" style="width:1000px!important;height:1000px!important;"></canvas>
-                        </div>
-                    </div>
+                <div class="col-12">
+                    <div id="piechart" style="width: 900px; height: 500px;"></div>
                 </div>
-              </div><!--row2-->
+           </div><!--wrapper1-->
+            
 
 <!--end main-content-->
 
 
 
 <?php include ("include/footer-admin.php"); ?>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
 
-    <script>
-            var ctx = document.getElementById('myChart').getContext('2d');
-            var chart = new Chart(ctx, {
-            // The type of chart we want to create
-            type: 'line',
+      function drawChart() {
 
-            // The data for our dataset
-            data: {
-                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-                datasets: [{
-                    label: 'My First dataset',
-                    backgroundColor: '#35434e',
-                    borderColor: '#e5956096',
-                    data: [0, 10, 5, 2, 20, 30, 45]
-                }]
-            },
+        var data = google.visualization.arrayToDataTable([
+          ['category_id', 'user_id']
 
-            // Configuration options go here
-            options: {}
-        });
+
+          <?php 
+                $sql = "SELECT * FROM post";
+                $fire = mysqli_query($result,$sql);
+                while ($r = mysqli_fetch_assoc($fire)) {
+                    echo "['".$r['category_id']."',".$r['user_id']."]";
+                }
+                    
+    ?>
+
+        ]);
+
+        var options = {
+          title: 'My Daily Activities'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
     </script>
 
     <?php } else{
