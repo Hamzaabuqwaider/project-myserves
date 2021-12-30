@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 19, 2021 at 12:35 AM
+-- Generation Time: Dec 30, 2021 at 10:28 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.3.31
 
@@ -64,9 +64,7 @@ CREATE TABLE `chat` (
 INSERT INTO `chat` (`chat_id`, `from_id`, `to_id`, `message`, `opened`, `created_at`) VALUES
 (8, 16, 16, 'اهلين', 1, '2021-12-17'),
 (9, 16, 16, 'منيح', 1, '2021-12-17'),
-(10, 16, 16, 'مرحب', 1, '2021-12-17'),
-(11, 20, 16, 'hi', 0, '2021-12-17'),
-(12, 19, 19, 'jhiunjl', 1, '2021-12-18');
+(10, 16, 16, 'مرحب', 1, '2021-12-17');
 
 -- --------------------------------------------------------
 
@@ -82,6 +80,14 @@ CREATE TABLE `comment` (
   `commented_on` date NOT NULL DEFAULT current_timestamp(),
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `comment`
+--
+
+INSERT INTO `comment` (`comment_id`, `comment_user`, `comment`, `post_id`, `commented_on`, `created_at`) VALUES
+(124, 22, 'مرحبا', 70, '2021-12-30', '2021-12-30 19:35:05'),
+(125, 22, 'ممتاز و ملتزم بالوقت', 72, '2021-12-30', '2021-12-30 20:52:12');
 
 -- --------------------------------------------------------
 
@@ -222,9 +228,32 @@ CREATE TABLE `post` (
 --
 
 INSERT INTO `post` (`id`, `title`, `body`, `category_id`, `user_id`, `main_id`, `img`, `Keyword`, `date`, `RegStatus`) VALUES
-(67, 'تصميم موقع احترافى ', 'هل لديك فكرة أو مشروع وتريد تصميم موقع إحترافي وبمواصفات عالية، ؟ هل تريد الدخول فى عالم السوشيال ميديا والظهور من بين المنافسين بصوره قويه ؟ هنا الحل بإذن الله،\r\n\r\nسوف ننشئ لك الموقع الالكتروني الذي تريده على حسب ذوقك واختيارك ليتناسب مع فكرتك وبتصميم إحترافي وجودة عالية،\r\nكما سيتم انشائه responsive اى سيكون يعمل على كل الشاشات المختلفه باحجامها كالاندرويد والايباد والكمبيوتر ..الخ\r\nأيضا نقدم لك كتابه محتوى موقعك بشكل احترافى', 43, 19, 0, '100_pexels-marc-mueller-325111.jpg', '', '2021-12-18', 1),
-(68, 'تصميم وبرمجة مواقع', 'حاصل علي بكالريوس الحسابات والمعلومات وحاصل علي منحة ITI Full stack with MERN\r\n\r\nاقدم لكم اليوم خدمة تصميم وعمل المواقع من خلال احدث واسرع التقنيات الموجودة في الوقت الحالي\r\nوهي الجافا سكربيت ( node JS ) حيث ما تمتاز به هذه الطريقة البرمجية :\r\n\r\n1- 35% اسرع من اي موقع باي لغه برمجية اخري .\r\n2- ضعف عدد الطلبات / الثانية ( يضمن استقرار الموقع مهما كان عدد الزوار ) .\r\n3- 40% حجم اقل بالنسبة لنفس المشروع باي لغه برمجية اخري .\r\n\r\nوهذا ما جعل كبري الشركات تقوم بتحويل خدماتها الي node JS مثل ( PayPal - Uber - Netflix) .', 43, 19, 0, '56290_pexels-olia-danilevich-4974912.jpg', '', '2021-12-18', 1),
-(69, 'تصميم Landing Page', 'اقوم بتصميم وبرمجة المواقع بالطرق الحديثة لجعل اعمالك احترافية بأستخدام تقنيات حديثة مثل HTML5, CSS3, Bootstrap 5, JavaScript, ES6 اذا تريد موقع احترافى لعملك لتزيد من أحترافك فى العمل مقابل 5$ يمكنك التواصل معى.\r\nصفحة الهبوط تتكون من عدة اقسام احصل على تصميم مميز وابداعي للقسم الأول من صفحة الهبوط التي تريدها مقابل 5$.\r\nو أن شاء الله سوف تحصل على خدمه مرضيه لك وبجودة عالية.', 43, 19, 0, '32744_pexels-cottonbro-6804595.jpg', '', '2021-12-18', 1);
+(70, 'برمجة html', 'برمجة مواقع الانترنت ', 43, 16, 0, '46647_21929_pexels-luis-gomes-546819.jpg', '', '2021-12-27', 1),
+(71, 'برمجة htmld', 'مبرمج مواقع الانترنت', 43, 16, 0, '53742_21929_pexels-luis-gomes-546819.jpg', '', '2021-12-29', 1),
+(72, 'تنسيق متجرك ', 'السلام عليكم\r\nلدي العديد من الاعمال على منصة سلة باستخدام css\r\n\r\nسوف اقوم بمقابل 5 دولار بتنسيق الهيدر والفوتر وسوف اعمل على تسليم الكود لكم\r\nميزات التصميم\r\nملائم للزوار بهوية مخصصة و بنرات وسلايدات تجذب بها اهتمام العملاء\r\nباستخدام css متخصصة وسوف أقوم بأرسال لك الكود مع شرح كامل للكود مع دعم فنى مميز لكم بعد انتهاء الخدمة\r\nايرجى عدم طلب الخدمة الا اذا كانت عندكم شروط سلة ( الباقة برو + دومين .com )', 43, 16, 0, '72146_27618_pexels-cottonbro-3584973.jpg', '', '2021-12-30', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rating`
+--
+
+CREATE TABLE `rating` (
+  `id` int(11) NOT NULL,
+  `post_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `number_rating` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `rating`
+--
+
+INSERT INTO `rating` (`id`, `post_id`, `user_id`, `number_rating`) VALUES
+(1, 70, 21, 2),
+(2, 71, 21, 5),
+(3, 70, 22, 1),
+(5, 72, 22, 4);
 
 -- --------------------------------------------------------
 
@@ -308,10 +337,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `type`, `name`, `password`, `Email`, `Num_Phone`, `Response`, `Location`, `first_name`, `last_name`, `gender`, `date_birth`, `imgg`, `Response_speed`, `date`, `last_seen`, `RegStatus`) VALUES
-(16, 1, 'ayham', '827ccb0eea8a706c4c34a16891f84e7b', 'ayham@gmail.com', 79, NULL, 'الاردن', 'أيهم', 'الخلايلة', 'ذكر', '1999-07-22', 'img.png', '15:14:06', '2021-11-24', NULL, 1),
+(16, 1, 'ayham', '81dc9bdb52d04dc20036dbd8313ed055', 'ayham@gmail.com', 79, NULL, 'الاردن', 'أيهم', 'الخلايلة', 'ذكر', '1999-07-22', 'img.png', '15:14:06', '2021-11-24', NULL, 1),
 (17, 1, 'hamza', '827ccb0eea8a706c4c34a16891f84e7b', 'hamza@gmail.com', 772076544, NULL, 'الاردن', 'حمزة', 'أو قويدر', 'ذكر', '1999-08-28', 'hamzahQQQ.jpg', '15:22:55', '2021-11-24', NULL, 1),
-(19, 1, '', '827ccb0eea8a706c4c34a16891f84e7b', 'hamza@mail.com', NULL, NULL, NULL, 'hamza', 'abu qwaider', '', NULL, 'download.png', '20:28:04', '2021-12-17', NULL, 0),
-(20, 1, '', '827ccb0eea8a706c4c34a16891f84e7b', 'ayman@mail.com', NULL, NULL, NULL, 'ايمن', 'حسين', '', NULL, 'download.png', '20:32:05', '2021-12-17', NULL, 0);
+(21, 2, 'root', '81dc9bdb52d04dc20036dbd8313ed055', 'hussainabuqattam@gmail.co', NULL, NULL, NULL, 'hussain ', ' abuqattam', '', NULL, 'download.png', '12:16:33', '2021-12-29', NULL, 1),
+(22, 2, 'root', '81dc9bdb52d04dc20036dbd8313ed055', 'hussain@gmail.com', NULL, NULL, NULL, 'ibrahinm', 'hussain', '', NULL, 'download.png', '11:00:24', '2021-12-30', NULL, 1);
 
 --
 -- Indexes for dumped tables
@@ -385,6 +414,14 @@ ALTER TABLE `post`
   ADD KEY `post_ibfk_3` (`main_id`);
 
 --
+-- Indexes for table `rating`
+--
+ALTER TABLE `rating`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `post_id` (`post_id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
 -- Indexes for table `sub_category`
 --
 ALTER TABLE `sub_category`
@@ -417,7 +454,7 @@ ALTER TABLE `chat`
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
 
 --
 -- AUTO_INCREMENT for table `comment_replies`
@@ -447,13 +484,19 @@ ALTER TABLE `notes`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=180;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=181;
 
 --
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+
+--
+-- AUTO_INCREMENT for table `rating`
+--
+ALTER TABLE `rating`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `sub_category`
@@ -465,7 +508,7 @@ ALTER TABLE `sub_category`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- Constraints for dumped tables
@@ -505,6 +548,13 @@ ALTER TABLE `orders`
 ALTER TABLE `post`
   ADD CONSTRAINT `post_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `sub_category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `post_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `rating`
+--
+ALTER TABLE `rating`
+  ADD CONSTRAINT `rating_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `post` (`id`),
+  ADD CONSTRAINT `rating_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `sub_category`

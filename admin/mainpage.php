@@ -10,9 +10,7 @@
             
     $stmt1 = $con->prepare("SELECT * FROM admin");
     $stmt1 ->execute();
-    $row1 = $stmt1->fetchAll();   
-    
-
+    $row1 = $stmt1->fetchAll();      
             ?>
 
 <!--start main-content-->
@@ -128,18 +126,20 @@
       function drawChart() {
 
         var data = google.visualization.arrayToDataTable([
-          ['category_id', 'user_id']
+          ['category_id', 'user_id']]);
 
+        var options = {
+          title: 'My Daily Activities'
+        };
 
-          <?php 
-                $sql = "SELECT * FROM post";
-                $fire = mysqli_query($result,$sql);
-                while ($r = mysqli_fetch_assoc($fire)) {
-                    echo "['".$r['category_id']."',".$r['user_id']."]";
-                }
-                    
-    ?>
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 
+          ['Task', 'Hours per Day'],
+          ['Work',     11],
+          ['Eat',      2],
+          ['Commute',  2],
+          ['Watch TV', 2],
+          ['Sleep',    7]
         ]);
 
         var options = {

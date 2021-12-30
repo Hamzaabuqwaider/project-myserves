@@ -14,7 +14,8 @@ if(isset($_SESSION["userid"]))
   $post_name = $_GET["post_name"];
   $post_id = (int)$_GET["post_id"];
 
-  $post = $con->prepare("SELECT *,post.id as post_id, users.first_name,users.id as user , users.last_name , users.Response_speed FROM post INNER JOIN users ON users.id  = post.user_id WHERE post.id='$post_id'");
+  $post = $con->prepare("SELECT *,post.id as post_id, users.first_name,users.id as user ,
+   users.last_name , users.Response_speed FROM post INNER JOIN users ON users.id  = post.user_id WHERE post.id='$post_id'");
   $post->execute();
   $row = $post->fetch();
 
@@ -57,25 +58,25 @@ if(isset($_SESSION["userid"]))
                <i class="fab fa-cc-mastercard" style="color:#0000ff82;"></i>  
            </div>           
                <div class="group">      
-                <input type="text" id="requst" value="$"  >
+                <input type="text" id="requst" value=""  >
                 <span class="highlight"></span>
                 <span class="bar"></span>
                 <label>أدخل المبلغ</label>
             </div>
             <div class="group d-none">      
-                <input type="text" id="discount" value="$">
+                <input type="text" id="discount" value="">
                 <span class="highlight"></span>
                 <span class="bar"></span>
                 <label>ضريبة الموقع (5%)</label>
             </div>
             <div class="group">      
-                <input type="text" id="discount-tow" value="$" >
+                <input type="text" id="discount-tow" value="" >
                 <span class="highlight"></span>
                 <span class="bar"></span>
                 <label>قيمة الخصم للموقع (%5) </label>
             </div>
             <div class="group">      
-                <input type="text" id="moyna" value="$" name="price">
+                <input type="text" id="moyna" value="" name="price">
                 <span class="highlight"></span>
                 <span class="bar"></span>
                 <label> الناتج النهائي (بدينار)</label>

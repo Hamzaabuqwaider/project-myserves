@@ -52,78 +52,27 @@
 <div class="container sections-mainpage">
     <h1>بعض الاقسام والاعمال في لموقع</h1>
     <div class="row">
+        <?php
+    
+           $main = $con->prepare("SELECT * FROM main_categories LIMIT 8 ");
+           $main->execute();
+           $main_row = $main->fetchAll();
+
+           foreach($main_row as $main_post ) {
+               if($main_post['RegStatus'] == 1){
+           
+        ?>
+
         <div class="col-md-3">
             <div class="main-body-img">
                 <div class="color-overlay-section-main-page"></div>
                 <img src="layot\img\pexels-lukas-574071.jpg" alt="">
                 <div class="text-section-main-page">
-                    <a href="#">برمجة وتطوير</a>
+                <a href="main_section.php?Cat_id=<?= $main_post['title_cat']?>"><?php echo $main_post['title_cat'] ?></a>
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="main-body-img">
-                <div class="color-overlay-section-main-page"></div>
-                <img src="layot\img\pexels-mikael-blomkvist-6476254.jpg" alt="">
-                <div class="text-section-main-page">
-                    <a href="#">اعمال</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="main-body-img">
-                <div class="color-overlay-section-main-page"></div>
-                <img src="layot\img\pexels-pixabay-147413.jpg" alt="">
-                <div class="text-section-main-page">
-                    <a href="#">تسويق الكتروني </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="main-body-img">
-                <div class="color-overlay-section-main-page"></div>
-                <img src="layot\img\pexels-ketut-subiyanto-4559555.jpg" alt="">
-                <div class="text-section-main-page">
-                    <a href="#">دورات عن بعد</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="main-body-img">
-                <div class="color-overlay-section-main-page"></div>
-                <img src="layot\img\pexels-kaboompics-com-6224.jpg" alt="">
-                <div class="text-section-main-page">
-                    <a href="#">تصميم</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="main-body-img">
-            <div class="color-overlay-section-main-page"></div>
-                <img src="layot\img\pexels-artem-podrez-8986145.jpg" alt="">
-                <div class="text-section-main-page">
-                    <a href="#">صيانة مركبات</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="main-body-img">
-                <div class="color-overlay-section-main-page"></div>
-                   <img src="layot\img\pexels-rodolfo-clix-1036936.jpg" alt="">
-                   <div class="text-section-main-page">
-                       <a href="#">كهرباء</a>
-                   </div>
-               </div>
-           </div>
-           <div class="col-md-3">
-               <div class="main-body-img">
-                   <div class="color-overlay-section-main-page"></div>
-                   <img src="layot\img\pexels-gunnar-ridderström-4318441 (1).jpg" alt="">
-                   <div class="text-section-main-page">
-                       <a href="#">اقسام اخرى</a>
-                   </div>
-               </div>
-           </div>
+        <?php } } ?>
        </div>
    </div>
  <!--section-mainpage-->
@@ -173,152 +122,31 @@
     <div class="row">
         <div class="col-md-12">
             <div id="testimonial-slider" class="owl-carousel"> 
-                <article class="material-card Red ">
-                <div id="description-box" class="description-front-box ">
-                    <h2>ترجمة</h2>
-                    <p><i class="far fa-eye" style="margin-left:5px;color: #f8f9fa;"></i>7 من طلبوا هذه الخدمة</p>
-                    <button type="button" class="btn btn-outline-light" style="font-weight: bold;">تفاصيل الخدمة</button>
-                </div>
-                <div class="mc-content">
-                <div id="" class="color-overlay-section-main mains-sections"></div>
-                    <div class="img-container">
-                      <img class="img-responsive" src="layot/img/pexels-cottonbro-4778611.jpg">
-                    </div>
-                    <div class="mc-description">
-                        <div class="description-back-box">
-                            <h2>ترجمة</h2>
-                            <p><i class="far fa-eye" style="margin-left:5px;color: #f8f9fa;"></i>7 من طلبوا هذه الخدمة</p>
-                        </div>
-                      <div class="ul-details-tow-ico">
-                         <ul>
-                            <li><i class="fas fa-truck"></i><span>10 طلبات جاري تنفيذها</span></li>
-                            <li> <i class="fas fa-reply"></i><span>م. سرعة رد: 10 ساعات</span></li>
-                         </ul>
-                       </div>
-                       <div class="visit-wibsite">
-                            <ul>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star set-white"></i></li>
-                            </ul>
-                        </div>                    
-                    </div>
-                </div>
-                <a class="mc-btn-action">
-                    <i class="fa fa-bars"></i>
-                </a>
-                <div class="mc-footer">
-                    <button type="button" class="btn btn-outline-light">طلب الخدمة</button>
-                </div>
-            </article>
+               
 
-            <!---test 1--->
-            <article class="material-card Red">
-                <div id="description-box" class="description-front-box ">
-                    <h2>تصميم</h2>
-                    <p><i class="far fa-eye" style="margin-left:5px;color: #f8f9fa;"></i>30 من طلبوا هذه الخدمة</p>
-                    <button type="button" class="btn btn-outline-light" style="font-weight: bold;">تفاصيل الخدمة</button>
-                </div>
-              
-                <div class="mc-content">
-                <div id="" class="color-overlay-section-main mains-sections"></div>
-                    <div class="img-container">
-                        <img class="img-responsive" src="layot/img/pexels-mikael-blomkvist-6476254.jpg">
-                    </div>
-                    <div class="mc-description">
-                        <div class="description-back-box">
-                        <h2>تصميم</h2>
-                        <p><i class="far fa-eye" style="margin-left:5px;color: #f8f9fa;"></i>30 من طلبوا هذه الخدمة</p>
-                        </div>
-                      <div class="ul-details-tow-ico">
-                         <ul>
-                            <li><i class="fas fa-truck"></i><span>10 طلبات جاري تنفيذها</span></li>
-                            <li> <i class="fas fa-reply"></i><span>م. سرعة رد: 10 ساعات</span></li>
-                         </ul>
-                       </div>
-                       <div class="visit-wibsite">
-                            <ul>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star set-white"></i></li>
-                            </ul>
-                        </div>                    
-                    </div>
-                </div>
-                <a class="mc-btn-action">
-                    <i class="fa fa-bars"></i>
-                </a>
-                <div class="mc-footer">
-                    <button type="button" class="btn btn-outline-light">طلب الخدمة</button>
-                </div>
-            </article>
-            <!---test 1--->
-             <!---test 2--->
-            <article class="material-card Red">
-                <div id="description-box" class="description-front-box ">
-                    <h2>تصميم</h2>
-                    <p><i class="far fa-eye" style="margin-left:5px;color: #f8f9fa;"></i>30 من طلبوا هذه الخدمة</p>
-                    <button type="button" class="btn btn-outline-light" style="font-weight: bold;">تفاصيل الخدمة</button>
-                </div>
-              
-                <div class="mc-content">
-                <div id="" class="color-overlay-section-main mains-sections"></div>
-                    <div class="img-container">
-                        <img class="img-responsive" src="layot/img/pexels-mikael-blomkvist-6476254.jpg">
-                    </div>
-                    <div class="mc-description">
-                        <div class="description-back-box">
-                        <h2>تصميم</h2>
-                        <p><i class="far fa-eye" style="margin-left:5px;color: #f8f9fa;"></i>30 من طلبوا هذه الخدمة</p>
-                        </div>
-                      <div class="ul-details-tow-ico">
-                         <ul>
-                            <li><i class="fas fa-truck"></i><span>10 طلبات جاري تنفيذها</span></li>
-                            <li> <i class="fas fa-reply"></i><span>م. سرعة رد: 10 ساعات</span></li>
-                         </ul>
-                       </div>
-                       <div class="visit-wibsite">
-                            <ul>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star set-white"></i></li>
-                            </ul>
-                        </div>                    
-                    </div>
-                </div>
-                <a class="mc-btn-action">
-                    <i class="fa fa-bars"></i>
-                </a>
-                <div class="mc-footer">
-                    <button type="button" class="btn btn-outline-light">طلب الخدمة</button>
-                </div>
-            </article>
-           <!---test 2--->
+           <?php
+           $post = $con->prepare("SELECT * FROM post LIMIT 8");
+           $post->execute();
+           $row = $post->fetchAll();
 
-
-             <!---test 3--->
+           foreach($row as $posts ) {
+           ?>
 
             <article class="material-card Red">
                 <div id="description-box" class="description-front-box ">
-                    <h2>برمجة صفحات امامية</h2>
+                    <h2><?php echo $posts['title'] ?></h2>
                     <p><i class="far fa-eye" style="margin-left:5px;color: #f8f9fa;"></i>50 من طلبوا هذه الخدمة</p>
-                    <button type="button" class="btn btn-outline-light" style="font-weight: bold;">تفاصيل الخدمة</button>
+                    <a href="details-test.php?id=<?= $posts['id']?>"><button type="button" class="btn btn-outline-light" style="font-weight: bold;">تفاصيل الخدمة</button></a>
                 </div>
               
                 <div class="mc-content">
                 <div id="" class="color-overlay-section-main mains-sections"></div>
                     <div class="img-container">
-                        <img class="img-responsive" src="layot/img/pexels-lukas-574071.jpg">
+                        <img class="img-responsive" src="../project-myserves\layot\img\<?php echo $posts['img'];?>">
                     </div>
                     <div class="mc-description">
                     <div class="description-back-box">
-                        <h2>برمجة صفحات امامية</h2>
+                        <h2><?php echo $posts['title'] ?></h2>
                         <p><i class="far fa-eye" style="margin-left:5px;color: #f8f9fa;"></i>50 من طلبوا هذه الخدمة</p>
                     </div>
                       <div class="ul-details-tow-ico">
@@ -341,55 +169,11 @@
                 <a class="mc-btn-action">
                     <i class="fa fa-bars"></i>
                 </a>
-                <div class="mc-footer">
-                    <button type="button" class="btn btn-outline-light">طلب الخدمة</button>
-                </div>
+              
             </article>
+            <?php } ?>
             <!---test 3--->
-             <!---test 4--->
-
-            <article class="material-card Red">
-                <div id="description-box" class="description-front-box ">
-                    <h2>برمجة صفحات امامية</h2>
-                    <p><i class="far fa-eye" style="margin-left:5px; color: #f8f9fa;"></i>50 من طلبوا هذه الخدمة</p>
-                    <button type="button" class="btn btn-outline-light" style="font-weight: bold;">تفاصيل الخدمة</button>
-                </div>
-              
-                <div class="mc-content">
-                <div id="" class="color-overlay-section-main mains-sections"></div>
-                    <div class="img-container">
-                        <img class="img-responsive" src="layot/img/pexels-lukas-574071.jpg">
-                    </div>
-                    <div class="mc-description">
-                    <div class="description-back-box">
-                        <h2>برمجة صفحات امامية</h2>
-                        <p><i class="far fa-eye" style="margin-left:5px;color: #f8f9fa;"></i>50 من طلبوا هذه الخدمة</p>
-                    </div>
-                      <div class="ul-details-tow-ico">
-                         <ul>
-                            <li><i class="fas fa-truck"></i><span>10 طلبات جاري تنفيذها</span></li>
-                            <li> <i class="fas fa-reply"></i><span>م. سرعة رد: 10 ساعات</span></li>
-                         </ul>
-                       </div>
-                       <div class="visit-wibsite">
-                            <ul>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star set-white"></i></li>
-                            </ul>
-                        </div>                    
-                    </div>
-                </div>
-                <a class="mc-btn-action">
-                    <i class="fa fa-bars"></i>
-                </a>
-                <div class="mc-footer">
-                    <button type="button" class="btn btn-outline-light">طلب الخدمة</button>
-                </div>
-            </article>
-            <!---test 4---> 
+            
                 </div>
             </div>
         </div>

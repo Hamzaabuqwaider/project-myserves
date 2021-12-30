@@ -130,6 +130,7 @@
                                         $chat = $con->prepare("SELECT *, users.id as id,users.imgg as img ,chat.to_id as CHAT_ID,chat.from_id as FROM_ID  FROM users
                                         INNER JOIN chat ON chat.from_id = users.id
                                         WHERE chat.to_id = '$roo' ORDER BY id DESC LIMIT 5 ");
+
                                         $chat->execute();
                                         $stmt = $chat->fetchAll();
 

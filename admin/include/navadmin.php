@@ -301,7 +301,7 @@ include ("../include/connect.php");
             ?>
        <li class="nav-item">
          <div class="avt dropdown">
-             <img src="layot/img/<?php echo $info['img'] ?>" alt="user photo"id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             <img src="../layot/img/<?php echo $info['img'] ?>" alt="user photo"id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
              <ul id="user-menu" class="dropdown-menu imgs-drop">
              <li class="dropdown-menu-item">
                     <a href="edit-inforamtion-admin.php?action=Edit&admin_id=<?php echo $_SESSION['id_admin']?>" class="dropdown-menu-link drop-img">
@@ -390,7 +390,7 @@ include ("../include/connect.php");
      <li class="sidebar-nav-item">
          <a href="section-admin.php?do=Manage"class="sidebar-nav-link">
            <div>
-           <i class="fas fa-chart-pie"></i>
+           <i class="fas fa-braille"></i>
            </div>
            <span>
                الأقسام
