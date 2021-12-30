@@ -40,3 +40,20 @@ var chart = new Chart(ctx, {
     // Configuration options go here
     options: {}
 });*/
+/*add-img-edit-profile-*/
+function readUrledit(event){
+    "use strict"
+var uploadimge = document.getElementById("uplodeimgedit");
+if(event.files){
+var readers = new FileReader();
+readers.readAsDataURL(event.files[0]);
+readers.onload=(download)=>{
+uploadimge.src = download.target.result;
+}
+}
+};     
+/*add-img-edit-profile-click*/
+function uptateimge(){
+    "use strict"
+var uptateimgeS=document.getElementById("uplode-img-edit");
+uptateimgeS.click();};

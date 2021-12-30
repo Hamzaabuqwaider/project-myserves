@@ -126,6 +126,7 @@ if (isset($_SESSION['userid'])) {
                    
                     $name        = $_POST['name'];
                     $sub_c       = $_POST['sub-cat'];
+                    $main_c    = $_POST['main-cat'];
                     $Body        = $_POST['body'];
                     $imageName   = $_FILES['upload']['name'];
                     $imageSize   = $_FILES['upload']['size'];
@@ -137,6 +138,9 @@ if (isset($_SESSION['userid'])) {
                     if(empty($name)) {
                         $formErrors[] = 'يرجى إدخال الإسم';
                     }
+                    if(empty($main_c)) {
+                        $formErrors[] = 'يرجى إدخال القسم الرئيسي';
+                        }
                     if(empty($sub_c)) {
                         $formErrors[] = 'يرجى إدخال القسم الفرعي';
                         }
@@ -167,13 +171,14 @@ if (isset($_SESSION['userid'])) {
                                 move_uploaded_file($imageTemp,'layot/img/' .$image);
                             // Insert Userinformation In The Database
                                 $stmt = $con->prepare("INSERT INTO 
-                                            post (title , body , category_id , user_id , img )
-                                            VALUES(:zname, :zbody, :zsub , :userid , :zimg )");
+                                            post (title , body , category_id , user_id , main_title, img )
+                                            VALUES(:zname, :zbody, :zsub , :userid , :zmain , :zimg )");
                                 $stmt->execute(array(
                                     'zname'     =>$name,
                                     'zbody'     =>$Body,
                                     'zsub'      =>$sub_c,
                                     'userid'    =>$_SESSION['userid'],
+                                    'zmain'     =>$main_c,
                                     'zimg'      =>$image
                              
                             ));

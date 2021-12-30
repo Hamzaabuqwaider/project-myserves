@@ -97,7 +97,6 @@ width: 100%;
     width: 380px;
     left: 12%!important;
     text-align: right;
-    background-color:#5c61663b;
     border-top: 0;
     border: 3px solid var(--Navy--color);
     border-radius: 5px;
@@ -1252,7 +1251,7 @@ font-size: 1.1rem;
 
 .material-card .det-display-none{display: none;}
 
-.material-card .description-back-box{background-color: var(--Navy--color);padding: 5px;color:var(--White--color);}
+.material-card .description-back-box{background-color: var(--Navy--color);padding: 5px;color:var(--White--color);padding-left: 60px;}
 
 .material-card .description-back-box h2{margin-right: 10px;font-size: 25px;}
 
@@ -1835,9 +1834,10 @@ right: 0.4em;
 border:1.5px solid white;
 }
 .tiem-zone{
-    padding-top: 50px;
-    margin-left: 50;
-    margin-right: -100px;
+    color: #ffffff87;
+    position: absolute;
+    top: 60px;
+    right: 110px;
     color: #ffffff87;
 }
 .main-caht .online_icon_tow{
@@ -2290,3 +2290,4 @@ margin-bottom: -20px;
   .alert .fa {
     margin-right:.3em;
   }
+  

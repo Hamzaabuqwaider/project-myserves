@@ -69,7 +69,7 @@
                               <td><?php echo $post["add_data"] ?></td>
                               <td>
                                   <!-- وصف الخدمة -->
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal<?= $post["ID"] ?>">
+                                <button type="button" style="background-color: #d39e00;color:white;" class="btn btn" data-toggle="modal" data-target="#exampleModal<?= $post["ID"] ?>">
                                     وصف الخدمة
                                 </button>
 
@@ -78,7 +78,7 @@
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">وصــف الخـدمـة</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel" >وصــف الخـدمـة</h5>
                                     </div>
                                     <div class="modal-body">
                                         <?= $post["body"] ?>
@@ -93,11 +93,11 @@
                               </td>
                               <td>
                               <?php if ($post['Reg'] == 0) {
-                                    echo "<a href='order-admin.php?do=Activate&post_ID=" . $post["ID"] . "' class='btn btn-info activate'><i class='fa fa-check'></i> قبول الخدمة</a>";
+                                    echo "<a href='order-admin.php?do=Activate&post_ID=" . $post["ID"] . "' class='btn btn-Success'><i class='fa fa-check'></i> قبول الخدمة</a>";
                                    } ?>
                               </td>
                               <td>
-                              <a href="order-admin.php?do=Delete&post_ID=<?php echo $post["ID"] ?>"><button type="button" class="btn btn-danger">رفض الخدمة</button></a>
+                              <a href="order-admin.php?do=Delete&post_ID=<?php echo $post["ID"] ?>"><button type="button" class="btn btn-danger"><i class="fas fa-times"></i> رفض الخدمة</button></a>
                               </td>
                           </tr>
                           <!--test-->

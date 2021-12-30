@@ -234,7 +234,7 @@ if(isset($_SESSION['userid']))
             <div class="content">
                 <h3><span>خد</span>متك</h3>
                 <p>اذا كان لديك حساب سجل دخولك من هنا  </p>
-                <a href="login.php"><button id="sign-in-btn"  class="btn-login-sign-in transparent">تسجيل الدخول</button></a>
+                <a href="main-login.php"><button id="sign-in-btn"  class="btn-login-sign-in transparent">تسجيل الدخول</button></a>
             </div>
             <img src="layot\img\undraw_Code_thinking_re_gka2.svg" class="image-sign-in">
         </div> 
@@ -249,5 +249,4 @@ if(isset($_SESSION['userid']))
     ?>
 
 <?php include ("include/footer.php");?>
-</body>
-</html>
+

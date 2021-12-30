@@ -7,9 +7,10 @@ ob_start();
     include ("include/topnav.php");
     include ("include/function.php");
    include('include/loding.php');
+
 if(isset($_SESSION['userid'])) {
-$Cat_id = isset($_GET['Cat_id']) && is_numeric($_GET['Cat_id']) ? intval($_GET['Cat_id']) :0;
-$stmt = $con-> prepare("SELECT * FROM post WHERE category_id = ? ");
+$Cat_id = $_GET['Cat_id'];
+$stmt = $con-> prepare("SELECT * FROM post WHERE main_title = ? ");
 $stmt->execute(array($Cat_id));
 $stmt = $stmt->fetchAll();
 
@@ -36,7 +37,6 @@ $stmt = $stmt->fetchAll();
                 <?php foreach($stmt as $sectionId) { 
                     regester($sectionId['id']);
                     if($sectionId['RegStatus'] == 1) { 
-                        
                     
                     ?>
                      
@@ -155,7 +155,8 @@ $stmt = $stmt->fetchAll();
     </div>
 </div>  
 <!--end about prodacts and services-->
-<?php include ("include/footer.php"); }else {
+<?php include ("include/footer.php");
+     }else {
         header("Location: main-login.php");
     }
 ?>

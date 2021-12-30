@@ -29,7 +29,7 @@
                     <form action="?action=Update" method="POST">
                     <input type="hidden" name='userid' value="<?php echo $admin_id ?>"/>
                     <div class="information-img">
-                        <img class="information-imge-" name="img" src="../project-myserves/admin/layot/img/<?php echo $row['img'] ?>"  id="uplodeimgedit" alt="">
+                        <img class="information-imge-" name="img" src="../layot/img/<?php echo $row['img'] ?>"  id="uplodeimgedit" alt="">
                         <input type="file" id="uplode-img-edit" name="upload" onchange ="readUrledit(this)" hidden>
                         <abbr title="تغير الصوره الشخصية"> <div class="img-info" id="clickimgedite" onclick="uptateimge()"></abbr>
                         <i class="fas fa-camera"></i>
@@ -39,26 +39,26 @@
                     <div class="container">
                         <div class="form-edit">
                                 <div class="form-row">
-                                    <div class="col-lg-4 col-md-6">
+                                    <div class="col-lg-6 col-md-6">
                                         <div class="mr-form">
                                             <label class="text-form " for="exampleInputEmail1">الأســم</label>
                                             <input type="text" class="form-control" name="F_name" value='<?php echo $row['admin_name'] ?>'  placeholder=" ">
                                         </div>
                                     </div>
-                                    <div class="col-lg-4 col-md-6">
+                                    <div class="col-lg-6 col-md-6">
                                         <div class="mr-form">
                                             <label class="text-form"  for="inputState"> البـريـد الإلكـترونـي</label>
                                             <input type="email" class="form-control"  name="email" value='<?php echo $row['email'] ?>'> 
                                         </div>
                                     </div>
-                                    <div class=" col-lg-4  col-md-6">
+                                    <div class=" col-lg-6  col-md-6">
                                         <div class="mr-form">
                                             
                                             <label  class="text-form" for="inputPassword6">كلمة المرور الحاليه</label>
                                             <input type="password" id="inputPassword6" class="form-control" name="oldpassword"  value='<?php echo $row['Password'] ?>' aria-describedby="passwordHelpInline">
                                         </div>
                                     </div>
-                                    <div class=" col-lg-4  col-md-6">
+                                    <div class=" col-lg-6  col-md-6">
                                         <div class="mr-form">
                                             
                                             <label  class="text-form" for="inputPassword6">كلمة المرور الجديده</label>
@@ -103,17 +103,6 @@
             }
 
             if(empty($formErrors)){
-
-                $stm2 = $con->prepare("SELECT * FROM admin WHERE admin_name = ? AND id != ?");
-                $stm2->execute(array($First_Name,$id));
-                $count = $stm2->rowCount();
-
-                if ($count == 1) {
-
-                    echo '<div class="alert alert-danger">Sorry This User Is Exist</div>';
-    
-                } else {
-
                     $stmt = $con->prepare("UPDATE admin SET 
                                                             admin_name = ?,
                                                             email = ?,
@@ -129,11 +118,11 @@
 
                     echo "<script>alert('تم تعديل معلوماتك بنجاح ');</script>";
                     
-                    $Location = "index-admin.php";
+                    $Location = "mainpage.php";
 
                     redirectHome($Location,2);
                                         
-                }
+                
             }
 
         } else {
