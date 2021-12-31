@@ -5,7 +5,7 @@ include ("include/connect.php");
 include ("include/header.php");
 include ("include/topnav.php");
 include ("include/function.php");
-include('include/loding.php');
+// include('include/loding.php');
 
 if (isset($_SESSION['userid'])) {
 
@@ -53,7 +53,7 @@ if (isset($_SESSION['userid'])) {
                <div class="rating "><!--
                 --><a href="details-test.php?id=<?= $ID ?>" class="<?= $avarage == 5 ? "select" : "" ?>" title="Give 5 stars">★</a><!--
                 --><a href="details-test.php?id=<?= $ID ?>" class="<?= $avarage == 4 ? "select" : "" ?>" title="Give 4 stars">★</a><!--
-                --><a href="details-test.php?id=<?= ID ?>" class="<?= $avarage == 3 ? "select" : "" ?>" title="Give 3 stars">★</a><!--
+                --><a href="details-test.php?id=<?= $ID ?>" class="<?= $avarage == 3 ? "select" : "" ?>" title="Give 3 stars">★</a><!--
                 --><a href="details-test.php?id=<?= $ID ?>" class="<?= $avarage == 2 ? "select" : "" ?>" title="Give 2 stars">★</a><!--
                 --><a href="details-test.php?id=<?= $ID ?>" class="<?= $avarage == 1 ? "select" : "" ?>" title="Give 1 star">★</a>
                 </div>
@@ -80,8 +80,8 @@ if (isset($_SESSION['userid'])) {
                 </div>
                 <?php endif; ?>
   <!--comment-->
-  <div class="p-3 text-center">
-    <h6 style="font-size:30px;">ألتعليقات</h6>
+  <div class=" text-center">
+    <h6 style="font-size:30px;margin-top: 50px; padding-top:200px;">ألتعليقات</h6>
 </div>
 <div class="col-lg-12">
 <div class="back-ground-comment-part-tow">

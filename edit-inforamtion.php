@@ -124,9 +124,6 @@ if (isset($_SESSION['userid'])){
 
 } elseif($do == 'Update'){
 
-    echo "<h1 class='text-center'>Update Member</h1>";
-    echo "<div class='container'>";
-
     if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
         $id = $_POST['userid'];
@@ -177,9 +174,9 @@ if (isset($_SESSION['userid'])){
                                     $Pass,
                                     $image,
                                     ));
-
-                echo '<div class="alert alert-success">Record Updated</div>';
-                                    
+                                    echo '<script>alert("تم تعديل معلوماتك ")</script>';
+                                    $location ="index.php";
+                                    redirect($location);
             
         }
 

@@ -6,7 +6,7 @@ ob_start();
     include ("include/header.php");
     include ("include/topnav.php");
     include ("include/function.php");
-   include('include/loding.php');
+//    include('include/loding.php');
 
 if(isset($_SESSION['userid'])) {
 $Cat_id = $_GET['Cat_id'];

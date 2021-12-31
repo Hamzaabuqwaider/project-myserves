@@ -2328,11 +2328,11 @@ float:none
     height: 145px;
     border: 1px solid #ccc;
     text-align: center;
-    margin-right: 122px;
-    margin-top: -75px;
-    margin-bottom: 100px;
     padding-top: 40px;
     background-color: #49505724;
+    position: absolute;
+    bottom: 0px;
+    right: 198px;
 }
 .what-rating{
     font-size: 20px;

@@ -14,7 +14,7 @@ $stmt = $con->prepare("SELECT * FROM orders WHERE from_id = '$r' ");
 $stmt ->execute();
 $row = $stmt->fetchAll();
 
-    $stmt1 = $con->prepare("SELECT *,orders.price as price, post.img as IMG,post.title as TITLE,post.body as BODY, users.name as namm  FROM orders
+    $stmt1 = $con->prepare("SELECT *,orders.price as price, post.img as IMG,post.title as TITLE,post.body as BODY FROM orders
      INNER JOIN post ON post.id  = orders.post_id
      INNER JOIN users ON users.id  = orders.from_id WHERE orders.to_id = '$r' ");
     $stmt1 ->execute();

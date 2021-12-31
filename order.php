@@ -6,7 +6,7 @@ include ("include/connect.php");
 include ("include/header.php");
 include ("include/topnav.php");
 include ("include/function.php");
-include('include/loding.php');
+// include('include/loding.php');
 
 // include("include/loding.php");
 
@@ -23,7 +23,7 @@ $r =$_SESSION['userid'];
 
 
 
-  $stmt1 = $con->prepare("SELECT *,orders.id as  order_id,orders.price as price, post.img as IMG,post.title as TITLE,post.body as BODY, users.name as namm,post.id as post_id  FROM orders
+  $stmt1 = $con->prepare("SELECT *,orders.id as  order_id,orders.price as price, post.img as IMG,post.title as TITLE,post.body as BODY  FROM orders
   INNER JOIN post ON post.id  = orders.post_id
   INNER JOIN users ON users.id  = orders.to_id WHERE orders.from_id = '$r' ");
   $stmt1 ->execute();
@@ -55,7 +55,7 @@ $r =$_SESSION['userid'];
                     <img class="imge-cart"  src="../project-myserves/layot/img/<?php echo $row['IMG'] ?>" alt="">
                     <div>
                         <p style="font-weight:800;font-size:20px"><?php echo $row["TITLE"] ?></p>
-                        <small style="font-weight:800 ;font-size:15px"><?php echo $row['namm'] ?></small>
+                        <small style="font-weight:800 ;font-size:15px"><?php echo $row['first_name'] . " " . $row['last_name'] ?></small>
                         <br>
                     </div>
                 </div>
@@ -82,11 +82,9 @@ $stmt = $con->prepare("DELETE FROM orders  WHERE id = '$id' ");
 
 $stmt->execute();
 
-$theMsg = "<div>" . $stmt->rowCount() . ' Record Deleted</div>';
-
-$Location = "order.php?do=Manage";
-
-redirectHome($Location);
+            echo '<script>alert("تم حذف الطلب")</script>';
+            $location ="index.php";
+            redirect($location);
 
 }
 

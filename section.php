@@ -9,8 +9,10 @@ ob_start();
 //    include('include/loding.php');
 if(isset($_SESSION['userid'])) {
 $Cat_id = isset($_GET['Cat_id']) && is_numeric($_GET['Cat_id']) ? intval($_GET['Cat_id']) :0;
-$stmt = $con-> prepare("SELECT * FROM post WHERE category_id = ? LIMIT 6 ");
 
+
+
+$stmt = $con-> prepare("SELECT * FROM post  WHERE category_id = ? LIMIT 9 ");
 $stmt->execute(array($Cat_id));
 $posts = $stmt->fetchAll();
 
@@ -39,8 +41,6 @@ $sub = $stmt1->fetch();
     <div class="row">
         <div class="container">
             <div class="card-group">
-
-
                 <?php if(!empty($posts)): foreach($posts as $post): 
                     regester($post['id']);
                     if($post['RegStatus'] == 1) { 
@@ -53,6 +53,10 @@ $sub = $stmt1->fetch();
                         }
                         $numberpeople = count($ratings);
                         $avarage = $numberpeople != 0 ?  floor($sumRating / count($ratings)) : $sumRating;
+
+                        $stmt3 = $con->prepare("SELECT *,count(id) as order_count FROM orders WHERE post_id = ?");
+                        $stmt3->execute([$post['id']]);
+                        $order = $stmt3->fetch();
                     
                     ?>
                      
@@ -60,10 +64,9 @@ $sub = $stmt1->fetch();
 
                     <article class="material-card Red">
                 <div id="description-box" class="description-front-box ">
-                <h2><?php echo $sectionId['title']?></h2>
-                    <p><i class="far fa-eye" style="margin-left:5px;color: #f8f9fa;"></i><?php echo $order['Count_order'] ?> من طلبوا هذه الخدمة</p>
-                    <a href="details-test.php?id=<?= $sectionId['id']?>"><button type="button" class="btn btn-outline-light" style="font-weight: bold;">تفاصيل الخدمة</button></a>
-
+                <h2><?php echo $post['title']?></h2>
+                    <p><i class="far fa-eye" style="margin-left:5px;color: #f8f9fa;"></i><?= $order['order_count']?> من طلبوا هذه الخدمة</p>
+                    <a href="details-test.php?id=<?= $post['id']?>"><button type="button" class="btn btn-outline-light" style="font-weight: bold;">تفاصيل الخدمة</button></a>
                 </div>
               
                 <div class="mc-content">
@@ -110,7 +113,7 @@ $sub = $stmt1->fetch();
         </div>
     </div>
     <div class="butoom-section">
-        <a href="sectionAll.php?Cat_id=<?= $Cat_id ?>"><button type="button" class="btn btn-dark">عرض المزيد</button></a>
+        <a href="sectionAll.php?Cat_id=<?= $Cat_id?>"><button type="button" class="btn btn-dark">عرض المزيد</button></a>
     </div>
 </div>
 <!-- end section box create ghazal-->
