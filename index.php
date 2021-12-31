@@ -5,7 +5,7 @@
     include ("include/header.php");
     include ("include/topnav.php");
     include ("include/function.php");
-    include('include/loding.php');
+    // include('include/loding.php');
     
 ?>
 
@@ -54,7 +54,7 @@
     <div class="row">
         <?php
     
-           $main = $con->prepare("SELECT * FROM main_categories LIMIT 8 ");
+           $main = $con->prepare("SELECT * FROM main_categories");
            $main->execute();
            $main_row = $main->fetchAll();
 
@@ -66,7 +66,7 @@
         <div class="col-md-3">
             <div class="main-body-img">
                 <div class="color-overlay-section-main-page"></div>
-                <img src="layot\img\pexels-lukas-574071.jpg" alt="">
+                <img src="../project-myserves/layot/img/<?php echo $main_post['img'];?>" alt="">
                 <div class="text-section-main-page">
                 <a href="main_section.php?Cat_id=<?= $main_post['title_cat']?>"><?php echo $main_post['title_cat'] ?></a>
                 </div>
@@ -130,12 +130,32 @@
            $row = $post->fetchAll();
 
            foreach($row as $posts ) {
-           ?>
+
+            $stmt2 = $con->prepare("SELECT * FROM rating WHERE post_id = ?");
+            $stmt2->execute([$posts['id']]);
+            $ratings = $stmt2->fetchAll();
+            $sumRating = 0;
+            foreach($ratings as $rating) {
+                $sumRating += $rating['number_rating'];
+            }
+            $numberpeople = count($ratings);
+            $avarage = $numberpeople != 0 ?  floor($sumRating / count($ratings)) : $sumRating;
+
+            $stmt3 = $con->prepare("SELECT *,count(id) as order_count FROM orders WHERE post_id = ?");
+            $stmt3->execute([$posts['id']]);
+            $order = $stmt3->fetch();
+
+            $stmt3 = $con->prepare("SELECT *,count(id) as order_count FROM orders WHERE post_id = ?");
+            $stmt3->execute([$posts['id']]);
+            $order = $stmt3->fetch();
+        
+        ?>
+           
 
             <article class="material-card Red">
                 <div id="description-box" class="description-front-box ">
                     <h2><?php echo $posts['title'] ?></h2>
-                    <p><i class="far fa-eye" style="margin-left:5px;color: #f8f9fa;"></i>50 من طلبوا هذه الخدمة</p>
+                    <p><i class="far fa-eye" style="margin-left:5px;color: #f8f9fa;"></i><?= $order['order_count']?> من طلبوا هذه الخدمة</p>
                     <a href="details-test.php?id=<?= $posts['id']?>"><button type="button" class="btn btn-outline-light" style="font-weight: bold;">تفاصيل الخدمة</button></a>
                 </div>
               
@@ -156,14 +176,14 @@
                          </ul>
                        </div>
                        <div class="visit-wibsite">
-                            <ul>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star set-white"></i></li>
-                            </ul>
-                        </div>                    
+                        <div class="rating col-12 pl-0 rating-show"><!--
+                            --><a href="details-test.php?id=<?= $posts['id'] ?>" class="<?= $avarage == 5 ? "select" : "" ?>" title="Give 5 stars">★</a><!--
+                            --><a href="details-test.php?id=<?= $posts['id'] ?>" class="<?= $avarage == 4 ? "select" : "" ?>" title="Give 4 stars">★</a><!--
+                            --><a href="details-test.php?id=<?= $posts['id'] ?>" class="<?= $avarage == 3 ? "select" : "" ?>" title="Give 3 stars">★</a><!--
+                            --><a href="details-test.php?id=<?= $posts['id'] ?>" class="<?= $avarage == 2 ? "select" : "" ?>" title="Give 2 stars">★</a><!--
+                            --><a href="details-test.php?id=<?= $posts['id'] ?>" class="<?= $avarage == 1 ? "select" : "" ?>" title="Give 1 star">★</a>
+                            </div>
+                    </div>                   
                     </div>
                 </div>
                 <a class="mc-btn-action">

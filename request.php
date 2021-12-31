@@ -34,7 +34,8 @@ if(isset($_SESSION["userid"]))
             $post_id,
             $price
  ]);
-}
+        echo '<script>alert("تم طلب الخدمه")</script>';
+    }
 ?>
 
 <div id="wrapper">
