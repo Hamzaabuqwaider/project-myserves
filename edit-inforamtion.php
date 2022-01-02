@@ -26,7 +26,7 @@ if (isset($_SESSION['userid'])){
 
         if($count > 0){ ?>
 <div class="edit-profile">
-<form action="?do=Update" method="POST">
+<form action="?do=Update" method="POST" enctype = "multipart/form-data">
         <input type="hidden" name='userid' value="<?php echo $userid ?>"/>
 <div class="container">
 <div class="row gutters">
@@ -36,7 +36,7 @@ if (isset($_SESSION['userid'])){
 		<div class="account-settings">
 			<div class="user-profile">
 				<div class="user-avatar">
-					<img id="uplodeimgedit"  src="../project-myserves/layot/img/<?php echo $row['imgg'] ?>" alt="">
+					<img id="uplodeimgedit"  src="../project-myserves/layot/img/<?php echo $row['imgg']; ?>" alt="">
                     <div class="p-image">
                      <abbr title="تعديل الصوره الشخصيه"><i onclick="uptateimge()" class="fa fa-camera upload-button icon-edit"></i></abbr>
                     </div>
@@ -44,6 +44,7 @@ if (isset($_SESSION['userid'])){
 				</div>
 				<h5 class="user-name"><?php echo $row['first_name'] ." ". $row['last_name'] ?></h5>
 				<h6 class="user-email"><?php echo $row['Email'] ?></h6>
+                
 			</div>
 		</div>
 	</div>
@@ -117,10 +118,11 @@ if (isset($_SESSION['userid'])){
 
 <?php
 
-} else {
+} else {?>
 
-    echo "<div class='alert alert-danger' role='alert'>There is no such ID </div>";
-}
+    <script> alert('لا يمكنك الوصول لهذا المستخدم')</script>
+
+<?php }
 
 } elseif($do == 'Update'){
 
@@ -132,32 +134,14 @@ if (isset($_SESSION['userid'])){
         $Date_Birth = $_POST['date_birth'];
         $Email = $_POST['email'];
         $Pass = empty($_POST['newpassword']) ? $_POST['oldpassword'] : MD5($_POST['newpassword']);
-        $image = $_POST['upload'];
-        // $image = $_POST['upload'];
-
-
-        $formErrors = array();
-
-        if(empty($First_Name)){
-            $formErrors[] = 'First Name Cant Be <strong> Empty</strong>';
-        }
-        if(empty($Last_Name)){
-            $formErrors[] = 'Last Name Cant Be <strong> Empty</strong>';
-        }
-        if(empty($Date_Birth)){
-            $formErrors[] = 'Date Birth Cant Be <strong> Empty</strong>';
-        }
-        if(empty($Email)){
-            $formErrors[] = 'Email Cant Be <strong> Empty</strong>';
-        }
-
-        foreach($formErrors as $error) {
-            echo '<div class="alert alert-danger">' . $error . '</div>' ;
-        }
-
-        if(empty($formErrors)){
-
-
+        $image = $_FILES['upload'];
+        $imageName   = $image['name'];
+        $imageSize   = $image['size'];
+        $imageTemp   = $image['tmp_name'];
+        $imageType   = $image['type'];
+        $imageAllowedExtentions = array("jpeg" , "jpg", "png" , "gif");
+        $image = rand(0 , 100000) . '_' . $imageName;
+        move_uploaded_file($imageTemp,'layot/img/' .$image);
                 $stmt = $con->prepare("UPDATE users SET 
                                                         first_name = ?, 
                                                         last_name = ?, 
@@ -177,18 +161,8 @@ if (isset($_SESSION['userid'])){
                                     echo '<script>alert("تم تعديل معلوماتك ")</script>';
                                     $location ="index.php";
                                     redirect($location);
-            
         }
-
-    } else {
-
-        echo "Sorry You Cant Browse This Page Directly";
-        
     }
-
-    echo "</div>";
-}
-
 include ("include/footer.php");
 }else {
     header("Location: main-login.php");

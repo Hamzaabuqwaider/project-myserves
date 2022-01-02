@@ -141,7 +141,8 @@
                                     <div class="bgchat">
                                     <a href="chat.php?user_id=<?php echo $_SESSION['username'];?>&post=<?php echo $row['FROM_ID'] ?>">
                                     <li class="list-group-item tow-bg ">
-                                            <img class="img-profile" src="layot/img/<?php echo $row["img"];?>">
+                                        
+                                            <img class="img-profile" src="../layot/img/<?php echo $row["img"];?>">
                                             <span class="time-notification"><i class="far fa-clock"></i><?php echo $row["created_at"];?></span>
                                             <span class="text-notification text-maseges">
                                                 <?php echo $row["first_name"]." ".$row["last_name"];?>
@@ -172,7 +173,6 @@
                             $User = $con->prepare('SELECT imgg FROM users WHERE id ="'.$_SESSION['userid'].'"');
                             $User->execute();
                             $info = $User->fetch();
-                         
                          ?>
                          <!--start profile-->
                          <li class="nav-item dropdown">
@@ -180,16 +180,32 @@
                                 <img class="main-img-profile" src="layot/img/<?php echo $info['imgg'] ?>">
                             </a>
                             <div class="dropdown-menu drop-nav-profile" aria-labelledby="navbarDropdownMenuLink">
+                         
+                            <?php 
+                         }
+                    if(isset($_SESSION['userid']))
+                    {
+                        switch ($_SESSION['usertype']) {
+                            case "1": ?>
                                 <a class="dropdown-item" href="khadmatuk.php?do=Manage&userid=<?php echo $_SESSION['userid']?>"><i class="far fa-address-card"></i>خدماتي</a>
                                 <a class="dropdown-item" href="Account-balance.php"><i class="fas fa-wallet"></i>الرصيد</a>
+                                
+                            <?php
+                            case "2":
+                                echo '';
+                                break;
+                            default:
+                            echo  '';
+                        }
+                    ?>
+
                                 <a class="dropdown-item" href="edit-inforamtion.php?do=Edit&userid=<?php echo $_SESSION['userid']?>"><i class="fas fa-user-edit"></i>تعديل الحساب</a>
                                 <a class="dropdown-item" href="logout.php"><i class="fas fa-door-open"></i> خروج</a>
-
                             </div>
                         </li>
                         <?php }else {
-                           echo "<a href='main-login.php'class='btn  btn-outline-light'style='padding: 10px 45px;'><i class='fas fa-sign-in-alt'></i>&nbsp;سجل الان</a>";
-                        } ?>
+                            echo "<a href='main-login.php'class='btn  btn-outline-light'style='padding: 10px 45px;'><i class='fas fa-sign-in-alt'></i>&nbsp;سجل الان</a>";
+                            } ?>
                          <!--end profile-->
                     </ul>
                 </div>
