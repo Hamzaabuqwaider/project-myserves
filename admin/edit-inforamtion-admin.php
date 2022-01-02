@@ -90,8 +90,6 @@
             $email = $_POST['email'];
             $Pass = empty($_POST['newpassword']) ? $_POST['oldpassword'] : MD5($_POST['newpassword']);
             $image = $_POST['upload'];
-
-
             $formErrors = array();
 
             if(empty($First_Name)){

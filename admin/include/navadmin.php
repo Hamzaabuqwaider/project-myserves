@@ -1,7 +1,6 @@
 <!--start navbar-->
 <?php   
-include ("../include/connect.php");
-
+include ("include/connect.php");
 ?>
 <div class="navbar">
    <ul class="navbar-nav">
@@ -11,11 +10,11 @@ include ("../include/connect.php");
          </a>
       </li>
        <li class="nav-item">
-          <a class="navbar-brand logos logo" href="index-admin.php"><span>خد</span>متك</a>
+          <a class="navbar-brand logos logo" href="../index.php"><span>خد</span>متك</a>
       </li>
    </ul>
    <!--start serch-->
-   <form action=""class="navbar-search">
+   <form action="" class="navbar-search">
       <input type="text"name="search" class="navbar-search-input" placeholder="أبحث...">
       <i class="fas fa-search"></i>
    </form>
@@ -30,7 +29,7 @@ include ("../include/connect.php");
          <ul  class="dropdown-menu notification-menu">
              <div class="dropdown-menu-header">
                  <span>
-                   ألرسائل  
+                   الرسائل  
                  </span>
              </div>
              <div class="dropdown-menu-content overlay-scrollbar">
@@ -68,7 +67,7 @@ include ("../include/connect.php");
                           <i class="far fa-envelope"></i>            
                         </div>
                         <span>
-                          لقد وصلك رسالة جديدة الأن
+                          لقد وصلك رسالة جديدة الآن
                         <br>
                             <span>
                                 15/07/2021

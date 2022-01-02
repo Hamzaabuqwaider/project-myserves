@@ -45,7 +45,6 @@ function checkItem($select, $from, $value){
     $stmt = $con->prepare("SELECT $select FROM $from where $select = ?");
     $stmt->execute(array($value));
     $count = $stmt->rowCount();
-
     return $count;
 }
 

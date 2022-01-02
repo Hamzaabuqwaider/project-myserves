@@ -86,7 +86,7 @@
                   <i class="fas fa-ellipsis-h"></i>
               </div>
               <div class="cardsd-content">
-                  <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
+                  <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="formGroupExampleInput">اسم القسم</label>
                         <input type="text" name="name_main" class="form-control" id="formGroupExampleInput" placeholder="اسم القسم">
@@ -122,28 +122,36 @@
      <?php if(isset($_POST["ins"])){
 
             $name_main = $_POST["name_main"];
-
             $rol = $_POST["rol"];
-
             $imageName   = $_FILES['upload']['name'];
             $imageSize   = $_FILES['upload']['size'];
             $imageTemp   = $_FILES['upload']['tmp_name'];
             $imageType   = $_FILES['upload']['type'];
             $imageAllowedExtentions = array("jpeg" , "jpg", "png" , "gif");
-            $imageExtension = strtolower(end(explode('.' , $imageName)));
+            $imageExtension = strtolower($imageName);
+            $image = $imageName;
+            move_uploaded_file($imageTemp,'layot/img/' .$image);
             
-            $image = rand(0 , 100000) . '_' . $imageName;
-            move_uploaded_file($imageTemp,'./layot/img/' .$image);
-            $insert = $con->prepare("INSERT INTO main_categories (title_cat,type,img) VALUES(:zname , :ztype ,:zimg)");
-            $insert->execute(array(
-                'zname' => $name_main,
-                'ztype' => $rol,
-                'zimg'  => $image
-            ));
-            $Location = "section-admin.php?do=Manage";
 
-            redirectHome($Location);
+            $check_main = $con->prepare("SELECT * FROM main_categories");
+            $check_main ->execute();
+            $check_m = $check_main->fetchAll();
 
+            if($check_m['title_cat'] == $name_main) {
+                echo "<script>alert('هذا القسم موجود بالفعل ');</script>";
+                $Location = "section-admin.php";
+                redirectHome($Location);
+                } else {
+                    $insert = $con->prepare("INSERT INTO main_categories (title_cat,type,img) VALUES(:zname , :ztype ,:zimg)");
+                    $insert->execute(array(
+                        'zname' => $name_main,
+                        'ztype' => $rol,
+                        'zimg'  => $image
+                    ));
+                    echo "<script>alert('تم إضافة القسم بنجاح');</script>";
+                    $Location = "section-admin.php?do=Manage";
+                    redirectHome($Location);
+        }
         }
 ?>
        <!--end add section-->
@@ -154,7 +162,7 @@
 
     } elseif($do == 'Delete'){
 
-      $main_c = isset($_GET['main_c']) && is_numeric($_GET['main_c']) ? intval($_GET['main_c']) : 0 ;
+      $main_c = isset($_GET['main_c']) && is_numeric($_GET['main_c']) ? intval($_GET['main_c']) : 0;
 
       $check = checkItem('id', "main_categories", $main_c);
 
