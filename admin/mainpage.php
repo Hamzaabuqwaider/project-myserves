@@ -118,7 +118,7 @@
 
 
 <?php include ("include/footer-admin.php"); ?>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
@@ -126,14 +126,6 @@
       function drawChart() {
 
         var data = google.visualization.arrayToDataTable([
-          ['category_id', 'user_id']]);
-
-        var options = {
-          title: 'My Daily Activities'
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
           ['Task', 'Hours per Day'],
           ['Work',     11],
           ['Eat',      2],

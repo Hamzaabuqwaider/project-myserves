@@ -66,7 +66,7 @@
         <div class="col-md-3">
             <div class="main-body-img">
                 <div class="color-overlay-section-main-page"></div>
-                <img src="../project-myserves/layot/img/<?php echo $main_post['img'];?>" alt="">
+                <img src="/layot/img/<?php echo $main_post['img'];?>" alt="">
                 <div class="text-section-main-page">
                 <a href="main_section.php?Cat_id=<?= $main_post['title_cat']?>"><?php echo $main_post['title_cat'] ?></a>
                 </div>

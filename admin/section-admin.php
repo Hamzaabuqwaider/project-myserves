@@ -133,7 +133,7 @@
             $imageExtension = strtolower(end(explode('.' , $imageName)));
             
             $image = rand(0 , 100000) . '_' . $imageName;
-            move_uploaded_file($imageTemp,'./layot/img/' .$image);
+            move_uploaded_file($imageTemp,'layot/img/' .$image);
             $insert = $con->prepare("INSERT INTO main_categories (title_cat,type,img) VALUES(:zname , :ztype ,:zimg)");
             $insert->execute(array(
                 'zname' => $name_main,
