@@ -844,10 +844,7 @@ z-index: 3;
 
 .uploaded_file_view.show {opacity: 1;}
 .btn-section{
-  position: absolute;
-    top: 50%;
-    right: 50%;
-    transform: translate(-70%, 200px);
+ margin-right: 170px;
 }
 /*start-edit-inforamtion*/
 .edit-profile {

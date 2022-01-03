@@ -122,7 +122,6 @@
                                             ));
     
                         echo "<script>alert('تم إضافة معلوماتك بنجاح ');</script>";
-                        
                         $Location = "mainpage.php";
     
                         redirectHome($Location);

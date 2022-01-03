@@ -15,13 +15,18 @@ $stmt->execute(array($Cat_id));
 $stmt = $stmt->fetchAll();
 
 
+
+$stmt1 = $con-> prepare("SELECT title_cat FROM main_categories  WHERE title_cat = ? ");
+$stmt1->execute(array($Cat_id));
+$main_name = $stmt1->fetch();
+
 ?>
 
 <div class="namesaction">
     <div class="row">
         <div class="container">
             <div class="col-lg col-md col-sm col-xs">
-                    <h1 class="colarname">أعمال</h1>
+                    <h1 class="colarname"><?php echo $main_name['title_cat']; ?></h1>
                     <p>احصل على الدعم اللازم لتسيير أعمالك بشكل أكثر سلاسة</p>
             </div>
         </div>
@@ -34,7 +39,10 @@ $stmt = $stmt->fetchAll();
         <div class="container">
             <div class="card-group">
 
-                <?php foreach($stmt as $sectionId) { 
+                <?php 
+                if(!empty($stmt)){
+                    foreach($stmt as $sectionId) { 
+                    
                     regester($sectionId['id']);
                     if($sectionId['RegStatus'] == 1) { 
                     
@@ -84,7 +92,12 @@ $stmt = $stmt->fetchAll();
                 </div>
             </article>
                 </div>
-                <?php } }?> 
+                <?php } } } 
+                else{   
+                    echo '<span style="width:100%;text-align:center;font-size:20px;font-family: inherit;font-weight: 600;color: #aaa;"><i class="fas fa-exclamation-triangle" style="margin-left: 10px;color: #ff0000b5;"></i>لا يوجد اي خـدمة مقدمـة</span>';
+                }
+            
+                ?> 
 
 
             </div>

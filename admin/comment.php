@@ -16,7 +16,7 @@ session_start();
 
    include ("include/navadmin.php");
 
-   $stmt = $con->prepare("SELECT * , comment.comment_id as ID , users.name as NAME 
+   $stmt = $con->prepare("SELECT * , comment.comment_id as ID
    FROM comment
    INNER JOIN users ON users.id  = comment.comment_user WHERE post_id = '$comment' ");
 

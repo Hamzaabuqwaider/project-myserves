@@ -159,8 +159,6 @@ if (isset($_SESSION['userid'])) {
                         echo "<script>alert('$errors');</script>";
                         $location ="add-serves.php";
                         redirect($location);
-                        
-
             
                     }
                     
