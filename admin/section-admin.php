@@ -134,6 +134,7 @@
             
 
 
+
             $check_main = $con->prepare("SELECT * FROM main_categories");
             $check_main ->execute();
             $check_m = $check_main->fetchAll();

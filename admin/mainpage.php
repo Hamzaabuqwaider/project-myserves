@@ -126,6 +126,7 @@
       function drawChart() {
 
         var data = google.visualization.arrayToDataTable([
+
           <?php $stmt = $con->prepare("SELECT * FROM post");
                           $stmt->execute();
                           $posts = $stmt->fetchAll();
