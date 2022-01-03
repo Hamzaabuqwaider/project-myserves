@@ -2332,7 +2332,8 @@ float:none
     background-color: #49505724;
     position: absolute;
     bottom: 0px;
-    right: 198px;
+    right: 121px;
+    top: 600px;
 }
 .what-rating{
     font-size: 20px;
