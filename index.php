@@ -1,16 +1,15 @@
 <?php
-    $titlePage = "home-page";
-    include ("include/session.php");
-    include ("include/connect.php");
-    include ("include/header.php");
-    include ("include/topnav.php");
-    include ("include/function.php");
-    // include('include/loding.php');
-    
+$titlePage = "home-page";
+include ("include/session.php");
+include ("include/connect.php");
+include ("include/header.php");
+include ("include/topnav.php");
+include ("include/function.php");
+ include('include/loding.php');
 ?>
 
- <!-- ;$pageTitle = 'Sections' -->
-   <!---start background-->
+    <!-- ;$pageTitle = 'Sections' -->
+    <!---start background-->
         <header class="background-section">
         
             <article class="video-container">
@@ -53,30 +52,27 @@
     <h1>بعض الاقسام والاعمال في لموقع</h1>
     <div class="row">
         <?php
-    
-           $main = $con->prepare("SELECT * FROM main_categories");
-           $main->execute();
-           $main_row = $main->fetchAll();
 
-           foreach($main_row as $main_post ) {
-               if($main_post['RegStatus'] == 1){
-           
-        ?>
+        $main = $con->prepare("SELECT * FROM main_categories");
+        $main->execute();
+        $main_row = $main->fetchAll();
 
+        foreach($main_row as $main_post ) {
+            if($main_post['RegStatus'] == 1){ ?>
         <div class="col-md-3">
             <div class="main-body-img">
                 <div class="color-overlay-section-main-page"></div>
-                <img src="/layot/img/<?php echo $main_post['img'];?>" alt="">
+                <img src="admin/layot/img/<?php echo $main_post['img'];?>" alt="">
                 <div class="text-section-main-page">
                 <a href="main_section.php?Cat_id=<?= $main_post['title_cat']?>"><?php echo $main_post['title_cat'] ?></a>
                 </div>
+                </div>
             </div>
+            <?php } } ?>
         </div>
-        <?php } } ?>
-       </div>
-   </div>
- <!--section-mainpage-->
-<!---how is khidmitac--->
+    </div>
+    <!--section-mainpage-->
+    <!---how is khidmitac--->
    <div class="how-khidmitac">
        <h1>لماذا  <span>خد</span>متك ؟</h1>
        <div class="container">
@@ -119,6 +115,7 @@
 <!--slider mainpage -->
 <div class="container slider-mainpage">
       <h1>بعض الخدمات المميزة الموجودة في لموقع</h1>
+
     <div class="row">
         <div class="col-md-12">
             <div id="testimonial-slider" class="owl-carousel"> 
@@ -156,8 +153,14 @@
                 <div id="description-box" class="description-front-box ">
                     <h2><?php echo $posts['title'] ?></h2>
                     <p><i class="far fa-eye" style="margin-left:5px;color: #f8f9fa;"></i><?= $order['order_count']?> من طلبوا هذه الخدمة</p>
-                    <a href="details-test.php?id=<?= $posts['id']?>"><button type="button" class="btn btn-outline-light" style="font-weight: bold;">تفاصيل الخدمة</button></a>
-                </div>
+                    <?php if(isset($_SESSION['userid'])) { ?>
+                    <a href="details-test.php?id=<?= $posts['id']?>">
+                    <button type="button" class="btn btn-outline-light" style="font-weight: bold;">تفاصيل الخدمة</button></a>
+                    <?php }else { ?>
+                    <a href="main-login.php"><button type="button" class="btn btn-outline-light" style="font-weight: bold;">تفاصيل الخدمة</button></a>
+                            
+                   <?php  } ?>
+                    </div>
               
                 <div class="mc-content">
                 <div id="" class="color-overlay-section-main mains-sections"></div>
@@ -167,7 +170,7 @@
                     <div class="mc-description">
                     <div class="description-back-box">
                         <h2><?php echo $posts['title'] ?></h2>
-                        <p><i class="far fa-eye" style="margin-left:5px;color: #f8f9fa;"></i>50 من طلبوا هذه الخدمة</p>
+                        <p><i class="far fa-eye" style="margin-left:5px;color: #f8f9fa;"></i><?= $order['order_count']?> من طلبوا هذه الخدمة</p>
                     </div>
                       <div class="ul-details-tow-ico">
                          <ul>
@@ -189,6 +192,8 @@
                 <a class="mc-btn-action">
                     <i class="fa fa-bars"></i>
                 </a>
+                <div class="mc-footer">
+                </div>
               
             </article>
             <?php } ?>

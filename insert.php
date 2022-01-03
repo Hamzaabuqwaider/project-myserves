@@ -1,6 +1,6 @@
 <?php 
 
-session_start();
+include ("include/session.php");
 
 # check if the user is logged in
 if (isset($_SESSION['username'])) {

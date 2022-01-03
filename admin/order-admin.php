@@ -1,9 +1,9 @@
 <?php 
    $titlePage = "servesadmin";
-   session_start();
+   include ("include/session.php");
+   include ("include/connect.php");
    include ("include/header-admin.php");
-   include ("../include/connect.php");
-   include ("../include/function.php");
+   include ("include/function.php");
 
    if(isset($_SESSION['admin'])){
 
@@ -68,7 +68,7 @@
                               <td><?php echo $post["Name"] ?></td>
                               <td><?php echo $post["add_data"] ?></td>
                               <td>
-                                  <!-- وصف الخدمة -->
+                                <!-- وصف الخدمة -->
                                 <button type="button" style="background-color: #d39e00;color:white;" class="btn btn" data-toggle="modal" data-target="#exampleModal<?= $post["ID"] ?>">
                                     وصف الخدمة
                                 </button>
@@ -120,20 +120,24 @@
 
 // Check if Get Request userID is Numeric & Get The Integer Value of It
 
-$post_ID = isset($_GET['post_ID']) && is_numeric($_GET['post_ID']) ? intval($_GET['post_ID']) : 0 ;
-    
+    $post_ID = isset($_GET['post_ID']) && is_numeric($_GET['post_ID']) ? intval($_GET['post_ID']) : 0 ;
 
     $stmt = $con->prepare("UPDATE post SET RegStatus = 1 WHERE id = ?");
-
     $stmt->execute(array($post_ID));
 
     $Location = "order-admin.php?do=Manage";
+        redirectHome($Location);
 
-    redirectHome($Location);
-}
-
-include ("include/footer-admin.php");
-} else {
+    } elseif ($do == "Delete") { 
+        
+        $post_ID = isset($_GET['post_ID']) && is_numeric($_GET['post_ID']) ? intval($_GET['post_ID']) : 0 ;
+        $stmt = $con->prepare("DELETE FROM post WHERE id = ?");
+        $stmt->execute(array($post_ID));
+        $Location = "order-admin.php?do=Manage";
+        redirectHome($Location);
+    }
+        include ("include/footer-admin.php");  
+    }  else {
 
     header('Location: index.php');
 

@@ -1,7 +1,8 @@
 <?php 
     ob_start();
    $titlePage = "Edit-admin";
-   session_start();
+   include ("include/session.php");
+   include ("include/connect.php");   
    include ("include/header-admin.php");
    include ("include/navadmin.php");
    include ("include/function.php");
@@ -90,8 +91,6 @@
             $email = $_POST['email'];
             $Pass = empty($_POST['newpassword']) ? $_POST['oldpassword'] : MD5($_POST['newpassword']);
             $image = $_POST['upload'];
-
-
             $formErrors = array();
 
             if(empty($First_Name)){

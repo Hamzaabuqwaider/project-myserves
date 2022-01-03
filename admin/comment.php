@@ -1,9 +1,9 @@
 <?php 
-session_start();
    $titlePage = "comment";
+   include ("include/session.php");
+   include ("include/connect.php");
    include ("include/header-admin.php");
-   include ("../include/connect.php");
-   include ("../include/function.php");
+   include ("include/function.php");
 
   if(isset($_SESSION['admin'])){
 
@@ -16,7 +16,7 @@ session_start();
 
    include ("include/navadmin.php");
 
-   $stmt = $con->prepare("SELECT * , comment.comment_id as ID , users.name as NAME 
+   $stmt = $con->prepare("SELECT * , comment.comment_id as ID
    FROM comment
    INNER JOIN users ON users.id  = comment.comment_user WHERE post_id = '$comment' ");
 

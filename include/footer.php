@@ -26,10 +26,63 @@ include ("include/connect.php");
                     <div class="card-body">
                         <h5 class="card-title headers-footer">الروابط السريعة</h5>
                         <div class="quick-links">
-                            <a href="#">اضف خدمة</a>
-                            <a href="#">الاقسام</a>
-                            <a href="#">الخدمات المطلوبة</a>
-                            <a href="#">الطلبات الواردة</a>
+                            
+                        <?php 
+                    if(isset($_SESSION['userid']))
+                    {
+                        switch ($_SESSION['usertype']) {
+                            case "1": ?>
+                                <a class="nav-link main-text-nav" href="add-serves.php?action=Add&userid=<?php echo $_SESSION['userid'] ; ?>"> اضف خدمة </a>
+                              <?php
+                            case "2":
+                                echo '';
+                                break;
+                            default:
+                            echo  '';
+                        }
+                    }else 
+                    {
+                       echo  '<a href="main-login.php">أضف خدمة</a>';
+                    }
+                    ?>
+
+                    <?php 
+                        if(isset($_SESSION['userid']))
+                        {
+                            switch ($_SESSION['usertype']) {
+                                case "1": ?>
+                                    <a class="nav-link main-text-nav" href="required-service.php">الطلبات الواردة</a>
+                                    <?php
+                                case "2":
+                                    echo '';
+                                    break;
+                                default:
+                                echo  '';
+                            }
+                        }else 
+                        {
+                            echo  '<a href="main-login.php">الطلبات الواردة </a>';
+                        }
+                        ?>
+
+                        <?php 
+                    if(isset($_SESSION['userid']))
+                    {
+                        switch ($_SESSION['usertype']) {
+                            case "1" :
+                            case "2" : ?>
+                            <a class="nav-link main-text-nav" href="order.php?do=Manage">الخدمات المطلوبة</a> <?php
+                            
+                            break;
+                            default:
+                            echo  '';
+                        }
+                    }else {
+                       echo '<a href="main-login.php">الخدمات المطلوبة</a>';
+                        
+                    }
+                    ?>
+                    
                         </div>
                     </div>
                 </div>

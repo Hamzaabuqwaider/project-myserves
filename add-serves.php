@@ -40,7 +40,7 @@ if (isset($_SESSION['userid'])) {
                 <form action="add-serves.php?action=Insert&userid" method="POST" enctype = "multipart/form-data">
                     <div class="form-group">
                             <label for="formGroupExampleInput">اسم الخدمة:</label>
-                            <input type="text" name="name" class="form-control" id="formGroupExampleInput" placeholder="اسم الخدمة" maxlength="20">
+                            <input type="text" name="name" class="form-control" id="formGroupExampleInput" placeholder="اسم الخدمة" maxlength="25">
                         <label for="formGroupExampleInput">نوع الخدمة:</label>
                         <div class="btn-group btn-group-toggle" data-toggle="buttons">
                                 <label class="btn btn-secondary btn-add-serves-select active">
@@ -159,8 +159,6 @@ if (isset($_SESSION['userid'])) {
                         echo "<script>alert('$errors');</script>";
                         $location ="add-serves.php";
                         redirect($location);
-                        
-
             
                     }
                     

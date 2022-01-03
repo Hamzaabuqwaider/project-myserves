@@ -1,6 +1,6 @@
 <?php
-session_start();
-include ("../include/connect.php");
+ include ("include/session.php");
+ include ("include/connect.php");
 
     if($_SERVER['REQUEST_METHOD'] == 'POST')
     {
@@ -56,7 +56,8 @@ include ("../include/connect.php");
 <body style="background: #212529b0;">
 
      <form action="<?php echo $_SERVER['PHP_SELF']?>" method="POST">
-        <div class="cont">
+        <div
+         class="cont">
         <div class="form sign-in">
         <h2 class="navbar-brand logo"><span>خد</span>متك</h2>
             <label>

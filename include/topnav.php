@@ -1,4 +1,5 @@
 <!--start navbar-->
+<?php include('include/loding.php'); ?>
 <nav class="navbar navbar-edit navbar-expand-lg navbar-light back-color-nav <?= !isset($_SESSION['userid']) ? "test-login" : "" ?> <?= (isset($_SESSION['usertype']) && $_SESSION['usertype'] == 1) ? "user-nav" : "customer-nav" ?>">
                     <a class="navbar-brand logo" href="index.php"><span>خد</span>متك</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -6,7 +7,7 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active">
+                        <li class="nav-item active nav-margin">
                     <?php 
                     if(isset($_SESSION['userid']))
                     {
@@ -129,7 +130,7 @@
                                         $roo = $_SESSION["userid"];
                                         $chat = $con->prepare("SELECT *, users.id as id,users.imgg as img ,chat.to_id as CHAT_ID,chat.from_id as FROM_ID  FROM users
                                         INNER JOIN chat ON chat.from_id = users.id
-                                        WHERE chat.to_id = '$roo' ORDER BY id DESC LIMIT 5 ");
+                                        WHERE chat.to_id = '$roo' ORDER BY chat.chat_id DESC LIMIT 5 ");
 
                                         $chat->execute();
                                         $stmt = $chat->fetchAll();
@@ -139,8 +140,9 @@
                                         foreach($stmt as $row){
                                     ?>
                                     <div class="bgchat">
-                                    <a href="chat.php?user_id=<?php echo $_SESSION['username'];?>&post=<?php echo $row['FROM_ID'] ?>">
+                                    <a href="chat2.php?user_id=<?php echo $_SESSION['username'];?>&post=<?php echo $row['FROM_ID'] ?>">
                                     <li class="list-group-item tow-bg ">
+                                        
                                             <img class="img-profile" src="layot/img/<?php echo $row["img"];?>">
                                             <span class="time-notification"><i class="far fa-clock"></i><?php echo $row["created_at"];?></span>
                                             <span class="text-notification text-maseges">
@@ -172,7 +174,6 @@
                             $User = $con->prepare('SELECT imgg FROM users WHERE id ="'.$_SESSION['userid'].'"');
                             $User->execute();
                             $info = $User->fetch();
-                         
                          ?>
                          <!--start profile-->
                          <li class="nav-item dropdown">
@@ -180,16 +181,32 @@
                                 <img class="main-img-profile" src="layot/img/<?php echo $info['imgg'] ?>">
                             </a>
                             <div class="dropdown-menu drop-nav-profile" aria-labelledby="navbarDropdownMenuLink">
+                         
+                            <?php 
+                         }
+                    if(isset($_SESSION['userid']))
+                    {
+                        switch ($_SESSION['usertype']) {
+                            case "1": ?>
                                 <a class="dropdown-item" href="khadmatuk.php?do=Manage&userid=<?php echo $_SESSION['userid']?>"><i class="far fa-address-card"></i>خدماتي</a>
                                 <a class="dropdown-item" href="Account-balance.php"><i class="fas fa-wallet"></i>الرصيد</a>
+                                
+                            <?php
+                            case "2":
+                                echo '';
+                                break;
+                            default:
+                            echo  '';
+                        }
+                    ?>
+
                                 <a class="dropdown-item" href="edit-inforamtion.php?do=Edit&userid=<?php echo $_SESSION['userid']?>"><i class="fas fa-user-edit"></i>تعديل الحساب</a>
                                 <a class="dropdown-item" href="logout.php"><i class="fas fa-door-open"></i> خروج</a>
-
                             </div>
                         </li>
                         <?php }else {
-                           echo "<a href='main-login.php'class='btn  btn-outline-light'style='padding: 10px 45px;'><i class='fas fa-sign-in-alt'></i>&nbsp;سجل الان</a>";
-                        } ?>
+                            echo "<a href='main-login.php'class='btn  btn-outline-light'style='padding: 10px 45px;'><i class='fas fa-sign-in-alt'></i>&nbsp;سجل الان</a>";
+                            } ?>
                          <!--end profile-->
                     </ul>
                 </div>
