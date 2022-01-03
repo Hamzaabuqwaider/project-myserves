@@ -1,4 +1,5 @@
 <!--start navbar-->
+<?php include('include/loding.php'); ?>
 <nav class="navbar navbar-edit navbar-expand-lg navbar-light back-color-nav <?= !isset($_SESSION['userid']) ? "test-login" : "" ?> <?= (isset($_SESSION['usertype']) && $_SESSION['usertype'] == 1) ? "user-nav" : "customer-nav" ?>">
                     <a class="navbar-brand logo" href="index.php"><span>خد</span>متك</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
