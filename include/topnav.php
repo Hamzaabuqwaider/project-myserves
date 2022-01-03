@@ -1,4 +1,5 @@
 <!--start navbar-->
+<?php include('include/loding.php'); ?>
 <nav class="navbar navbar-edit navbar-expand-lg navbar-light back-color-nav <?= !isset($_SESSION['userid']) ? "test-login" : "" ?> <?= (isset($_SESSION['usertype']) && $_SESSION['usertype'] == 1) ? "user-nav" : "customer-nav" ?>">
                     <a class="navbar-brand logo" href="index.php"><span>خد</span>متك</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -129,7 +130,7 @@
                                         $roo = $_SESSION["userid"];
                                         $chat = $con->prepare("SELECT *, users.id as id,users.imgg as img ,chat.to_id as CHAT_ID,chat.from_id as FROM_ID  FROM users
                                         INNER JOIN chat ON chat.from_id = users.id
-                                        WHERE chat.to_id = '$roo' ORDER BY id DESC LIMIT 5 ");
+                                        WHERE chat.to_id = '$roo' ORDER BY chat.chat_id DESC LIMIT 5 ");
 
                                         $chat->execute();
                                         $stmt = $chat->fetchAll();
@@ -142,7 +143,7 @@
                                     <a href="chat.php?user_id=<?php echo $_SESSION['username'];?>&post=<?php echo $row['FROM_ID'] ?>">
                                     <li class="list-group-item tow-bg ">
                                         
-                                            <img class="img-profile" src="../layot/img/<?php echo $row["img"];?>">
+                                            <img class="img-profile" src="layot/img/<?php echo $row["img"];?>">
                                             <span class="time-notification"><i class="far fa-clock"></i><?php echo $row["created_at"];?></span>
                                             <span class="text-notification text-maseges">
                                                 <?php echo $row["first_name"]." ".$row["last_name"];?>

@@ -136,8 +136,7 @@
             $check_main = $con->prepare("SELECT * FROM main_categories");
             $check_main ->execute();
             $check_m = $check_main->fetchAll();
-
-            if($check_m['title_cat'] == $name_main) {
+            if($name_main === $check_m['title_cat']) {
                 echo "<script>alert('هذا القسم موجود بالفعل ');</script>";
                 $Location = "section-admin.php";
                 redirectHome($Location);
