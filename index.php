@@ -5,7 +5,7 @@ include ("include/connect.php");
 include ("include/header.php");
 include ("include/topnav.php");
 include ("include/function.php");
-// include('include/loding.php');
+ include('include/loding.php');
 ?>
 
     <!-- ;$pageTitle = 'Sections' -->
@@ -170,7 +170,7 @@ include ("include/function.php");
                     <div class="mc-description">
                     <div class="description-back-box">
                         <h2><?php echo $posts['title'] ?></h2>
-                        <p><i class="far fa-eye" style="margin-left:5px;color: #f8f9fa;"></i>50 من طلبوا هذه الخدمة</p>
+                        <p><i class="far fa-eye" style="margin-left:5px;color: #f8f9fa;"></i><?= $order['order_count']?> من طلبوا هذه الخدمة</p>
                     </div>
                       <div class="ul-details-tow-ico">
                          <ul>
@@ -192,6 +192,8 @@ include ("include/function.php");
                 <a class="mc-btn-action">
                     <i class="fa fa-bars"></i>
                 </a>
+                <div class="mc-footer">
+                </div>
               
             </article>
             <?php } ?>

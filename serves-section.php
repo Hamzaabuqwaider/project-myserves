@@ -5,7 +5,7 @@ ob_start();
   include ("include/connect.php");
   include ("include/header.php");
   include ("include/topnav.php");
-  // include('include/loding.php');
+  include('include/loding.php');
   if(isset($_SESSION['userid'])) {
 ?>
 

@@ -32,7 +32,7 @@ include ("include/connect.php");
                     {
                         switch ($_SESSION['usertype']) {
                             case "1": ?>
-                                <a class="nav-link main-text-nav" href="add-serves.php?action=Add&userid=<?php echo $_SESSION['userid'] ; ?>"><i class="fas fa-plus"></i> اضف خدمة </a>
+                                <a class="nav-link main-text-nav" href="add-serves.php?action=Add&userid=<?php echo $_SESSION['userid'] ; ?>"> اضف خدمة </a>
                               <?php
                             case "2":
                                 echo '';
@@ -51,7 +51,7 @@ include ("include/connect.php");
                         {
                             switch ($_SESSION['usertype']) {
                                 case "1": ?>
-                                    <a class="nav-link main-text-nav" href="required-service.php"></i>الطلبات الواردة</a>
+                                    <a class="nav-link main-text-nav" href="required-service.php">الطلبات الواردة</a>
                                     <?php
                                 case "2":
                                     echo '';
@@ -71,7 +71,7 @@ include ("include/connect.php");
                         switch ($_SESSION['usertype']) {
                             case "1" :
                             case "2" : ?>
-                            <a class="nav-link main-text-nav" href="order.php?do=Manage"><i class="fas fa-ambulance"></i> الخدمات المطلوبة</a> <?php
+                            <a class="nav-link main-text-nav" href="order.php?do=Manage">الخدمات المطلوبة</a> <?php
                             
                             break;
                             default:

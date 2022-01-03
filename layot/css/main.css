@@ -34,6 +34,7 @@ body{
     left: 0;
     transition: 1.5s; 
 }
+.navbar-edit .nav-margin{margin-right: 80px;}
 .test-login .logo{margin-left: 70%;}
 
 .customer-nav .custom-nav-section{margin-right: 100px;}
@@ -874,11 +875,10 @@ font-weight: 600;
 
 /*start freelansiter-section*/
 .name-section{
-    font-family: 'Lemonada';
     text-align: center;
     margin-top: 70px;
     font-size: 40px;
-    color:var(--orang--color);
+    color: #000000c4;
 }
 .section-title{text-decoration: none; color:var(--Navy--color); font-size: 25px;}
 
@@ -1245,7 +1245,7 @@ font-size: 1.1rem;
     width: 100%;
     text-align: center;
 }
-.material-card .description-front-box h2{font-size: 25px;font-family: 'Lemonada';font-weight: bold;text-align: center;}
+.material-card .description-front-box h2{font-size: 20px;font-family: 'Lemonada';font-weight: bold;text-align: center;}
 
 .material-card .description-front-box p{font-size: 18px;font-weight: 500;color: #ffff00c2;}
 
@@ -1254,7 +1254,7 @@ font-size: 1.1rem;
 
 .material-card .description-back-box{background-color: var(--Navy--color);padding: 5px;padding-left:35px;color:var(--White--color);}
 
-.material-card .description-back-box h2{margin-right: 10px;font-size: 25px;}
+.material-card .description-back-box h2{margin-right: -22px;font-size: 20px;}
 
 .material-card .description-back-box p{font-weight: 600;color: #dad70e;}
 
@@ -1285,7 +1285,7 @@ font-size: 1.1rem;
 }
 .material-card.mc-active .mc-btn-action {top: 92px;}
 
-.material-card .mc-btn-action i{position: absolute;top: 30%;left: 31%;}
+.material-card .mc-btn-action i{position: absolute;top: 35%;left: 35%;}
 
 .material-card .mc-description {
   position: absolute;
@@ -2332,7 +2332,7 @@ float:none
     background-color: #49505724;
     position: absolute;
     bottom: 0px;
-    right: 121px;
+    right: 195px;
     top: 600px;
 }
 .what-rating{
