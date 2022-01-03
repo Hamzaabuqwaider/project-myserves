@@ -4,7 +4,7 @@ include ("include/session.php");
 include ("include/connect.php");
 include ("include/header.php");
 include ("include/function.php");
-// include('include/loding.php');
+ include('include/loding.php');
 
 if(isset($_SESSION['userid']))
 {
@@ -152,7 +152,7 @@ if(isset($_SESSION['userid']))
                         <select
                             name="type"
                             aria-label="Default select example "  >
-                            <option selected value='1'>عميل </option>
+                            <option selected value='1'>مقدم خدمة </option>
                             <option value='2'>مستخدم عادي</option>
                         </select>                
                     </div>

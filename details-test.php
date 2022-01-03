@@ -63,7 +63,7 @@ if (isset($_SESSION['userid'])) {
               </p>
               <div id="buttons-details">
                 <a href="request.php?post_name=<?php echo $row['title'];?>&user_id=<?php echo $row['user']?>&post_id=<?php echo $row['post_id'];?>" class="btn-details-new blue-details"><i class="fas fa-plus"></i> طلب ألخدمة</a>
-                <a href="chat.php?user_id=<?php echo $_SESSION['username'];?>&post=<?php echo $row['user_id'] ?>" class="btn-details-new orange-details"><i class="far fa-envelope"></i> ألتواصل مع البائع</a>
+                <a href="chat.php?user_id=<?php echo $_SESSION['username'];?>&post=<?php echo $row['user_id']?>&post_id=<?php echo $row['post_id'];?>" class="btn-details-new orange-details"><i class="far fa-envelope"></i> ألتواصل مع البائع</a>
              </div>
       </div>
   </section>

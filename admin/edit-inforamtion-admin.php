@@ -1,7 +1,8 @@
 <?php 
     ob_start();
    $titlePage = "Edit-admin";
-   session_start();
+   include ("include/session.php");
+   include ("include/connect.php");   
    include ("include/header-admin.php");
    include ("include/navadmin.php");
    include ("include/function.php");

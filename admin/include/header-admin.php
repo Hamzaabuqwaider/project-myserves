@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="layot/css/bootstrap.min.css">
     <link rel="stylesheet" href="layot/css/mainadmin.css">
+    <link rel="stylesheet" href="layot/css/fontawesome.css">
     <link rel="stylesheet" href="layot/css/media.css">
     <link rel="stylesheet" href="layot/css/normalize.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">

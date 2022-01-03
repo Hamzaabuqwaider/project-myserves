@@ -1,7 +1,5 @@
 <!--start navbar-->
-<?php   
-include ("include/connect.php");
-?>
+
 <div class="navbar">
    <ul class="navbar-nav">
       <li class="nav-item">

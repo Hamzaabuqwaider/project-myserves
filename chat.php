@@ -13,6 +13,7 @@ if (isset($_SESSION['userid']))
 {
     $name = isset($_GET['user_id']) && is_numeric($_GET['user_id']) ? intval($_GET['user_id']) :0;
     $post = isset($_GET['post']) && is_numeric($_GET['post']) ? intval($_GET['post']) :0;
+	$post_id =$_GET["post_id"];
 
     $getUser = $con->prepare("SELECT * FROM users WHERE id = '$post' ");
     $getUser->execute();
@@ -66,7 +67,7 @@ if (isset($_SESSION['userid']))
 								
 							</div>
                             <div class="exit_info">
-                                   <abbr title="رجوع الى الصفحه"><a href="index.php"><i class="fas fa-sign-out-alt"></i></a> </abbr> 
+                                   <abbr title="رجوع الى الصفحه"><a href="details-test.php?id=<?php echo $post_id;?>"><i class="fas fa-sign-out-alt"></i></a> </abbr> 
 							</div>
 						</div>
 						<div class="card-body msg_card_body" id="chatBox">

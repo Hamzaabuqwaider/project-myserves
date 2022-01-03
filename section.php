@@ -11,7 +11,6 @@ if(isset($_SESSION['userid'])) {
 $Cat_id = isset($_GET['Cat_id']) && is_numeric($_GET['Cat_id']) ? intval($_GET['Cat_id']) :0;
 
 
-
 $stmt = $con-> prepare("SELECT * FROM post  WHERE category_id = ? LIMIT 9 ");
 $stmt->execute(array($Cat_id));
 $posts = $stmt->fetchAll();
@@ -72,12 +71,12 @@ $sub = $stmt1->fetch();
                 <div class="mc-content">
                 <div id="" class="color-overlay-section-main mains-sections"></div>
                     <div class="img-container">
-                        <img class="img-responsive" src="../project-myserves\layot\img\<?php echo $post['img'];?>">
+                        <img class="img-responsive" src="layot\img\<?php echo $post['img'];?>">
                     </div>
                     <div class="mc-description">
                     <div class="description-back-box">
                         <h2><?php echo $post['title']?></h2>
-                        <p><i class="far fa-eye" style="margin-left:5px;color: #f8f9fa;"></i>50 من طلبوا هذه الخدمة</p>
+                        <p><i class="far fa-eye" style="margin-left:5px;color: #f8f9fa;"></i><?= $order['order_count']?> من طلبوا هذه الخدمة</p>
                     </div>
                       <div class="ul-details-tow-ico">
                          <ul>
@@ -100,7 +99,7 @@ $sub = $stmt1->fetch();
                     <i class="fa fa-bars"></i>
                 </a>
                 <div class="mc-footer">
-                    <a href=""><button type="button" class="btn btn-outline-light">طلب الخدمة</button></a>
+ 
                 </div>
             </article>
                 </div>

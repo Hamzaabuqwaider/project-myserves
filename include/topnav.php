@@ -6,7 +6,7 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active">
+                        <li class="nav-item active nav-margin">
                     <?php 
                     if(isset($_SESSION['userid']))
                     {
@@ -129,7 +129,7 @@
                                         $roo = $_SESSION["userid"];
                                         $chat = $con->prepare("SELECT *, users.id as id,users.imgg as img ,chat.to_id as CHAT_ID,chat.from_id as FROM_ID  FROM users
                                         INNER JOIN chat ON chat.from_id = users.id
-                                        WHERE chat.to_id = '$roo' ORDER BY id DESC LIMIT 5 ");
+                                        WHERE chat.to_id = '$roo' ORDER BY chat.chat_id DESC LIMIT 5 ");
 
                                         $chat->execute();
                                         $stmt = $chat->fetchAll();
@@ -139,10 +139,10 @@
                                         foreach($stmt as $row){
                                     ?>
                                     <div class="bgchat">
-                                    <a href="chat.php?user_id=<?php echo $_SESSION['username'];?>&post=<?php echo $row['FROM_ID'] ?>">
+                                    <a href="chat2.php?user_id=<?php echo $_SESSION['username'];?>&post=<?php echo $row['FROM_ID'] ?>">
                                     <li class="list-group-item tow-bg ">
                                         
-                                            <img class="img-profile" src="../layot/img/<?php echo $row["img"];?>">
+                                            <img class="img-profile" src="layot/img/<?php echo $row["img"];?>">
                                             <span class="time-notification"><i class="far fa-clock"></i><?php echo $row["created_at"];?></span>
                                             <span class="text-notification text-maseges">
                                                 <?php echo $row["first_name"]." ".$row["last_name"];?>

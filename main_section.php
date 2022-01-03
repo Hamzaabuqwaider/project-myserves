@@ -6,15 +6,12 @@ ob_start();
     include ("include/header.php");
     include ("include/topnav.php");
     include ("include/function.php");
-//    include('include/loding.php');
-
+    include('include/loding.php');
 if(isset($_SESSION['userid'])) {
 $Cat_id = $_GET['Cat_id'];
 $stmt = $con-> prepare("SELECT * FROM post WHERE main_title = ? ");
 $stmt->execute(array($Cat_id));
 $stmt = $stmt->fetchAll();
-
-
 
 $stmt1 = $con-> prepare("SELECT title_cat FROM main_categories  WHERE title_cat = ? ");
 $stmt1->execute(array($Cat_id));
@@ -39,12 +36,21 @@ $main_name = $stmt1->fetch();
         <div class="container">
             <div class="card-group">
 
-                <?php 
-                if(!empty($stmt)){
-                    foreach($stmt as $sectionId) { 
-                    
-                    regester($sectionId['id']);
-                    if($sectionId['RegStatus'] == 1) { 
+            <?php if(!empty($stmt)): foreach($stmt as $post):  regester($post['id']);
+                    if($post['RegStatus'] == 1) { 
+                        $stmt2 = $con->prepare("SELECT * FROM rating WHERE post_id = ?");
+                        $stmt2->execute([$post['id']]);
+                        $ratings = $stmt2->fetchAll();
+                        $sumRating = 0;
+                        foreach($ratings as $rating) {
+                            $sumRating += $rating['number_rating'];
+                        }
+                        $numberpeople = count($ratings);
+                        $avarage = $numberpeople != 0 ?  floor($sumRating / count($ratings)) : $sumRating;
+
+                        $stmt3 = $con->prepare("SELECT *,count(id) as order_count FROM orders WHERE post_id = ?");
+                        $stmt3->execute([$post['id']]);
+                        $order = $stmt3->fetch();
                     
                     ?>
                      
@@ -52,20 +58,20 @@ $main_name = $stmt1->fetch();
 
                     <article class="material-card Red">
                 <div id="description-box" class="description-front-box ">
-                <h2><?php echo $sectionId['title']?></h2>
-                    <p><i class="far fa-eye" style="margin-left:5px;color: #f8f9fa;"></i>50 من طلبوا هذه الخدمة</p>
-                    <a href="details-test.php?id=<?= $sectionId['id']?>"><button type="button" class="btn btn-outline-light" style="font-weight: bold;">تفاصيل الخدمة</button></a>
+                <h2><?php echo $post['title']?></h2>
+                    <p><i class="far fa-eye" style="margin-left:5px;color: #f8f9fa;"></i><?= $order['order_count']?> من طلبوا هذه الخدمة</p>
+                    <a href="details-test.php?id=<?= $post['id']?>"><button type="button" class="btn btn-outline-light" style="font-weight: bold;">تفاصيل الخدمة</button></a>
                 </div>
               
                 <div class="mc-content">
                 <div id="" class="color-overlay-section-main mains-sections"></div>
                     <div class="img-container">
-                        <img class="img-responsive" src="../project-myserves\layot\img\<?php echo $sectionId['img'];?>">
+                        <img class="img-responsive" src="../project-myserves\layot\img\<?php echo $post['img'];?>">
                     </div>
                     <div class="mc-description">
                     <div class="description-back-box">
-                        <h2><?php echo $sectionId['title']?></h2>
-                        <p><i class="far fa-eye" style="margin-left:5px;color: #f8f9fa;"></i>50 من طلبوا هذه الخدمة</p>
+                        <h2><?php echo $post['title']?></h2>
+                        <p><i class="far fa-eye" style="margin-left:5px;color: #f8f9fa;"></i><?= $order['order_count']?> من طلبوا هذه الخدمة</p>
                     </div>
                       <div class="ul-details-tow-ico">
                          <ul>
@@ -74,13 +80,13 @@ $main_name = $stmt1->fetch();
                          </ul>
                        </div>
                        <div class="visit-wibsite">
-                            <ul>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star set-white"></i></li>
-                            </ul>
+                        <div class="rating col-12 pl-0 rating-show"><!--
+                            --><a href="details-test.php?id=<?= $post['id'] ?>" class="<?= $avarage == 5 ? "select" : "" ?>" title="Give 5 stars">★</a><!--
+                            --><a href="details-test.php?id=<?= $post['id'] ?>" class="<?= $avarage == 4 ? "select" : "" ?>" title="Give 4 stars">★</a><!--
+                            --><a href="details-test.php?id=<?= $post['id'] ?>" class="<?= $avarage == 3 ? "select" : "" ?>" title="Give 3 stars">★</a><!--
+                            --><a href="details-test.php?id=<?= $post['id'] ?>" class="<?= $avarage == 2 ? "select" : "" ?>" title="Give 2 stars">★</a><!--
+                            --><a href="details-test.php?id=<?= $post['id'] ?>" class="<?= $avarage == 1 ? "select" : "" ?>" title="Give 1 star">★</a>
+                            </div>
                         </div>                    
                     </div>
                 </div>
@@ -88,23 +94,16 @@ $main_name = $stmt1->fetch();
                     <i class="fa fa-bars"></i>
                 </a>
                 <div class="mc-footer">
-                    <a href=""><button type="button" class="btn btn-outline-light">طلب الخدمة</button></a>
                 </div>
             </article>
                 </div>
-                <?php } } } 
-                else{   
-                    echo '<span style="width:100%;text-align:center;font-size:20px;font-family: inherit;font-weight: 600;color: #aaa;"><i class="fas fa-exclamation-triangle" style="margin-left: 10px;color: #ff0000b5;"></i>لا يوجد اي خـدمة مقدمـة</span>';
-                }
-            
-                ?> 
+                <?php  }endforeach; else: ?>
+               <span style="width:100%;text-align:center;font-size:20px;font-family: inherit;font-weight: 600;color: #aaa;"><i class="fas fa-exclamation-triangle" style="margin-left: 10px;color: #ff0000b5;"></i>لا يوجد اي خـدمة مقدمـة</span>
+               <?php endif; ?>
 
 
             </div>
         </div>
-    </div>
-    <div class="butoom-section">
-        <button type="button" class="btn btn-dark">عرض المزيد</button>
     </div>
 </div>
 <!-- end section box create ghazal-->
@@ -112,55 +111,54 @@ $main_name = $stmt1->fetch();
 <div class="infromtion text-center">
     <div class="row"> 
         <div class="col-lg-12 col-md col-sm d-none d-sm-block">
-            <h3>أمّن أعمالك في ضوء استشارة قانونية من خبير</h3>
-            <p>في مواقف مختلفة من الحياة العملية والاجتماعية تحتاج إلى مساعدة قانونية تضعك على المسار الآمن بحيث تحفظ حقوقك وتحميك من المساءلة. أيا كانت المساعدة التي تحتاجها سواء استشارة قانونية أو صياغة وثيقة هامة، ستعثر هنا على خبراء قانونيين من بلدان مختلفة يقدمون لك المساعدة القانونية الموثوقة.</p>
+            <h3>ما هي أهمية المواقع الإلكترونية؟</h3>
+            <p>ساهمت المواقع الإلكترونية بتوسيع نطاق إمكانية تحقيق العديد من الأمور، وأتاحت ملايين الفرص والأفكار للأفراد، كما غيّرت أنماط حياة الناس في جميع أنحاء العالم، حيث أصبح بإمكان الناس الاتصال والتفاعل مع بعضهم البعض من خلال هواتفهم وأجهزة الكمبيوتر المحمولة أينما كانوا، مما غيّر في نهج الأعمال التجارية وعملياتها،</p>
             <div id="accordion">
                 <div class="card">
                     <div class="card-header" id="headingOne">
                         <h5 class="mb-0">
-                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">ما هي الاستشارات القانونية؟</button>
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                               أهمية المواقع الإلكترونية في مجال الأعمال  
+                            </button>
                         </h5>
                     </div>
                     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                         <div class="card-body">
-                            الاستشارات القانونية هي الإرشادات القانونية التي يحتاجها العميل سواء كان فردًا أو شركة لاتخاذ قرار أو إتمام إجراء ما بشكل آمن دون الدخول في تعقيدات قانونية أو الوقوع تحت طائلة القانون.
-                        </div>
+                        ساهمت المواقع الإلكترونية في حل مشكلة نقص الوقت، وعدم توّفر المال الكافي، من خلال التعجيل بإنجاز العمل الروتيني، ولا سيّما العمل الحكومي، حيث يمكن تنفيذ معظم الأعمال اليومية بكل سهولة وسرعة من خلال مواقع الإنترنت المتخصصة مثل المواقع الحكومية.
+                         </div>
                     </div>
                 </div>
                 <div class="card">
                     <div class="card-header" id="headingTwo">
                         <h5 class="mb-0">
-                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">ماهي الخبرة القانونية لمقدمي تلك الاستشارات؟ </button>
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">أهمية المواقع الإلكترونية في مجال التعليم </button>
                         </h5>
                     </div>
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                         <div class="card-body">
-                            ل آمن دون الدخول في تعقيدات قانونية أو الوقوع تحت طائلة القانون.
-                        </div>
+                        توّفر المواقع الإلكترونية المعلومات بشكلٍ مجاني لمختلف الأشخاص، من خلال الموسوعات الإلكترونية، والمواقع المتخصصة بأنواع معينة من العلوم والمعارف، حيث أصبح بمقدور أي شخص الحصول على المعرفة التي يريدها، كما يُمكن الحصول على المعلومات في أي وقت بسهولة.  </div>
                     </div>
                 </div>
                 <div class="card">
                     <div class="card-header" id="headingThree">
                         <h5 class="mb-0">
-                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">متى أحتاج إلى استشارة قانونية؟</button>
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">أهمية المواقع الإلكترونية للترفيه والتواصل الاجتماعي</button>
                         </h5>
                     </div>
                     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
                         <div class="card-body">
-                            الاستشارات القانونية هي الإرشادات القانونية التي يحتاجها العميل سواء كان فردًا أو شركة لاتخاذ قرار أو إتمام إجراء ما بشكل آمن دون الدخول في تعقيدات قانونية أو الوقوع تحت طائلة القانون.
-                        </div>
+                        أتاحت المواقع الإلكترونية للأشخاص مشاهدة القنوات التلفزيونية، ولعب الألعاب المسلية، ومشاهدة الأفلام والرسوم المتحركة، وقراءة الكتب في أي مكان في العالم، وفي أي وقت، كما ساهمت بتسهيل متعة التسوق عبر مواقع التسوق الإلكتروني، حيث يمكن للأفراد شراء أي شيء يحتاجون إليه من أي مكان في العالم من خلال هذه المواقع.                        </div>
                     </div>
                 </div>
                 <div class="card">
                     <div class="card-header" id="headingTwo">
                         <h5 class="mb-0">
-                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">ما هي الطريقة التي أحصل بها على الاستشارة القانونية؟</button>
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">مساوئ المواقع الإلكترونية</button>
                         </h5>
                     </div>
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                        <div class="card-body">
-                            بشكل آمن دون الدخول في تعقيدات قانونية أو الوقوع تحت طائلة القانون.
-                        </div>
+                    <div class="card-body">
+                        أدّت المواقع الإلكترونية إلى ارتكاب بعض الجرائم مثل عمليات القرصنة، ومن الأمثلة على ذلك تحميل أحدث الألبومات والأفلام بطرق غير مشروعة على المواقع الإلكترونية بحيث يتسنى لمختلف الأشخاص الحصول عليها مجانًا؛ ممّا يُلحق الضرر بالفنانين، ومطوري البرامج، وشركات الإنتاج.                        </div>
                     </div>
                 </div>
             </div>
@@ -168,8 +166,7 @@ $main_name = $stmt1->fetch();
     </div>
 </div>  
 <!--end about prodacts and services-->
-<?php include ("include/footer.php");
-     }else {
+<?php include ("include/footer.php"); }else {
         header("Location: main-login.php");
     }
 ?>
